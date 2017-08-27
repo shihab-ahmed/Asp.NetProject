@@ -17,5 +17,6 @@ namespace V.Doc_Entity
         public int Age { get; set; }
         public String Password { get; set; }
         public String Gender { get; set; }
+        public String Type { get; set; }
     }
 }
