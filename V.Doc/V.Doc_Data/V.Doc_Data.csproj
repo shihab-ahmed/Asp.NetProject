@@ -47,7 +47,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract Classes\ChatDataAccess.cs" />
+    <Compile Include="Abstract Classes\ComplainDataAccess.cs" />
+    <Compile Include="Abstract Classes\DiseaseDataAccess.cs" />
+    <Compile Include="Abstract Classes\DoctorDataAccess.cs" />
+    <Compile Include="Abstract Classes\MedicineDataAccess.cs" />
+    <Compile Include="Abstract Classes\PatientDataAccess.cs" />
+    <Compile Include="Abstract Classes\PrescriptionDataAccess.cs" />
+    <Compile Include="Abstract Classes\SpecialistDataAccess.cs" />
+    <Compile Include="Abstract Classes\SymptomDataAccess.cs" />
+    <Compile Include="Abstract Classes\UserDataAccess.cs" />
+    <Compile Include="DataAccessFactory.cs" />
     <Compile Include="DatabaseContext.cs" />
+    <Compile Include="Interfaces\IChatDataAccess.cs" />
+    <Compile Include="Interfaces\IComplainDataAccess.cs" />
+    <Compile Include="Interfaces\IDiseaseDataAccess.cs" />
+    <Compile Include="Interfaces\IDoctorDataAccess.cs" />
+    <Compile Include="Interfaces\IMedicineDataAccess.cs" />
+    <Compile Include="Interfaces\IPatientDataAccess.cs" />
+    <Compile Include="Interfaces\IPrescriptionDataAccess.cs" />
+    <Compile Include="Interfaces\ISpecialistDataAccess.cs" />
+    <Compile Include="Interfaces\ISymptomDataAccess.cs" />
+    <Compile Include="Interfaces\IUserDataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -60,5 +81,6 @@
       <Name>V.Doc_Entity</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
