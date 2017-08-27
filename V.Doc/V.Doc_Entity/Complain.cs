@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace V.Doc_Entity
 {
-    class Complain
+    public class Complain
     {
     }
 }
