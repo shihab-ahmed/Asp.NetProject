@@ -10,31 +10,44 @@ namespace V.Doc_Data.Abstract_Classes
 {
     class ChatDataAccess : IChatDataAccess
     {
-        private DatabaseContext context;
+        private DatabaseContext databaseContext;
 
-        public ChatDataAccess(DatabaseContext context)
+        public ChatDataAccess(DatabaseContext databaseContext)
         {
-            this.context = context;
+            this.databaseContext = databaseContext;
         }
 
         public int Delete(int id)
         {
-            throw new NotImplementedException();
+            Chat chat = this.databaseContext.Chats.SingleOrDefault(x => x.Id == id);
+            this.databaseContext.Chats.Remove(chat);
+            return this.databaseContext.SaveChanges();
         }
 
-        public IEnumerable<Chat> GetAll(User sender, User reciever)
+        public Chat Get(int id)
         {
-            throw new NotImplementedException();
+            return this.databaseContext.Chats.SingleOrDefault(x => x.Id == id);
+        }
+
+        public IEnumerable<Chat> GetAll(User sender,User reciever)
+        {
+            return this.databaseContext.Chats.OrderByDescending(x => x.Sender == sender||x.Reciever==sender||x.Sender==reciever ||x.Reciever==reciever).ToList();
         }
 
         public int Insert(Chat chat)
         {
-            throw new NotImplementedException();
+            this.databaseContext.Chats.Add(chat);
+            return this.databaseContext.SaveChanges();
         }
 
-        public int Update(Chat employee)
+        public int Update(Chat chat)
         {
-            throw new NotImplementedException();
+            Chat chatToUpdate = this.databaseContext.Chats.SingleOrDefault(x => x.Id == chat.Id);
+
+            chatToUpdate.isSeenByReciever = chat.isSeenByReciever;
+            chatToUpdate.isSeenBySender = chat.isSeenBySender;
+            chatToUpdate.Message = chat.Message;
+            return this.databaseContext.SaveChanges();
         }
     }
 }

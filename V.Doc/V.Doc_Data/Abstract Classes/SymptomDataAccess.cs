@@ -17,43 +17,36 @@ namespace V.Doc_Data.Abstract_Classes
             this.databaseContext = databaseContext;
         }
 
-      /*  public int Delete(int id)
+        public int Delete(int id)
         {
             Symptom symptom = this.databaseContext.Symptoms.SingleOrDefault(x => x.Id == id);
-            this.databaseContext.Users.Remove(user);
+            this.databaseContext.Symptoms.Remove(symptom);
             return this.databaseContext.SaveChanges();
         }
 
         public Symptom Get(int id)
         {
-            return this.databaseContext.Users.SingleOrDefault(x => x.Id == id);
+            return this.databaseContext.Symptoms.SingleOrDefault(x => x.Id == id);
         }
 
         public IEnumerable<Symptom> GetAll()
         {
-            return this.databaseContext.Users.ToList();
+            return this.databaseContext.Symptoms.ToList();
         }
 
-        public int Insert(Symptom user)
+        public int Insert(Symptom symptom)
         {
-            this.databaseContext.Users.Add(user);
+            this.databaseContext.Symptoms.Add(symptom);
             return this.databaseContext.SaveChanges();
         }
 
-        public int Update(Symptom user)
+        public int Update(Symptom symptom)
         {
-            Symptom userToUpdate = this.databaseContext.Users.SingleOrDefault(x => x.Id == user.Id);
+            Symptom symptomToUpdate = this.databaseContext.Symptoms.SingleOrDefault(x => x.Id == symptom.Id);
 
-            userToUpdate.FirstName = user.FirstName;
-            userToUpdate.LastName = user.LastName;
-            userToUpdate.Email = user.Email;
-            userToUpdate.Birthdate = user.Birthdate;
-            userToUpdate.Age = user.Age;
-            userToUpdate.Password = user.Password;
-            userToUpdate.Gender = user.Gender;
-
-
+            symptomToUpdate.Name = symptom.Name;
+            symptomToUpdate.TimeDuration = symptom.TimeDuration;
             return this.databaseContext.SaveChanges();
-        }*/
+        }
     }
 }

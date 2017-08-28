@@ -19,27 +19,36 @@ namespace V.Doc_Data.Abstract_Classes
 
         public int Delete(int id)
         {
-            throw new NotImplementedException();
+            Prescription prescription = this.databaseContext.Prescriptions.SingleOrDefault(x => x.Id == id);
+            this.databaseContext.Prescriptions.Remove(prescription);
+            return this.databaseContext.SaveChanges();
         }
 
         public Prescription Get(int id)
         {
-            throw new NotImplementedException();
+            return this.databaseContext.Prescriptions.SingleOrDefault(x => x.Id == id);
         }
 
         public IEnumerable<Prescription> GetAll()
         {
-            throw new NotImplementedException();
+            return this.databaseContext.Prescriptions.ToList();
         }
 
-        public int Insert(Prescription user)
+        public int Insert(Prescription prescription)
         {
-            throw new NotImplementedException();
+            this.databaseContext.Prescriptions.Add(prescription);
+            return this.databaseContext.SaveChanges();
         }
 
-        public int Update(Prescription user)
+        public int Update(Prescription prescription)
         {
-            throw new NotImplementedException();
+            Prescription prescriptionToUpdate = this.databaseContext.Prescriptions.SingleOrDefault(x => x.Id == prescription.Id);
+
+            prescriptionToUpdate.isSeenByReciever = prescription.isSeenByReciever;
+            prescriptionToUpdate.isSeenBySender = prescription.isSeenBySender;
+            prescriptionToUpdate.Details = prescription.Details;
+
+            return this.databaseContext.SaveChanges();
         }
     }
 }

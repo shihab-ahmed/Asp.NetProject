@@ -11,6 +11,8 @@ namespace V.Doc_Entity
     {
         [Key]
         public int Id { get; set; }
+        [StringLength(300,MinimumLength =1,ErrorMessage ="Message must be between 1-300")]
+        public String Message { get; set; }
         [Required(ErrorMessage ="Sender Required")]
         public User Sender { get; set; }
         [Required(ErrorMessage ="Reciever Required")]

@@ -8,7 +8,7 @@ using V.Doc_Entity;
 
 namespace V.Doc_Data.Abstract_Classes
 {
-    class ComplainDataAccess : IComplainDataAccess
+    class ComplainDataAccess: IComplainDataAccess
     {
         private DatabaseContext databaseContext;
 
@@ -16,30 +16,36 @@ namespace V.Doc_Data.Abstract_Classes
         {
             this.databaseContext = databaseContext;
         }
-
         public int Delete(int id)
         {
-            throw new NotImplementedException();
+            Complain complain = this.databaseContext.Complains.SingleOrDefault(x => x.Id == id);
+            this.databaseContext.Complains.Remove(complain);
+            return this.databaseContext.SaveChanges();
         }
 
-        public Complain Get(int id, bool includeDepartment = false)
+        public Complain Get(int id)
         {
-            throw new NotImplementedException();
+            return this.databaseContext.Complains.SingleOrDefault(x => x.Id == id);
         }
 
         public IEnumerable<Complain> GetAll()
         {
-            throw new NotImplementedException();
+            return this.databaseContext.Complains.ToList();
         }
 
-        public int Insert(Complain employee)
+        public int Insert(Complain complain)
         {
-            throw new NotImplementedException();
+            this.databaseContext.Complains.Add(complain);
+            return this.databaseContext.SaveChanges();
         }
 
-        public int Update(Complain employee)
+        public int Update(Complain complain)
         {
-            throw new NotImplementedException();
+            Complain ComplainToUpdate = this.databaseContext.Complains.SingleOrDefault(x => x.Id == complain.Id);
+
+            ComplainToUpdate.Details = complain.Details;
+            ComplainToUpdate.isSeenByAdmin = complain.isSeenByAdmin;
+            return this.databaseContext.SaveChanges();
         }
     }
 }

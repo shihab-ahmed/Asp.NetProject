@@ -19,27 +19,34 @@ namespace V.Doc_Data.Abstract_Classes
 
         public int Delete(int id)
         {
-            throw new NotImplementedException();
+            Patient patient = this.databaseContext.Patients.SingleOrDefault(x => x.Id == id);
+            this.databaseContext.Patients.Remove(patient);
+            return this.databaseContext.SaveChanges();
         }
 
         public Patient Get(int id)
         {
-            throw new NotImplementedException();
+            return this.databaseContext.Patients.SingleOrDefault(x => x.Id == id);
         }
 
         public IEnumerable<Patient> GetAll()
         {
-            throw new NotImplementedException();
+            return this.databaseContext.Patients.ToList();
         }
 
-        public int Insert(Patient user)
+        public int Insert(Patient patient)
         {
-            throw new NotImplementedException();
+            this.databaseContext.Patients.Add(patient);
+            return this.databaseContext.SaveChanges();
         }
 
-        public int Update(Patient user)
+        public int Update(Patient patient)
         {
-            throw new NotImplementedException();
+            Patient patientToUpdate = this.databaseContext.Patients.SingleOrDefault(x => x.Id == patient.Id);
+
+            patientToUpdate.isAvailable = patient.isAvailable;
+            patientToUpdate.Relative = patient.Relative;
+            return this.databaseContext.SaveChanges();
         }
     }
 }

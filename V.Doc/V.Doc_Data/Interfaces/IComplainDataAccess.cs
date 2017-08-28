@@ -10,7 +10,7 @@ namespace V.Doc_Data.Interfaces
     public interface IComplainDataAccess
     {
         IEnumerable<Complain> GetAll();
-        Complain Get(int id, bool includeDepartment = false);
+        Complain Get(int id);
         int Insert(Complain employee);
         int Update(Complain employee);
         int Delete(int id);

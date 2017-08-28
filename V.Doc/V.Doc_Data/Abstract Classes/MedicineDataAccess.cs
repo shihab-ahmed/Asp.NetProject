@@ -16,30 +16,37 @@ namespace V.Doc_Data.Abstract_Classes
         {
             this.databaseContext = databaseContext;
         }
-
         public int Delete(int id)
         {
-            throw new NotImplementedException();
+            Medicine medicine = this.databaseContext.Medicines.SingleOrDefault(x => x.Id == id);
+            this.databaseContext.Medicines.Remove(medicine);
+            return this.databaseContext.SaveChanges();
         }
 
         public Medicine Get(int id)
         {
-            throw new NotImplementedException();
+            return this.databaseContext.Medicines.SingleOrDefault(x => x.Id == id);
         }
 
         public IEnumerable<Medicine> GetAll()
         {
-            throw new NotImplementedException();
+            return this.databaseContext.Medicines.ToList();
         }
 
-        public int Insert(Medicine user)
+        public int Insert(Medicine medicine)
         {
-            throw new NotImplementedException();
+            this.databaseContext.Medicines.Add(medicine);
+            return this.databaseContext.SaveChanges();
         }
 
-        public int Update(Medicine user)
+        public int Update(Medicine medicine)
         {
-            throw new NotImplementedException();
+            Medicine MedicineToUpdate = this.databaseContext.Medicines.SingleOrDefault(x => x.Id == medicine.Id);
+
+            MedicineToUpdate.Name = medicine.Name;
+            MedicineToUpdate.Type = medicine.Type;
+
+            return this.databaseContext.SaveChanges();
         }
     }
 }
