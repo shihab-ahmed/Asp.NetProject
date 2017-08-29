@@ -5,48 +5,41 @@ using System.Text;
 using System.Threading.Tasks;
 using V.Doc_Service.Interfaces;
 using V.Doc_Entity;
+using V.Doc_Data.Interfaces;
 
 namespace V.Doc_Service.Abstract_Classes
 {
-    class MedicineService : IMedicineDataAccess
+    class MedicineService : IMedicineService
     {
-        private DatabaseContext databaseContext;
+        private IMedicineDataAccess medicineDataAccess;
 
-        public MedicineService(DatabaseContext databaseContext)
+        public MedicineService(IMedicineDataAccess medicineDataAccess)
         {
-            this.databaseContext = databaseContext;
+            this.medicineDataAccess = medicineDataAccess;
         }
         public int Delete(int id)
         {
-            Medicine medicine = this.databaseContext.Medicines.SingleOrDefault(x => x.Id == id);
-            this.databaseContext.Medicines.Remove(medicine);
-            return this.databaseContext.SaveChanges();
+            return this.medicineDataAccess.Delete(id);
         }
 
         public Medicine Get(int id)
         {
-            return this.databaseContext.Medicines.SingleOrDefault(x => x.Id == id);
+            return this.medicineDataAccess.Get(id);
         }
 
         public IEnumerable<Medicine> GetAll()
         {
-            return this.databaseContext.Medicines.ToList();
+            return this.medicineDataAccess.GetAll();
         }
 
         public int Insert(Medicine medicine)
         {
-            this.databaseContext.Medicines.Add(medicine);
-            return this.databaseContext.SaveChanges();
+            return this.medicineDataAccess.Insert(medicine);
         }
 
         public int Update(Medicine medicine)
         {
-            Medicine MedicineToUpdate = this.databaseContext.Medicines.SingleOrDefault(x => x.Id == medicine.Id);
-
-            MedicineToUpdate.Name = medicine.Name;
-            MedicineToUpdate.Type = medicine.Type;
-
-            return this.databaseContext.SaveChanges();
+            return this.medicineDataAccess.Update(medicine);
         }
     }
 }

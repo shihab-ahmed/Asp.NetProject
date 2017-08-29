@@ -5,48 +5,41 @@ using System.Text;
 using System.Threading.Tasks;
 using V.Doc_Service.Interfaces;
 using V.Doc_Entity;
+using V.Doc_Data.Interfaces;
 
 namespace V.Doc_Service.Abstract_Classes
 {
-    class SpecialistService : ISpecialistDataAccess
+    class SpecialistService : ISpecialistService
     {
-        private DatabaseContext databaseContext;
+        private ISpecialistDataAccess specialistDataAccess;
 
-        public SpecialistService(DatabaseContext databaseContext)
+        public SpecialistService(ISpecialistDataAccess specialistDataAccess)
         {
-            this.databaseContext = databaseContext;
+            this.specialistDataAccess = specialistDataAccess;
         }
-
         public int Delete(int id)
         {
-            Specialist specialist = this.databaseContext.Specialists.SingleOrDefault(x => x.Id == id);
-            this.databaseContext.Specialists.Remove(specialist);
-            return this.databaseContext.SaveChanges();
+            return this.specialistDataAccess.Delete(id);
         }
 
         public Specialist Get(int id)
         {
-            return this.databaseContext.Specialists.SingleOrDefault(x => x.Id == id);
+            return this.specialistDataAccess.Get(id);
         }
 
         public IEnumerable<Specialist> GetAll()
         {
-            return this.databaseContext.Specialists.ToList();
+            return this.specialistDataAccess.GetAll();
         }
 
         public int Insert(Specialist specialist)
         {
-            this.databaseContext.Specialists.Add(specialist);
-            return this.databaseContext.SaveChanges();
+            return this.specialistDataAccess.Insert(specialist);
         }
 
         public int Update(Specialist specialist)
         {
-            Specialist specialistToUpdate = this.databaseContext.Specialists.SingleOrDefault(x => x.Id == specialist.Id);
-
-            specialistToUpdate.Type = specialist.Type;
-            specialistToUpdate.Symptoms = specialist.Symptoms;
-            return this.databaseContext.SaveChanges();
+            return this.specialistDataAccess.Update(specialist);
         }
     }
 }

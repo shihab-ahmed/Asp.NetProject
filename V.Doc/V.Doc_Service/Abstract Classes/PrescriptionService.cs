@@ -5,50 +5,41 @@ using System.Text;
 using System.Threading.Tasks;
 using V.Doc_Service.Interfaces;
 using V.Doc_Entity;
+using V.Doc_Data.Interfaces;
 
 namespace V.Doc_Service.Abstract_Classes
 {
-    class PrescriptionService : IPrescriptionDataAccess
+    class PrescriptionService : IPrescriptionService
     {
-        private DatabaseContext databaseContext;
+        private IPrescriptionDataAccess prescriptionDataAccess;
 
-        public PrescriptionService(DatabaseContext databaseContext)
+        public PrescriptionService(IPrescriptionDataAccess prescriptionDataAccess)
         {
-            this.databaseContext = databaseContext;
+            this.prescriptionDataAccess = prescriptionDataAccess;
         }
-
         public int Delete(int id)
         {
-            Prescription prescription = this.databaseContext.Prescriptions.SingleOrDefault(x => x.Id == id);
-            this.databaseContext.Prescriptions.Remove(prescription);
-            return this.databaseContext.SaveChanges();
+            return this.prescriptionDataAccess.Delete(id);
         }
 
         public Prescription Get(int id)
         {
-            return this.databaseContext.Prescriptions.SingleOrDefault(x => x.Id == id);
+            return this.prescriptionDataAccess.Get(id);
         }
 
         public IEnumerable<Prescription> GetAll()
         {
-            return this.databaseContext.Prescriptions.ToList();
+            return this.prescriptionDataAccess.GetAll();
         }
 
         public int Insert(Prescription prescription)
         {
-            this.databaseContext.Prescriptions.Add(prescription);
-            return this.databaseContext.SaveChanges();
+            return this.prescriptionDataAccess.Insert(prescription);
         }
 
         public int Update(Prescription prescription)
         {
-            Prescription prescriptionToUpdate = this.databaseContext.Prescriptions.SingleOrDefault(x => x.Id == prescription.Id);
-
-            prescriptionToUpdate.isSeenByReciever = prescription.isSeenByReciever;
-            prescriptionToUpdate.isSeenBySender = prescription.isSeenBySender;
-            prescriptionToUpdate.Details = prescription.Details;
-
-            return this.databaseContext.SaveChanges();
+            return this.prescriptionDataAccess.Update(prescription);
         }
     }
 }

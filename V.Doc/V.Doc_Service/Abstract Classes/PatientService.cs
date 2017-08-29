@@ -5,48 +5,41 @@ using System.Text;
 using System.Threading.Tasks;
 using V.Doc_Service.Interfaces;
 using V.Doc_Entity;
+using V.Doc_Data.Interfaces;
 
 namespace V.Doc_Service.Abstract_Classes
 {
-    class PatientService : IPatientDataAccess
+    class PatientService : IPatientService
     {
-        private DatabaseContext databaseContext;
+        private IPatientDataAccess patientDataAccess;
 
-        public PatientService(DatabaseContext databaseContext)
+        public PatientService(IPatientDataAccess patientDataAccess)
         {
-            this.databaseContext = databaseContext;
+            this.patientDataAccess = patientDataAccess;
         }
-
         public int Delete(int id)
         {
-            Patient patient = this.databaseContext.Patients.SingleOrDefault(x => x.Id == id);
-            this.databaseContext.Patients.Remove(patient);
-            return this.databaseContext.SaveChanges();
+            return this.patientDataAccess.Delete(id);
         }
 
         public Patient Get(int id)
         {
-            return this.databaseContext.Patients.SingleOrDefault(x => x.Id == id);
+            return this.patientDataAccess.Get(id);
         }
 
         public IEnumerable<Patient> GetAll()
         {
-            return this.databaseContext.Patients.ToList();
+            return this.patientDataAccess.GetAll();
         }
 
         public int Insert(Patient patient)
         {
-            this.databaseContext.Patients.Add(patient);
-            return this.databaseContext.SaveChanges();
+            return this.patientDataAccess.Insert(patient);
         }
 
         public int Update(Patient patient)
         {
-            Patient patientToUpdate = this.databaseContext.Patients.SingleOrDefault(x => x.Id == patient.Id);
-
-            patientToUpdate.isAvailable = patient.isAvailable;
-            patientToUpdate.Relative = patient.Relative;
-            return this.databaseContext.SaveChanges();
+            return this.patientDataAccess.Update(patient);
         }
     }
 }

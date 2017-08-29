@@ -5,52 +5,41 @@ using System.Text;
 using System.Threading.Tasks;
 using V.Doc_Service.Interfaces;
 using V.Doc_Entity;
+using V.Doc_Data.Interfaces;
 
 namespace V.Doc_Service.Abstract_Classes
 {
-    class DoctorService : IDoctorDataAccess
+    class DoctorService : IDoctorService
     {
-        private DatabaseContext databaseContext;
+        private IDoctorDataAccess doctorDataAccess;
 
-        public DoctorService(DatabaseContext databaseContext)
+        public DoctorService(IDoctorDataAccess doctorDataAccess)
         {
-            this.databaseContext = databaseContext;
+            this.doctorDataAccess = doctorDataAccess;
         }
-
         public int Delete(int id)
         {
-            Doctor doctor = this.databaseContext.Doctors.SingleOrDefault(x => x.Id == id);
-            this.databaseContext.Doctors.Remove(doctor);
-            return this.databaseContext.SaveChanges();
+            return this.doctorDataAccess.Delete(id);
         }
 
         public Doctor Get(int id)
         {
-            return this.databaseContext.Doctors.SingleOrDefault(x => x.Id == id);
+            return this.doctorDataAccess.Get(id);
         }
 
         public IEnumerable<Doctor> GetAll()
         {
-            return this.databaseContext.Doctors.ToList();
+            return this.doctorDataAccess.GetAll();
         }
 
         public int Insert(Doctor doctor)
         {
-            this.databaseContext.Doctors.Add(doctor);
-            return this.databaseContext.SaveChanges();
+            return this.doctorDataAccess.Insert(doctor);
         }
 
         public int Update(Doctor doctor)
         {
-            Doctor doctorToUpdate = this.databaseContext.Doctors.SingleOrDefault(x => x.Id == doctor.Id);
-
-            doctorToUpdate.Experience = doctor.Experience;
-            doctorToUpdate.Specialist = doctor.Specialist;
-            doctorToUpdate.About = doctor.About;
-            doctorToUpdate.isAvailable = doctor.isAvailable;
-
-            return this.databaseContext.SaveChanges();
+            return this.doctorDataAccess.Update(doctor);
         }
-
     }
 }

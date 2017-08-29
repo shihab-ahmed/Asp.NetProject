@@ -1,48 +1,38 @@
-﻿using V.Doc_Entity;
+﻿using System;
+using System.Collections.Generic;
+using V.Doc_Data.Interfaces;
+using V.Doc_Entity;
 using V.Doc_Service.Interfaces;
 
 namespace V.Doc_Service.Abstract_Classes
 {
     class ChatService : IChatService
     {
-        private DatabaseContext databaseContext;
+        private IChatDataAccess chatDataAccess;
 
-        public ChatService(DatabaseContext databaseContext)
+        public ChatService(IChatDataAccess chatDataAccess)
         {
-            this.databaseContext = databaseContext;
+            this.chatDataAccess = chatDataAccess;
         }
 
         public int Delete(int id)
         {
-            Chat chat = this.databaseContext.Chats.SingleOrDefault(x => x.Id == id);
-            this.databaseContext.Chats.Remove(chat);
-            return this.databaseContext.SaveChanges();
+            return this.chatDataAccess.Delete(id);
         }
 
-        public Chat Get(int id)
+        public IEnumerable<Chat> GetAll(User sender, User reciever)
         {
-            return this.databaseContext.Chats.SingleOrDefault(x => x.Id == id);
-        }
-
-        public IEnumerable<Chat> GetAll(User sender,User reciever)
-        {
-            return this.databaseContext.Chats.OrderByDescending(x => x.Sender == sender||x.Reciever==sender||x.Sender==reciever ||x.Reciever==reciever).ToList();
+            return this.chatDataAccess.GetAll(sender, reciever);
         }
 
         public int Insert(Chat chat)
         {
-            this.databaseContext.Chats.Add(chat);
-            return this.databaseContext.SaveChanges();
+            return this.chatDataAccess.Insert(chat);
         }
 
         public int Update(Chat chat)
         {
-            Chat chatToUpdate = this.databaseContext.Chats.SingleOrDefault(x => x.Id == chat.Id);
-
-            chatToUpdate.isSeenByReciever = chat.isSeenByReciever;
-            chatToUpdate.isSeenBySender = chat.isSeenBySender;
-            chatToUpdate.Message = chat.Message;
-            return this.databaseContext.SaveChanges();
+            return this.chatDataAccess.Update(chat);
         }
     }
 }

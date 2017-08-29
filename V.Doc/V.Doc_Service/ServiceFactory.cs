@@ -5,50 +5,52 @@ using System.Text;
 using System.Threading.Tasks;
 using V.Doc_Data.Abstract_Classes;
 using V.Doc_Service.Interfaces;
+using V.Doc_Service.Abstract_Classes;
+using V.Doc_Data;
 
 namespace V.Doc_Service
 {
     public abstract class ServiceFactory
     {
-        public static IChatService GetChatDataAccess()
+        public static IChatService GetChatService()
         {
-            return new ChatDataAccess(new DatabaseContext());
+            return new ChatService(DataAccessFactory.GetChatDataAccess());
         }
-        public static IComplainDataAccess GetComplainDataAccess()
+        public static IComplainService GetComplainService()
         {
-            return new ComplainDataAccess(new DatabaseContext());
+            return new ComplainService(DataAccessFactory.GetComplainDataAccess());
         }
-        public static IDiseaseDataAccess GetDiseaseDataAccess()
+        public static IDiseaseService GetDiseaseService()
         {
-            return new DiseaseDataAccess(new DatabaseContext());
+            return new DiseaseService(DataAccessFactory.GetDiseaseDataAccess());
         }
-        public static IDoctorDataAccess GetDoctorDataAccess()
+        public static IDoctorService GetDoctorService()
         {
-            return new DoctorDataAccess(new DatabaseContext());
+            return new DoctorService(DataAccessFactory.GetDoctorDataAccess());
         }
-        public static IMedicineDataAccess GetMedicineDataAccess()
+        public static IMedicineService GetMedicineService()
         {
-            return new MedicineDataAccess(new DatabaseContext());
+            return new MedicineService(DataAccessFactory.GetMedicineDataAccess());
         }
-        public static IPatientDataAccess GetPatientDataAccess()
+        public static IPatientService GetPatientService()
         {
-            return new PatientDataAccess(new DatabaseContext());
+            return new PatientService(DataAccessFactory.GetPatientDataAccess());
         }
-        public static IPrescriptionDataAccess GetPrescriptionDataAccess()
+        public static IPrescriptionService GetPrescriptionService()
         {
-            return new PrescriptionDataAccess(new DatabaseContext());
+            return new PrescriptionService(DataAccessFactory.GetPrescriptionDataAccess());
         }
-        public static ISpecialistDataAccess GetSpecialistDataAccess()
+        public static ISpecialistService GetSpecialistService()
         {
-            return new SpecialistDataAccess(new DatabaseContext());
+            return new SpecialistService(DataAccessFactory.GetSpecialistDataAccess());
         }
-        public static ISymptomDataAccess GetSymtomDataAccess()
+        public static ISymptomService GetSymtomService()
         {
-            return new SymptomDataAccess(new DatabaseContext());
+            return new SymptomService(DataAccessFactory.GetSymtomDataAccess());
         }
-        public static IUserDataAccess GetUserDataAccess()
+        public static IUserService GetUserService()
         {
-            return new UserDataAccess(new DatabaseContext());
+            return new UserService(DataAccessFactory.GetUserDataAccess());
         }
     }
 }

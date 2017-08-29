@@ -7,7 +7,7 @@ namespace V.Doc_Service.Interfaces
     {
         IEnumerable<Chat> GetAll(User sender,User reciever);
         int Insert(Chat chat);
-        int Update(Chat employee);
+        int Update(Chat chat);
         int Delete(int id);
     }
 }

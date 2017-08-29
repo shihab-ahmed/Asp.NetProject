@@ -3,50 +3,43 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using V.Doc_Data.Interfaces;
 using V.Doc_Entity;
 using V.Doc_Service.Interfaces;
 
 namespace V.Doc_Service.Abstract_Classes
 {
-    class SymptomService : ISymptomDataAccess
+    class SymptomService : ISymptomService
     {
-        private DatabaseContext databaseContext;
+        private ISymptomDataAccess symptomDataAccess;
 
-        public SymptomService(DatabaseContext databaseContext)
+        public SymptomService(ISymptomDataAccess symptomDataAccess)
         {
-            this.databaseContext = databaseContext;
+            this.symptomDataAccess = symptomDataAccess;
         }
-
         public int Delete(int id)
         {
-            Symptom symptom = this.databaseContext.Symptoms.SingleOrDefault(x => x.Id == id);
-            this.databaseContext.Symptoms.Remove(symptom);
-            return this.databaseContext.SaveChanges();
+            return this.symptomDataAccess.Delete(id);
         }
 
         public Symptom Get(int id)
         {
-            return this.databaseContext.Symptoms.SingleOrDefault(x => x.Id == id);
+            return this.symptomDataAccess.Get(id);
         }
 
         public IEnumerable<Symptom> GetAll()
         {
-            return this.databaseContext.Symptoms.ToList();
+            return this.symptomDataAccess.GetAll();
         }
 
         public int Insert(Symptom symptom)
         {
-            this.databaseContext.Symptoms.Add(symptom);
-            return this.databaseContext.SaveChanges();
+            return this.symptomDataAccess.Insert(symptom);
         }
 
         public int Update(Symptom symptom)
         {
-            Symptom symptomToUpdate = this.databaseContext.Symptoms.SingleOrDefault(x => x.Id == symptom.Id);
-
-            symptomToUpdate.Name = symptom.Name;
-            symptomToUpdate.TimeDuration = symptom.TimeDuration;
-            return this.databaseContext.SaveChanges();
+            return this.symptomDataAccess.Update(symptom);
         }
     }
 }
