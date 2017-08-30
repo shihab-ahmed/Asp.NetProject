@@ -1,0 +1,12 @@
+C:\Users\Shihab\Source\Repos\Virtual-Doctor\V.Doc\V.Doc_Service\bin\Debug\V.Doc_Service.dll
+C:\Users\Shihab\Source\Repos\Virtual-Doctor\V.Doc\V.Doc_Service\bin\Debug\V.Doc_Service.pdb
+C:\Users\Shihab\Source\Repos\Virtual-Doctor\V.Doc\V.Doc_Service\bin\Debug\V.Doc_Data.dll
+C:\Users\Shihab\Source\Repos\Virtual-Doctor\V.Doc\V.Doc_Service\bin\Debug\V.Doc_Entity.dll
+C:\Users\Shihab\Source\Repos\Virtual-Doctor\V.Doc\V.Doc_Service\bin\Debug\EntityFramework.dll
+C:\Users\Shihab\Source\Repos\Virtual-Doctor\V.Doc\V.Doc_Service\bin\Debug\V.Doc_Data.pdb
+C:\Users\Shihab\Source\Repos\Virtual-Doctor\V.Doc\V.Doc_Service\bin\Debug\V.Doc_Data.dll.config
+C:\Users\Shihab\Source\Repos\Virtual-Doctor\V.Doc\V.Doc_Service\bin\Debug\V.Doc_Entity.pdb
+C:\Users\Shihab\Source\Repos\Virtual-Doctor\V.Doc\V.Doc_Service\bin\Debug\EntityFramework.xml
+C:\Users\Shihab\Source\Repos\Virtual-Doctor\V.Doc\V.Doc_Service\obj\Debug\V.Doc_Service.csprojResolveAssemblyReference.cache
+C:\Users\Shihab\Source\Repos\Virtual-Doctor\V.Doc\V.Doc_Service\obj\Debug\V.Doc_Service.dll
+C:\Users\Shihab\Source\Repos\Virtual-Doctor\V.Doc\V.Doc_Service\obj\Debug\V.Doc_Service.pdb

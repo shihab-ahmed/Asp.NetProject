@@ -15,11 +15,13 @@ namespace V.Doc_Entity
         public DateTime Time { get; set; }
         [StringLength(1000,MinimumLength =1,ErrorMessage = "Prescription detail must be between 1-1000")]
         public String Details { get; set; }
-        [Required(ErrorMessage = "Sender Required")]
-        public User Sender { get; set; }
-        [Required(ErrorMessage = "Reciever Required")]
-        public User Reciever { get; set; }
         public bool isSeenBySender { get; set; }
         public bool isSeenByReciever { get; set; }
+
+
+        //[Required(ErrorMessage = "Sender Required")]
+        public User Sender { get; set; }
+        //[Required(ErrorMessage = "Reciever Required")]
+        public User Reciever { get; set; }
     }
 }

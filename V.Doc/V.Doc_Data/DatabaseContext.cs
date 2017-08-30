@@ -8,7 +8,7 @@ using V.Doc_Entity;
 
 namespace V.Doc_Data
 {
-    class DatabaseContext:DbContext
+    public class DatabaseContext:DbContext
     {
         public DbSet<Chat> Chats { get; set; }
         public DbSet<Complain> Complains { get; set; }

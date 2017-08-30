@@ -11,8 +11,8 @@ namespace V.Doc_Entity
     {
         [Key]
         public int Id { get; set; }
-        public bool isAvailable { get; set; }
-        [Required(ErrorMessage ="User Required")]
+        public String isAvailable { get; set; }
+
         public User User { get; set; }
         public IEnumerable<User> Relative { get; set; }
     }

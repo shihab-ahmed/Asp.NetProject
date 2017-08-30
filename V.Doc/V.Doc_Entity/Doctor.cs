@@ -18,7 +18,7 @@ namespace V.Doc_Entity
         [StringLength(500, MinimumLength = 1, ErrorMessage = "About Length must be between 1-500")]
         public String About { get; set; }
         public bool isAvailable { get; set; }
-        [Required(ErrorMessage ="User Required")]
+
         public User User { get; set; }
     }
 }
