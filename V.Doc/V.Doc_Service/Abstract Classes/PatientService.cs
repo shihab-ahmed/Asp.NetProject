@@ -22,14 +22,19 @@ namespace V.Doc_Service.Abstract_Classes
             return this.patientDataAccess.Delete(id);
         }
 
-        public Patient Get(int id)
+        public Patient Get(int id, bool includeUser = false)
         {
-            return this.patientDataAccess.Get(id);
+            return this.patientDataAccess.Get(id, includeUser);
         }
 
-        public IEnumerable<Patient> GetAll()
+        public IEnumerable<Patient> GetAll(bool includeUser = false)
         {
-            return this.patientDataAccess.GetAll();
+            return this.patientDataAccess.GetAll(includeUser);
+        }
+
+        public Patient GetUsingUser(User user, bool includeUser = false)
+        {
+            return this.patientDataAccess.GetUsingUser(user,includeUser);
         }
 
         public int Insert(Patient patient)

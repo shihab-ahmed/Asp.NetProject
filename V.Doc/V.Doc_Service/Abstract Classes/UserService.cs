@@ -28,6 +28,11 @@ namespace V.Doc_Service.Abstract_Classes
             return this.userDataAccess.Get(id);
         }
 
+        public User Get(string UserName)
+        {
+            return this.userDataAccess.Get(UserName);
+        }
+
         public IEnumerable<User> GetAll()
         {
             return this.userDataAccess.GetAll();

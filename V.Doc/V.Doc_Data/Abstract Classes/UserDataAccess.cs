@@ -29,6 +29,11 @@ namespace V.Doc_Data.Abstract_Classes
             return this.databaseContext.Users.SingleOrDefault(x => x.Id == id);
         }
 
+        public User Get(string UserName)
+        {
+            return this.databaseContext.Users.SingleOrDefault(x => x.UserName == UserName);
+        }
+
         public IEnumerable<User> GetAll()
         {
             return this.databaseContext.Users.ToList();
@@ -37,7 +42,8 @@ namespace V.Doc_Data.Abstract_Classes
         public int Insert(User user)
         {
             this.databaseContext.Users.Add(user);
-            return this.databaseContext.SaveChanges();
+            this.databaseContext.SaveChanges();
+            return user.Id;
         }
 
         public int Update(User user)

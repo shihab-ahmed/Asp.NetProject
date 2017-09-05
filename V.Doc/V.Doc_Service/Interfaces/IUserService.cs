@@ -11,6 +11,7 @@ namespace V.Doc_Service.Interfaces
     {
         IEnumerable<User> GetAll();
         User Get(int id);
+        User Get(String UserName);
         int Insert(User user);
         int Update(User user);
         int Delete(int id);

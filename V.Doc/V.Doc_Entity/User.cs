@@ -12,31 +12,39 @@ namespace V.Doc_Entity
         [Key]
         public int Id { get; set; }
 
-        [StringLength(50,MinimumLength =1,ErrorMessage ="First Name Length must be between 1-50")]
+        [StringLength(50,MinimumLength =1,ErrorMessage ="First Name Length must be between 1-50")
+            ,Required(ErrorMessage ="First Name Required")
+            ,RegularExpression("^[a-zA-Z]*$", ErrorMessage ="Only String is allowed")]
         public String FirstName { get; set; }
 
-        [StringLength(50, MinimumLength = 1, ErrorMessage = "Last Name Length must be between 1-50")]
+        [StringLength(50, MinimumLength = 1, ErrorMessage = "Last Name Length must be between 1-50")
+            , Required(ErrorMessage = "Last Name Required")
+            , RegularExpression("^[a-zA-Z]*$", ErrorMessage = "Only String is allowed")]
         public String LastName { get; set; }
 
-        [StringLength(50, MinimumLength = 1, ErrorMessage = "User Name Length must be between 1-50")]
+       [StringLength(50, MinimumLength = 1, ErrorMessage = "User Name Length must be between 1-50")
+            , Required(ErrorMessage = "User Name Required")]
         public String UserName { get; set; }
 
-        [Required(ErrorMessage ="Email is Required"),RegularExpression(@"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*")]
+        [Required(ErrorMessage ="Email is Required"),RegularExpression(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$",ErrorMessage ="Not a valid email")]
         public String Email { get; set; }
 
-        [Required(ErrorMessage ="Birthdate is Requeired")]
+        [Required(ErrorMessage = "Birthdate is Requeired")
+           ]
         public DateTime Birthdate { get; set; }
 
-        [Required(ErrorMessage = "Age is Requeired")]
         public int Age { get; set; }
 
         [Required(ErrorMessage = "Password is Requeired")]
         public String Password { get; set; }
 
-        [Required(ErrorMessage = "Gender is Requeired")]
+        [Required(ErrorMessage ="Gender not selected")]
         public String Gender { get; set; }
 
-        [Required(ErrorMessage = "Type is Requeired")]
+        
         public String Type { get; set; }
+
+        
+        public String ProfilePicture { get; set; }
     }
 }

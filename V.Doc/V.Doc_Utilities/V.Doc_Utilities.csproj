@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DateAndTime.cs" />
+    <Compile Include="Enum_UserType.cs" />
     <Compile Include="ListOFComplainStatus.cs" />
     <Compile Include="Enum_UserAvailableStatus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

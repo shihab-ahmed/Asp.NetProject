@@ -24,20 +24,48 @@ namespace V.Doc_Data.Abstract_Classes
             return this.databaseContext.SaveChanges();
         }
 
-        public Patient Get(int id)
+        public Patient Get(int id, bool includeUser = false)
         {
-            return this.databaseContext.Patients.SingleOrDefault(x => x.Id == id);
+            if (includeUser)
+            {
+                return this.databaseContext.Patients.Include("User").SingleOrDefault(x => x.Id == id);
+            }
+            else
+            {
+                return this.databaseContext.Patients.SingleOrDefault(x => x.Id == id);
+            }
+            
         }
 
-        public IEnumerable<Patient> GetAll()
+        public IEnumerable<Patient> GetAll(bool includeUser = false)
         {
-            return this.databaseContext.Patients.ToList();
+            if (includeUser)
+            {
+                return this.databaseContext.Patients.Include("User").ToList();
+            }
+            else
+            {
+                return this.databaseContext.Patients.ToList();
+            }
+        }
+
+        public Patient GetUsingUser(User user, bool includeUser = false)
+        {
+            if (includeUser)
+            {
+                return this.databaseContext.Patients.Include("User").SingleOrDefault(x => x.UserId == user.Id);
+            }
+            else
+            {
+                return this.databaseContext.Patients.SingleOrDefault(x => x.User.Id == user.Id);
+            }
         }
 
         public int Insert(Patient patient)
         {
             this.databaseContext.Patients.Add(patient);
-            return this.databaseContext.SaveChanges();
+            this.databaseContext.SaveChanges();
+            return patient.Id;
         }
 
         public int Update(Patient patient)

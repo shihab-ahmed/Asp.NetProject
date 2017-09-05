@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "V.Doc_Service", "V.Doc_Serv
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "V.Doc_Utilities", "V.Doc_Utilities\V.Doc_Utilities.csproj", "{1FD2DB16-23C2-492E-BB64-179197C4CA96}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "V.Doc", "V.Doc\V.Doc.csproj", "{7712934F-4369-4C5C-A4CF-EB794893A946}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "V.Doc_ASP.NET", "V.Doc_ASP.NET\V.Doc_ASP.NET.csproj", "{B5046683-D5F4-42DF-A1EE-AD3D0993A892}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +35,10 @@ Global
 		{1FD2DB16-23C2-492E-BB64-179197C4CA96}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1FD2DB16-23C2-492E-BB64-179197C4CA96}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1FD2DB16-23C2-492E-BB64-179197C4CA96}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7712934F-4369-4C5C-A4CF-EB794893A946}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7712934F-4369-4C5C-A4CF-EB794893A946}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7712934F-4369-4C5C-A4CF-EB794893A946}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7712934F-4369-4C5C-A4CF-EB794893A946}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5046683-D5F4-42DF-A1EE-AD3D0993A892}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5046683-D5F4-42DF-A1EE-AD3D0993A892}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5046683-D5F4-42DF-A1EE-AD3D0993A892}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5046683-D5F4-42DF-A1EE-AD3D0993A892}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
