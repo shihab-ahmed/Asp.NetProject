@@ -113,18 +113,25 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="UploadedFiles\Images\DefaultAdminPic.jpg" />
     <Content Include="Web.config" />
     <Content Include="Views\PatientAccount\CreateAccount.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminAccountController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PatientAccountController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CustomModel\LoginModel.cs" />
+    <Compile Include="Models\CustomModel\AdminModel.cs" />
     <Compile Include="Models\CustomModel\PatientModel.cs" />
+    <Compile Include="Models\CustomModel\AdminPasswordModel.cs" />
+    <Compile Include="Models\CustomModel\PatientPasswordModel.cs" />
+    <Compile Include="Models\CustomModel\AdminProfileModel.cs" />
+    <Compile Include="Models\CustomModel\PatientProfileModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -134,8 +141,13 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\PatientAccount\AccountDetails.cshtml" />
-    <Content Include="Views\PatientAccount\EditAccount.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\PatientAccount\EditProfile.cshtml" />
+    <Content Include="Views\PatientAccount\EditPassword.cshtml" />
+    <Content Include="Views\AdminAccount\CreateAccount.cshtml" />
+    <Content Include="Views\AdminAccount\AccountDetails.cshtml" />
+    <Content Include="Views\AdminAccount\EditProfile.cshtml" />
+    <Content Include="Views\AdminAccount\EditPassword.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -145,7 +157,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="UploadedFiles\Images\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\V.Doc_Data\V.Doc_Data.csproj">

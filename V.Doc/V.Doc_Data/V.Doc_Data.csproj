@@ -59,6 +59,7 @@
     <Compile Include="Abstract Classes\UserDataAccess.cs" />
     <Compile Include="DataAccessFactory.cs" />
     <Compile Include="DatabaseContext.cs" />
+    <Compile Include="DatabaseSeeder.cs" />
     <Compile Include="Interfaces\IChatDataAccess.cs" />
     <Compile Include="Interfaces\IComplainDataAccess.cs" />
     <Compile Include="Interfaces\IDiseaseDataAccess.cs" />
@@ -80,7 +81,10 @@
       <Project>{cd881425-83b5-47c2-92a7-91fd69ef5b89}</Project>
       <Name>V.Doc_Entity</Name>
     </ProjectReference>
+    <ProjectReference Include="..\V.Doc_Utilities\V.Doc_Utilities.csproj">
+      <Project>{1FD2DB16-23C2-492E-BB64-179197C4CA96}</Project>
+      <Name>V.Doc_Utilities</Name>
+    </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

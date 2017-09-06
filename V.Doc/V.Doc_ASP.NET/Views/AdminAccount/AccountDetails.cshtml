@@ -1,4 +1,4 @@
-﻿@model V.Doc_ASP.NET.Models.CustomModel.PatientModel
+﻿@model V.Doc_ASP.NET.Models.CustomModel.AdminModel
 
 @{
     ViewBag.Title = "AccountDetails";
@@ -7,7 +7,7 @@
 <h2>AccountDetails</h2>
 
 <div>
-    <h4>PatientModel</h4>
+    <h4>AdminModel</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -74,10 +74,11 @@
         </dd>
 
         <dd>
-            <input type="button" value="Edit Profile" onclick="location.href='@Url.Action("EditProfile", "PatientAccount")'">
-         </dd>
-        <dd>
-            <input type="button" value="Change Password" onclick="location.href='@Url.Action("EditPassword", "PatientAccount")'">
+            <input type="button" value="Edit Profile" onclick="location.href='@Url.Action("EditProfile", "AdminAccount")'">
         </dd>
-     </dl>
+        <dd>
+            <input type="button" value="Change Password" onclick="location.href='@Url.Action("EditPassword", "AdminAccount")'">
+        </dd>
+
+    </dl>
 </div>

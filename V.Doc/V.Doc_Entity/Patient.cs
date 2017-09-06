@@ -18,6 +18,7 @@ namespace V.Doc_Entity
 
         [ForeignKey("UserId")]
         public User User { get; set; }
+
         public IEnumerable<User> Relative { get; set; }
     }
 }

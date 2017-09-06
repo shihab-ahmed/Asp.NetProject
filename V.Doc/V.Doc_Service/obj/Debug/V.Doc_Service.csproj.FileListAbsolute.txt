@@ -10,3 +10,5 @@ C:\Users\Shihab\Source\Repos\Virtual-Doctor\V.Doc\V.Doc_Service\bin\Debug\Entity
 C:\Users\Shihab\Source\Repos\Virtual-Doctor\V.Doc\V.Doc_Service\obj\Debug\V.Doc_Service.csprojResolveAssemblyReference.cache
 C:\Users\Shihab\Source\Repos\Virtual-Doctor\V.Doc\V.Doc_Service\obj\Debug\V.Doc_Service.dll
 C:\Users\Shihab\Source\Repos\Virtual-Doctor\V.Doc\V.Doc_Service\obj\Debug\V.Doc_Service.pdb
+C:\Users\Shihab\Source\Repos\Virtual-Doctor\V.Doc\V.Doc_Service\bin\Debug\V.Doc_Utilities.dll
+C:\Users\Shihab\Source\Repos\Virtual-Doctor\V.Doc\V.Doc_Service\bin\Debug\V.Doc_Utilities.pdb

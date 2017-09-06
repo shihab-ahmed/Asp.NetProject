@@ -33,14 +33,15 @@ namespace V.Doc_ASP.NET.Controllers
                     String type = user.Type;
                     if(Enum_UserType.Admin.ToString()==type)
                     {
-                        return RedirectToAction("", "");
+                        Session["User"] = user;
+                        return RedirectToAction("AccountDetails", "AdminAccount");
                     }
                     else if(Enum_UserType.Patient.ToString() == type)
                     {
                         IPatientService patientServie = ServiceFactory.GetPatientService();
                         Patient patient = patientServie.GetUsingUser(user,true);
                         Session["Patient"] = patient;
-                        return RedirectToAction("AccountDetails", "PatientAccount",patient.Id);
+                        return RedirectToAction("AccountDetails", "PatientAccount");
                     }
                     else
                     {
