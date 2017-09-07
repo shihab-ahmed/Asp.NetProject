@@ -34,6 +34,13 @@ namespace V.Doc_ASP.NET.Controllers
                 return false;
             }
         }
+        [HttpGet]
+        public ActionResult ShowUserList()
+        {
+
+           
+            return View();
+        }
         // GET: Patient
         public ActionResult CreateAccount()
         {

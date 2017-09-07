@@ -7451,6 +7451,7 @@
     <Compile Include="Models\CustomModel\AdminProfileModel.cs" />
     <Compile Include="Models\CustomModel\DocotrProfileModel.cs" />
     <Compile Include="Models\CustomModel\PatientProfileModel.cs" />
+    <Compile Include="Models\CustomModel\ShowUserListModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
