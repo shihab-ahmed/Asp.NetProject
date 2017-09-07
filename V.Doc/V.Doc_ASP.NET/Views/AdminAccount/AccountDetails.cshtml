@@ -9,76 +9,54 @@
 <div>
     <h4>AdminModel</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
+    <div class="box box-primary">
+        <div class="box-body box-profile">
+            <img src="@Url.Content(Model.ProfilePicture)" class="profile-user-img img-responsive img-circle" alt="User profile picture" width="100" height="100" />
+            <h3 class="profile-username text-center">@Model.FirstName+" "+@Model.LastName</h3>
 
-        <dd>
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
+            <p class="text-muted text-center">@Model.Type</p>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Email)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Email)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Birthdate)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Birthdate)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Birthdate)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Age)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Birthdate)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Age)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Age)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Gender)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Age)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Gender)
+                </dd>
+            </dl>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Gender)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Gender)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Type)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Type)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ProfilePicture)
-        </dt>
-        <dd>
-            <img src="@Url.Content(Model.ProfilePicture)" width="100" height="100" />
-        </dd>
-
-        <dd>
-            <input type="button" value="Edit Profile" onclick="location.href='@Url.Action("EditProfile", "AdminAccount")'">
-        </dd>
-        <dd>
-            <input type="button" value="Change Password" onclick="location.href='@Url.Action("EditPassword", "AdminAccount")'">
-        </dd>
-
-    </dl>
+            <input type="button" value="Edit Profile" class="btn btn-primary btn-block" onclick="location.href='@Url.Action("EditProfile", "AdminAccount")'">
+            <input type="button" value="Change Password" class="btn btn-primary btn-block" onclick="location.href='@Url.Action("EditPassword", "AdminAccount")'">
+        </div>
+        <!-- /.box-body -->
+    </div>
 </div>
+
+
+
+

@@ -11,6 +11,7 @@ namespace V.Doc_Service.Interfaces
     {
         IEnumerable<Specialist> GetAll();
         Specialist Get(int id);
+        Specialist Get(String type);
         int Insert(Specialist user);
         int Update(Specialist user);
         int Delete(int id);

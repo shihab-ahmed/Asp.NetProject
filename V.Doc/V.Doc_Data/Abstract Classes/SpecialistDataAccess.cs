@@ -28,6 +28,10 @@ namespace V.Doc_Data.Abstract_Classes
         {
             return this.databaseContext.Specialists.SingleOrDefault(x => x.Id == id);
         }
+        public Specialist Get(String Type)
+        {
+            return this.databaseContext.Specialists.SingleOrDefault(x => x.Type == Type);
+        }
 
         public IEnumerable<Specialist> GetAll()
         {
@@ -45,7 +49,7 @@ namespace V.Doc_Data.Abstract_Classes
             Specialist specialistToUpdate = this.databaseContext.Specialists.SingleOrDefault(x => x.Id == specialist.Id);
 
             specialistToUpdate.Type = specialist.Type;
-            specialistToUpdate.Symptoms = specialist.Symptoms;
+           // specialistToUpdate.Symptoms = specialist.Symptoms;
             return this.databaseContext.SaveChanges();
         }
     }

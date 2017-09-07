@@ -28,6 +28,11 @@ namespace V.Doc_Data
             
 
             context.Users.Add(user);
+
+           
+
+
+
             context.SaveChanges();
 
             base.Seed(context);

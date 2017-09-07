@@ -1,0 +1,110 @@
+﻿<h2>CreateAccount</h2>
+
+@model V.Doc_ASP.NET.Models.CustomModel.DoctorModel
+
+@{
+    ViewBag.Title = "CreateAccount";
+    Layout = "~/Views/Shared/Admin_MainLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-sm-4 col-sm-offset-4">
+
+        <h1>Sign up</h1>
+
+        <div class="panel panel-default">
+            <div class="panel-body">
+                @using (Html.BeginForm("CreateAccount", "DoctorAccount", FormMethod.Post, new { role = "form" }))
+                {
+
+                    @* Name textbox *@
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Name)
+                        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                    </div>
+
+                    @* State selection dropdown *@
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Specialist)
+                        @Html.DropDownListFor(m => m.Specialist, // 1. Store selected value in Model.State;
+                                                                 // when page is rendered after postback,
+                                                                 // take selected value from Model.State.
+
+                                              // 2. Take list of values from Model.States
+                                              Model.Specialist_List,
+
+                                              // 3. Text for the first 'default' option
+                                              "- Please select a state -",
+
+                                              //4. A class name to assign to <select> tag
+                                              new { @class = "form-control" })
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.FirstName)
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.FirstName)
+                            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.LastName)
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.LastName)
+                            @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.UserName)
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.UserName)
+                            @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                           
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Email)
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Email)
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Birthdate, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Birthdate, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Birthdate, "", new { @class = "text-danger" })
+
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Gender)
+                        <div class="col-md-10">
+                            @Html.Label("Male", htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.RadioButtonFor(model => model.Gender, "Male", new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.Label("Female", htmlAttributes: new { @class = "control-label col-md-2" })
+                            @Html.RadioButtonFor(model => model.Gender, "Female", new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Sign up</button>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

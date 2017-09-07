@@ -26,6 +26,10 @@ namespace V.Doc_Service.Abstract_Classes
         {
             return this.specialistDataAccess.Get(id);
         }
+        public Specialist Get(String type)
+        {
+            return this.specialistDataAccess.Get(type);
+        }
 
         public IEnumerable<Specialist> GetAll()
         {

@@ -1,3 +1,20 @@
-﻿@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
+﻿@using V.Doc_Entity
+@{
+    if((User)Session["User"]!=null)
+    {
+        Layout = "~/Views/Shared/Admin_MainLayout.cshtml";
+    }
+    else if ((Doctor)Session["Doctor"] != null)
+    {
+        Layout = "~/Views/Shared/Doctor_MainLayout.cshtml";
+    }
+    else if ((Patient)Session["Patient"] != null)
+    {
+        Layout = "~/Views/Shared/Patient_MainLayout.cshtml";
+    }
+    else
+    {
+
+    }
+
 }
