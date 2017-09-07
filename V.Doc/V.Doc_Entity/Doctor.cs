@@ -14,18 +14,16 @@ namespace V.Doc_Entity
         public int Id { get; set; }
         [Required(ErrorMessage ="Experience Required")]
         public int Experience { get; set; }
-        [StringLength(500, MinimumLength = 1, ErrorMessage = "About Length must be between 1-500")]
+        //[StringLength(500, MinimumLength = 1, ErrorMessage = "About Length must be between 1-500")]
         public String About { get; set; }
         public String isAvailable { get; set; }
+
+
         public int UserId { get; set; }
-
-        
-
         [ForeignKey("UserId")]
         public User User { get; set; }
 
         public int SpecialistId { get; set; }
-
         [ForeignKey("SpecialistId")]
         public Specialist Specialist { get; set; }
     }
