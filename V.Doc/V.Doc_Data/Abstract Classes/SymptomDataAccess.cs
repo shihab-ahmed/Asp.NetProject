@@ -45,7 +45,6 @@ namespace V.Doc_Data.Abstract_Classes
             Symptom symptomToUpdate = this.databaseContext.Symptoms.SingleOrDefault(x => x.Id == symptom.Id);
 
             symptomToUpdate.Name = symptom.Name;
-            symptomToUpdate.TimeDuration = symptom.TimeDuration;
             return this.databaseContext.SaveChanges();
         }
     }

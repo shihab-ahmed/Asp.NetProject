@@ -15,5 +15,8 @@ namespace V.Doc_Entity
         public String Name { get; set; }
         [StringLength(50, MinimumLength = 1, ErrorMessage = "Type Length must be between 1-50")]
         public String Type { get; set; }
+
+
+        public List<Disease> Diseases { get; set; }
     }
 }

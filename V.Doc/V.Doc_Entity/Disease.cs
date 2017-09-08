@@ -13,8 +13,10 @@ namespace V.Doc_Entity
         public int Id { get; set; }
         [StringLength(50, MinimumLength = 1, ErrorMessage = "Name Length must be between 1-50")]
         public String Name { get; set; }
-        [Required(ErrorMessage ="List of symptom required")]
-        public IEnumerable<Symptom> Symptoms { get; set; }
-        
+ 
+        public List<Symptom> Symptoms { get; set; }
+
+        public List<Medicine> Medicines { get; set; }
+
     }
 }

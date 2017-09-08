@@ -13,5 +13,10 @@ namespace V.Doc_Entity
         public int Id { get; set; }
         [Required(ErrorMessage ="Type is required")]
         public String Type { get; set; }
+
+
+
+
+        public List<Symptom> Symptoms { get; set; }
     }
 }
