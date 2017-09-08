@@ -7472,6 +7472,7 @@
     <Content Include="Views\Shared\Doctor_MainLayout.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\DoctorAccount\CreateAccount.cshtml" />
+    <Content Include="Views\AdminAccount\ShowUserList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

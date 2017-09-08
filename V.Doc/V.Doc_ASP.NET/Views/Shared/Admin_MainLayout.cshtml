@@ -285,7 +285,7 @@
                             <span>Doctor</span>
                         </a>
                     </li>
-                    <li class="treeview">
+                    <li class="treeview" onclick="location.href='@Url.Action("ShowUserList", "AdminAccount")'">
                         <a href="#">
                             <i class="fa fa-files-o"></i>
                             <span>Show Users</span>
@@ -326,8 +326,21 @@
                     <li class="active">Dashboard</li>
                 </ol>
             </section>
-            @RenderBody()
+
+            <div style="background-color:white; margin:10px; width:100%;height:100%; border:2px dashed black;">
+
+
+
+
+                @RenderBody()
+
+
+
+
+            </div>
+            
         </div>
+           
         <!-- /.content-wrapper -->
         <footer class="main-footer">
             <div class="pull-right hidden-xs">

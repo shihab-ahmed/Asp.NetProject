@@ -34,12 +34,34 @@ namespace V.Doc_ASP.NET.Controllers
                 return false;
             }
         }
+        private List<ShowUserListModel> GetAllUser()
+        {
+            IUserService service = ServiceFactory.GetUserService();
+            
+            IEnumerable<User> UserList =service.GetAll();
+            List<ShowUserListModel> UserListModel = new List<ShowUserListModel>();
+            foreach (var item in UserList)
+            {
+                ShowUserListModel uModel = new ShowUserListModel();
+
+                uModel.FirstName = item.FirstName;
+                uModel.LastName = item.LastName;
+                uModel.Email = item.Email;
+                uModel.ProfilePicture = item.ProfilePicture;
+                uModel.Type = item.Type;
+                uModel.Age = item.Age;
+                uModel.Gender = item.Gender;
+                uModel.Id = item.Id;
+
+                UserListModel.Add(uModel);
+            }
+            return UserListModel;
+        }
         [HttpGet]
         public ActionResult ShowUserList()
         {
-
-           
-            return View();
+            if (!IsUserAlive()) return RedirectToAction("Login", "Login");
+            return View(GetAllUser());
         }
         // GET: Patient
         public ActionResult CreateAccount()
