@@ -26,7 +26,7 @@ namespace V.Doc_Data.Abstract_Classes
         {
             if(includeSymptomAndMedicine)
             {
-                return this.databaseContext.Diseases.Include("Specialists").Include("Diseases").SingleOrDefault(x => x.Id == id);
+                return this.databaseContext.Diseases.Include("Symptoms").Include("Medicines").SingleOrDefault(x => x.Id == id);
             }
             else
             {
@@ -38,7 +38,7 @@ namespace V.Doc_Data.Abstract_Classes
         {
             if (includeSymptomAndMedicine)
             {
-                return this.databaseContext.Diseases.Include("Specialists").Include("Diseases").ToList();
+                return this.databaseContext.Diseases.Include("Symptoms").Include("Medicines").ToList();
             }
             else
             {

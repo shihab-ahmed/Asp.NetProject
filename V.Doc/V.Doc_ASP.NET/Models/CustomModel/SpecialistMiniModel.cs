@@ -5,7 +5,7 @@ using System.Web;
 
 namespace V.Doc_ASP.NET.Models.CustomModel
 {
-    public class SymptomDiseaseModel
+    public class SpecialistMiniModel
     {
         public int id { get; set; }
         public bool isSelected { get; set; }

@@ -10,10 +10,10 @@ namespace V.Doc_ASP.NET.Models.CustomModel
     {
         public String NotifyStatus { get; set; }
 
-        public List<SymptomDiseaseModel> DiseasesModel { get; set; }
-        public List<SymptomSpecialistModel> SpecialistModel { get; set; }
+        public List<MedicineMiniModel> MedicineModel { get; set; }
+        public List<SymptomMiniModel> SymptomModel { get; set; }
 
-        public String DiseasesString { get; set; }
-        public String SpecialistString { get; set; }
+        public String MedicineString { get; set; }
+        public String SymptomString { get; set; }
     }
 }

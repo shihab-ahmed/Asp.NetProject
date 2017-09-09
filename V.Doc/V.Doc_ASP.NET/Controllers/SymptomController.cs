@@ -27,10 +27,10 @@ namespace V.Doc_ASP.NET.Controllers
             //Diseases
             IDiseaseService service = ServiceFactory.GetDiseaseService();
             IEnumerable<Disease> diseases = service.GetAll();
-            symptomModel.DiseasesModel = new List<SymptomDiseaseModel>();
+            symptomModel.DiseasesModel = new List<DiseaseMiniModel>();
             foreach (var item in diseases)
             {
-                SymptomDiseaseModel sDM = new SymptomDiseaseModel();
+                DiseaseMiniModel sDM = new DiseaseMiniModel();
                 sDM.Name = item.Name;
                 sDM.id = item.Id;
                 symptomModel.DiseasesModel.Add(sDM);
@@ -39,10 +39,10 @@ namespace V.Doc_ASP.NET.Controllers
             //Specialist
             ISpecialistService serviceSpecialist = ServiceFactory.GetSpecialistService();
             IEnumerable<Specialist> specialist = serviceSpecialist.GetAll();
-            symptomModel.SpecialistModel = new List<SymptomSpecialistModel>();
+            symptomModel.SpecialistModel = new List<SpecialistMiniModel>();
             foreach (var item in specialist)
             {
-                SymptomSpecialistModel sSM = new SymptomSpecialistModel();
+                SpecialistMiniModel sSM = new SpecialistMiniModel();
                 sSM.Name = item.Type;
                 sSM.id = item.Id;
                 symptomModel.SpecialistModel.Add(sSM);
@@ -56,10 +56,10 @@ namespace V.Doc_ASP.NET.Controllers
 
             IDiseaseService service = ServiceFactory.GetDiseaseService();
             IEnumerable<Disease> diseases = service.GetAll();
-            symptomModel.DiseasesModel = new List<SymptomDiseaseModel>();
+            symptomModel.DiseasesModel = new List<DiseaseMiniModel>();
             foreach (var item in diseases)
             {
-                SymptomDiseaseModel sDM = new SymptomDiseaseModel();
+                DiseaseMiniModel sDM = new DiseaseMiniModel();
                 sDM.Name = item.Name;
                 sDM.id = item.Id;
                 if (symptom.Diseases.Contains(item)) sDM.isSelected = true;
@@ -70,10 +70,10 @@ namespace V.Doc_ASP.NET.Controllers
             //Specialist
             ISpecialistService serviceSpecialist = ServiceFactory.GetSpecialistService();
             IEnumerable<Specialist> specialist = serviceSpecialist.GetAll();
-            symptomModel.SpecialistModel = new List<SymptomSpecialistModel>();
+            symptomModel.SpecialistModel = new List<SpecialistMiniModel>();
             foreach (var item in specialist)
             {
-                SymptomSpecialistModel sSM = new SymptomSpecialistModel();
+                SpecialistMiniModel sSM = new SpecialistMiniModel();
                 sSM.Name = item.Type;
                 sSM.id = item.Id;
                 if (symptom.Specialists.Contains(item)) sSM.isSelected = true;
