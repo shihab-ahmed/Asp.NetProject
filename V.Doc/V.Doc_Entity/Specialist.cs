@@ -17,6 +17,6 @@ namespace V.Doc_Entity
 
 
 
-        public List<Symptom> Symptoms { get; set; }
+        public virtual ICollection<Symptom> Symptoms { get; set; }
     }
 }

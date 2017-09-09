@@ -22,16 +22,16 @@ namespace V.Doc_Service.Abstract_Classes
             return this.specialistDataAccess.Delete(id);
         }
 
-        public Specialist Get(int id)
+        public Specialist Get(int id, bool isIncludeSymptom = false)
         {
             return this.specialistDataAccess.Get(id);
         }
-        public Specialist Get(String type)
+        public Specialist Get(String type, bool isIncludeSymptom = false)
         {
             return this.specialistDataAccess.Get(type);
         }
 
-        public IEnumerable<Specialist> GetAll()
+        public IEnumerable<Specialist> GetAll(bool isIncludeSymptom = false)
         {
             return this.specialistDataAccess.GetAll();
         }

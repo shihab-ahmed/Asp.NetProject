@@ -7438,6 +7438,8 @@
     <Compile Include="Controllers\DoctorAccountController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PatientAccountController.cs" />
+    <Compile Include="Controllers\SpecialistController.cs" />
+    <Compile Include="Controllers\SymptomController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -7452,6 +7454,10 @@
     <Compile Include="Models\CustomModel\DocotrProfileModel.cs" />
     <Compile Include="Models\CustomModel\PatientProfileModel.cs" />
     <Compile Include="Models\CustomModel\ShowUserListModel.cs" />
+    <Compile Include="Models\CustomModel\SpecialistModel.cs" />
+    <Compile Include="Models\CustomModel\SymptomSpecialistModel.cs" />
+    <Compile Include="Models\CustomModel\SymptomDiseaseModel.cs" />
+    <Compile Include="Models\CustomModel\SymptomModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -7473,6 +7479,11 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\DoctorAccount\CreateAccount.cshtml" />
     <Content Include="Views\AdminAccount\ShowUserList.cshtml" />
+    <Content Include="Views\Specialist\CreateSpecialist.cshtml" />
+    <Content Include="Views\Specialist\SpecialistFromAdminSite.cshtml" />
+    <Content Include="Views\Symptom\Create.cshtml" />
+    <Content Include="Views\Symptom\List.cshtml" />
+    <Content Include="Views\Symptom\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

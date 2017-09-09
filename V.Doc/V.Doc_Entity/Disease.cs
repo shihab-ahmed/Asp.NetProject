@@ -14,9 +14,8 @@ namespace V.Doc_Entity
         [StringLength(50, MinimumLength = 1, ErrorMessage = "Name Length must be between 1-50")]
         public String Name { get; set; }
  
-        public List<Symptom> Symptoms { get; set; }
-
-        public List<Medicine> Medicines { get; set; }
+        public virtual ICollection<Symptom> Symptoms { get; set; }
+        public virtual ICollection<Medicine> Medicines { get; set; }
 
     }
 }

@@ -1,0 +1,74 @@
+﻿@model V.Doc_ASP.NET.Models.CustomModel.SymptomModel
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/Admin_MainLayout.cshtml";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>SymptomModel</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.DisplayName("Diseases")
+                <ol>
+                    @for (int i = 0; i < Model.DiseasesModel.Count; i++)
+                    {
+                        <li>
+                            @Html.CheckBoxFor(x => Model.DiseasesModel[i].isSelected)
+                            @Html.DisplayFor(x => Model.DiseasesModel[i].Name)
+                            @Html.HiddenFor(x => Model.DiseasesModel[i].id)
+                            @Html.HiddenFor(x => Model.DiseasesModel[i].Name)
+                        </li>
+                    }
+                    
+                </ol>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.DisplayName("Specialist")
+                <ol>
+                    @for (int i = 0; i < Model.SpecialistModel.Count; i++)
+                    {
+                        <li>
+                            @Html.CheckBoxFor(x => Model.SpecialistModel[i].isSelected)
+                            @Html.DisplayFor(x => Model.SpecialistModel[i].Name)
+                            @Html.HiddenFor(x => Model.SpecialistModel[i].id)
+                            @Html.HiddenFor(x => Model.SpecialistModel[i].Name)
+                        </li>
+                    }
+
+                </ol>
+            </div>
+        </div>
+        <div class="form-control">
+            @Html.DisplayFor(x=>x.NotifyStatus)
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "List")
+</div>

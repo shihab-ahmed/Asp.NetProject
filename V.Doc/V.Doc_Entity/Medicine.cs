@@ -17,6 +17,6 @@ namespace V.Doc_Entity
         public String Type { get; set; }
 
 
-        public List<Disease> Diseases { get; set; }
+        public virtual ICollection<Disease> Diseases { get; set; }
     }
 }

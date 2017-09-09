@@ -13,13 +13,6 @@ namespace V.Doc_Data
     {
         protected override void Seed(DatabaseContext context)
         {
-            AddDefaultAdmin(context);
-            AddDefaultData(context);
-            base.Seed(context);
-        }
-
-        private void AddDefaultAdmin(DatabaseContext context)
-        {
             User user = new User()
             {
                 FirstName = "System",
@@ -35,10 +28,11 @@ namespace V.Doc_Data
             };
             context.Users.Add(user);
             context.SaveChanges();
-        }
 
-        private void AddDefaultData(DatabaseContext context)
-        {
+
+
+
+
             Specialist Cardiologist = new Specialist();
             Specialist Dermatologist = new Specialist();
             Specialist Neurologist = new Specialist();
@@ -72,17 +66,17 @@ namespace V.Doc_Data
 
 
             //Specialist
-            Cardiologist.Type = "Gastroenterologist";
+            Cardiologist.Type = "Cardiologist";
             Dermatologist.Type = "Dermatologist";
             Neurologist.Type = "Neurologist";
             Allergist.Type = "Allergist";
             Gastroenterologist.Type = "Gastroenterologist";
 
-            Cardiologist.Symptoms = new List<Symptom>() { ChestPain,Numb};
+            Cardiologist.Symptoms = new List<Symptom>() { ChestPain, Numb };
             Dermatologist.Symptoms = new List<Symptom>() { WhiteHead, BlackHead };
             Neurologist.Symptoms = new List<Symptom>() { ServerPain };
             Allergist.Symptoms = new List<Symptom>() { Coughfing, ShortnessOfBreath };
-            Gastroenterologist.Symptoms = new List<Symptom>() { StomacPain};
+            Gastroenterologist.Symptoms = new List<Symptom>() { StomacPain };
 
 
 
@@ -130,7 +124,7 @@ namespace V.Doc_Data
             Asthma.Symptoms = new List<Symptom>() { Coughfing, ShortnessOfBreath };
             Gastritis.Symptoms = new List<Symptom>() { StomacPain };
 
-            Cardiovascular.Medicines = new List<Medicine>() { XincB,Asparin};
+            Cardiovascular.Medicines = new List<Medicine>() { XincB, Asparin };
             Acne.Medicines = new List<Medicine>() { XincB, Ativan };
             Amyotrophy.Medicines = new List<Medicine>() { XincB, Asparin };
             Asthma.Medicines = new List<Medicine>() { Napa, Ace };
@@ -154,12 +148,12 @@ namespace V.Doc_Data
             Ativan.Type = "Tablet";
             XincB.Type = "Tablet";
 
-            Napa.Diseases = new List<Disease>() {Cardiovascular};
-            Asparin.Diseases = new List<Disease>() { Acne};
-            Ace.Diseases = new List<Disease>() {Acne,Amyotrophy };
-            Deslor.Diseases = new List<Disease>() { Asthma};
-            Ativan.Diseases = new List<Disease>() {Asthma,Gastritis };
-            XincB.Diseases = new List<Disease>() { Amyotrophy,Gastritis,Cardiovascular};
+            Napa.Diseases = new List<Disease>() { Cardiovascular };
+            Asparin.Diseases = new List<Disease>() { Acne };
+            Ace.Diseases = new List<Disease>() { Acne, Amyotrophy };
+            Deslor.Diseases = new List<Disease>() { Asthma };
+            Ativan.Diseases = new List<Disease>() { Asthma, Gastritis };
+            XincB.Diseases = new List<Disease>() { Amyotrophy, Gastritis, Cardiovascular };
 
 
             context.Specialists.Add(Cardiologist);
@@ -192,6 +186,8 @@ namespace V.Doc_Data
             context.Medicines.Add(XincB);
 
             context.SaveChanges();
+            base.Seed(context);
+            
         }
     }
 }

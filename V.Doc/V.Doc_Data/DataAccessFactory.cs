@@ -10,45 +10,46 @@ namespace V.Doc_Data
 {
     public abstract class DataAccessFactory
     {
+        public static DatabaseContext context = new DatabaseContext();
         public static IChatDataAccess GetChatDataAccess()
         {
-            return new ChatDataAccess(new DatabaseContext());
+            return new ChatDataAccess(context);
         }
         public static IComplainDataAccess GetComplainDataAccess()
         {
-            return new ComplainDataAccess(new DatabaseContext());
+            return new ComplainDataAccess(context);
         }
         public static IDiseaseDataAccess GetDiseaseDataAccess()
         {
-            return new DiseaseDataAccess(new DatabaseContext());
+            return new DiseaseDataAccess(context);
         }
         public static IDoctorDataAccess GetDoctorDataAccess()
         {
-            return new DoctorDataAccess(new DatabaseContext());
+            return new DoctorDataAccess(context);
         }
         public static IMedicineDataAccess GetMedicineDataAccess()
         {
-            return new MedicineDataAccess(new DatabaseContext());
+            return new MedicineDataAccess(context);
         }
         public static IPatientDataAccess GetPatientDataAccess()
         {
-            return new PatientDataAccess(new DatabaseContext());
+            return new PatientDataAccess(context);
         }
         public static IPrescriptionDataAccess GetPrescriptionDataAccess()
         {
-            return new PrescriptionDataAccess(new DatabaseContext());
+            return new PrescriptionDataAccess(context);
         }
         public static ISpecialistDataAccess GetSpecialistDataAccess()
         {
-            return new SpecialistDataAccess(new DatabaseContext());
+            return new SpecialistDataAccess(context);
         }
         public static ISymptomDataAccess GetSymtomDataAccess()
         {
-            return new SymptomDataAccess(new DatabaseContext());
+            return new SymptomDataAccess(context);
         }
         public static IUserDataAccess GetUserDataAccess()
         {
-            return new UserDataAccess(new DatabaseContext());
+            return new UserDataAccess(context);
         }
     }
 }

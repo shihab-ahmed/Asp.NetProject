@@ -26,5 +26,6 @@ namespace V.Doc_Entity
         public int SpecialistId { get; set; }
         [ForeignKey("SpecialistId")]
         public Specialist Specialist { get; set; }
+
     }
 }

@@ -1,10 +1,9 @@
 ﻿@model IEnumerable<V.Doc_ASP.NET.Models.CustomModel.ShowUserListModel>
-
 @{
     ViewBag.Title = "ShowUserList";
     Layout = "~/Views/Shared/Admin_MainLayout.cshtml";
 }
-
+@using V.Doc_Entity;
 <h2>ShowUserList</h2>
 
 <table class="table">
@@ -67,3 +66,9 @@
 }
 
 </table>
+
+
+@section UserPic{
+    <img src="~/Content/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+
+} 

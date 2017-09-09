@@ -66,8 +66,6 @@ namespace V.Doc_ASP.NET.Controllers
         // GET: Patient
         public ActionResult CreateAccount()
         {
-            DatabaseContext context = new DatabaseContext();
-            context.Users.ToList();
             return View();
         }
         [HttpPost]

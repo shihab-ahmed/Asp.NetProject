@@ -23,19 +23,41 @@ namespace V.Doc_Data.Abstract_Classes
             this.databaseContext.Specialists.Remove(specialist);
             return this.databaseContext.SaveChanges();
         }
-
-        public Specialist Get(int id)
+        public Specialist Get(String Type, bool includeSymptoms = false)
         {
-            return this.databaseContext.Specialists.SingleOrDefault(x => x.Id == id);
+            if (includeSymptoms)
+            {
+                return this.databaseContext.Specialists.Include("Symptom").SingleOrDefault(x => x.Type == Type);
+            }
+            else
+            {
+                return this.databaseContext.Specialists.SingleOrDefault(x => x.Type == Type);
+            }
         }
-        public Specialist Get(String Type)
+
+        public Specialist Get(int id, bool includeSymptoms = false)
         {
-            return this.databaseContext.Specialists.SingleOrDefault(x => x.Type == Type);
+            if (includeSymptoms)
+            {
+                return this.databaseContext.Specialists.Include("Symptom").SingleOrDefault(x => x.Id == id);
+            }
+            else
+            {
+                return this.databaseContext.Specialists.SingleOrDefault(x => x.Id == id);
+            }
         }
 
-        public IEnumerable<Specialist> GetAll()
+        public IEnumerable<Specialist> GetAll(bool includeSymptoms = false)
         {
-            return this.databaseContext.Specialists.ToList();
+            if (includeSymptoms)
+            {
+                return this.databaseContext.Specialists.Include("Symptom").ToList();
+            }
+            else
+            {
+                return this.databaseContext.Specialists.ToList();
+            }
+           
         }
 
         public int Insert(Specialist specialist)
