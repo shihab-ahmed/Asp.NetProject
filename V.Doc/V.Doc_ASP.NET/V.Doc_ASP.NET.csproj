@@ -7438,6 +7438,7 @@
     <Compile Include="Controllers\DiseaseController.cs" />
     <Compile Include="Controllers\DoctorAccountController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\MedicineController.cs" />
     <Compile Include="Controllers\PatientAccountController.cs" />
     <Compile Include="Controllers\SpecialistController.cs" />
     <Compile Include="Controllers\SymptomController.cs" />
@@ -7448,6 +7449,7 @@
     <Compile Include="Models\CustomModel\LoginModel.cs" />
     <Compile Include="Models\CustomModel\AdminModel.cs" />
     <Compile Include="Models\CustomModel\DoctorModel.cs" />
+    <Compile Include="Models\CustomModel\MedicineModel.cs" />
     <Compile Include="Models\CustomModel\PatientModel.cs" />
     <Compile Include="Models\CustomModel\AdminPasswordModel.cs" />
     <Compile Include="Models\CustomModel\DoctorPasswordModel.cs" />
@@ -7491,6 +7493,9 @@
     <Content Include="Views\Disease\Create.cshtml" />
     <Content Include="Views\Disease\List.cshtml" />
     <Content Include="Views\Disease\Edit.cshtml" />
+    <Content Include="Views\Medicine\Create.cshtml" />
+    <Content Include="Views\Medicine\List.cshtml" />
+    <Content Include="Views\Medicine\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
