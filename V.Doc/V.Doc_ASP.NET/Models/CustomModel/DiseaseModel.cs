@@ -6,7 +6,7 @@ using V.Doc_Entity;
 
 namespace V.Doc_ASP.NET.Models.CustomModel
 {
-    public class SymptomModel:Symptom
+    public class DiseaseModel:Disease
     {
         public String NotifyStatus { get; set; }
 
@@ -15,6 +15,5 @@ namespace V.Doc_ASP.NET.Models.CustomModel
 
         public String DiseasesString { get; set; }
         public String SpecialistString { get; set; }
-
     }
 }

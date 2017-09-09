@@ -23,14 +23,14 @@ namespace V.Doc_Service.Abstract_Classes
             return this.diseaseDataAccess.Delete(id);
         }
 
-        public Disease Get(int id)
+        public Disease Get(int id, bool includeSymptomAndMedicine = false)
         {
-            return this.diseaseDataAccess.Get(id);
+            return this.diseaseDataAccess.Get(id,includeSymptomAndMedicine);
         }
 
-        public IEnumerable<Disease> GetAll()
+        public IEnumerable<Disease> GetAll(bool includeSymptomAndMedicine = false)
         {
-            return this.diseaseDataAccess.GetAll();
+            return this.diseaseDataAccess.GetAll(includeSymptomAndMedicine);
         }
 
         public int Insert(Disease disease)

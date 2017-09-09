@@ -22,14 +22,14 @@ namespace V.Doc_Service.Abstract_Classes
             return this.symptomDataAccess.Delete(id);
         }
 
-        public Symptom Get(int id)
+        public Symptom Get(int id, bool includeSpecialistAndMedicine = false)
         {
-            return this.symptomDataAccess.Get(id);
+            return this.symptomDataAccess.Get(id,includeSpecialistAndMedicine);
         }
 
-        public IEnumerable<Symptom> GetAll()
+        public IEnumerable<Symptom> GetAll(bool includeSpecialistAndMedicine = false)
         {
-            return this.symptomDataAccess.GetAll();
+            return this.symptomDataAccess.GetAll(includeSpecialistAndMedicine);
         }
 
         public int Insert(Symptom symptom)

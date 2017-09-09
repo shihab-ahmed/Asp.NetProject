@@ -188,6 +188,14 @@ namespace V.Doc_ASP.NET.Controllers
                 SymptomModel sm = new SymptomModel();
                 sm.Name = item.Name;
                 sm.Id = item.Id;
+                foreach (var item2 in item.Diseases)
+                {
+                    sm.DiseasesString += item2.Name + ",";
+                }
+                foreach (var item3 in item.Specialists)
+                {
+                    sm.SpecialistString += item3.Type + ",";
+                }
                 modelList.Add(sm);
             }
 

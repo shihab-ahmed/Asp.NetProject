@@ -22,14 +22,28 @@ namespace V.Doc_Data.Abstract_Classes
             this.databaseContext.Diseases.Remove(disease);
             return this.databaseContext.SaveChanges();
         }
-        public Disease Get(int id)
+        public Disease Get(int id, bool includeSymptomAndMedicine = false)
         {
-            return this.databaseContext.Diseases.SingleOrDefault(x => x.Id == id);
+            if(includeSymptomAndMedicine)
+            {
+                return this.databaseContext.Diseases.Include("Specialists").Include("Diseases").SingleOrDefault(x => x.Id == id);
+            }
+            else
+            {
+                return this.databaseContext.Diseases.SingleOrDefault(x => x.Id == id);
+            }
         }
 
-        public IEnumerable<Disease> GetAll()
+        public IEnumerable<Disease> GetAll(bool includeSymptomAndMedicine = false)
         {
-            return this.databaseContext.Diseases.ToList();
+            if (includeSymptomAndMedicine)
+            {
+                return this.databaseContext.Diseases.Include("Specialists").Include("Diseases").ToList();
+            }
+            else
+            {
+                return this.databaseContext.Diseases.ToList();
+            }
         }
 
         public int Insert(Disease disease)

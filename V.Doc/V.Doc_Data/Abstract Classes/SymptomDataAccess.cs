@@ -24,14 +24,29 @@ namespace V.Doc_Data.Abstract_Classes
             return this.databaseContext.SaveChanges();
         }
 
-        public Symptom Get(int id)
+        public Symptom Get(int id, bool includeSpecialistAndMedicine = false)
         {
-            return this.databaseContext.Symptoms.SingleOrDefault(x => x.Id == id);
+            if (includeSpecialistAndMedicine)
+            {
+                return this.databaseContext.Symptoms.Include("Specialists").Include("Diseases").SingleOrDefault(x => x.Id == id);
+            }
+            else
+            {
+                return this.databaseContext.Symptoms.SingleOrDefault(x => x.Id == id);
+            }
+            
         }
 
-        public IEnumerable<Symptom> GetAll()
+        public IEnumerable<Symptom> GetAll(bool includeSpecialistAndMedicine = false)
         {
-            return this.databaseContext.Symptoms.ToList();
+            if (includeSpecialistAndMedicine)
+            {
+                return this.databaseContext.Symptoms.Include("Specialists").Include("Diseases").ToList();
+            }
+            else
+            {
+                return this.databaseContext.Symptoms.ToList();
+            }
         }
 
         public int Insert(Symptom symptom)
