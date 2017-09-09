@@ -24,14 +24,30 @@ namespace V.Doc_Data.Abstract_Classes
             return this.databaseContext.SaveChanges();
         }
 
-        public Doctor Get(int id)
+        public Doctor Get(int id, bool isIncludeUser_Specialist_ContactList = false)
         {
-            return this.databaseContext.Doctors.SingleOrDefault(x => x.Id == id);
+            if(isIncludeUser_Specialist_ContactList)
+            {
+                return this.databaseContext.Doctors.Include("User").Include("Specialist").Include("ContactLists").SingleOrDefault(x => x.Id == id);
+            }
+            else
+            {
+                return this.databaseContext.Doctors.SingleOrDefault(x => x.Id == id);
+            }
+           
         }
 
-        public IEnumerable<Doctor> GetAll()
+        public IEnumerable<Doctor> GetAll(bool isIncludeUser_Specialist_ContactList = false)
         {
-            return this.databaseContext.Doctors.ToList();
+            if(isIncludeUser_Specialist_ContactList)
+            {
+                return this.databaseContext.Doctors.Include("User").Include("Specialist").Include("ContactLists").ToList();
+            }
+            else
+            {
+                return this.databaseContext.Doctors.ToList();
+            }
+            
         }
 
         public int Insert(Doctor doctor)

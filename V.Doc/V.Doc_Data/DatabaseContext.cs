@@ -20,5 +20,6 @@ namespace V.Doc_Data
         public DbSet<Specialist> Specialists { get; set; }
         public DbSet<Symptom> Symptoms { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Contact> Contacts { get; set; }
     }
 }

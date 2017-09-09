@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Abstract Classes\ChatService.cs" />
     <Compile Include="Abstract Classes\ComplainService.cs" />
+    <Compile Include="Abstract Classes\ContactService.cs" />
     <Compile Include="Abstract Classes\DiseaseService.cs" />
     <Compile Include="Abstract Classes\DoctorService.cs" />
     <Compile Include="Abstract Classes\MedicineService.cs" />
@@ -50,6 +51,7 @@
     <Compile Include="Abstract Classes\SpecialistService.cs" />
     <Compile Include="Abstract Classes\SymptomService.cs" />
     <Compile Include="Abstract Classes\UserService.cs" />
+    <Compile Include="Interfaces\IContactService.cs" />
     <Compile Include="ServiceFactory.cs" />
     <Compile Include="Interfaces\IChatService.cs" />
     <Compile Include="Interfaces\IComplainService.cs" />

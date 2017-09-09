@@ -55,6 +55,7 @@
     <Compile Include="Abstract Classes\PatientDataAccess.cs" />
     <Compile Include="Abstract Classes\PrescriptionDataAccess.cs" />
     <Compile Include="Abstract Classes\SpecialistDataAccess.cs" />
+    <Compile Include="Abstract Classes\ContactDataAccess.cs" />
     <Compile Include="Abstract Classes\SymptomDataAccess.cs" />
     <Compile Include="Abstract Classes\UserDataAccess.cs" />
     <Compile Include="DataAccessFactory.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="Interfaces\IPrescriptionDataAccess.cs" />
     <Compile Include="Interfaces\ISpecialistDataAccess.cs" />
     <Compile Include="Interfaces\ISymptomDataAccess.cs" />
+    <Compile Include="Interfaces\IContactDataAccess.cs" />
     <Compile Include="Interfaces\IUserDataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

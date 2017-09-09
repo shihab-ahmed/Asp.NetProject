@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Chat.cs" />
     <Compile Include="Complain.cs" />
+    <Compile Include="Contact.cs" />
     <Compile Include="Disease.cs" />
     <Compile Include="Doctor.cs" />
     <Compile Include="Medicine.cs" />

@@ -19,6 +19,6 @@ namespace V.Doc_Entity
         [ForeignKey("UserId")]
         public User User { get; set; }
 
-        public IEnumerable<User> Relative { get; set; }
+        public virtual ICollection<Contact> ContactList { get; set; }
     }
 }

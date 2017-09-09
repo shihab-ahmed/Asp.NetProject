@@ -24,11 +24,11 @@ namespace V.Doc_Data.Abstract_Classes
             return this.databaseContext.SaveChanges();
         }
 
-        public Patient Get(int id, bool includeUser = false)
+        public Patient Get(int id, bool includeUserAndContactList = false)
         {
-            if (includeUser)
+            if (includeUserAndContactList)
             {
-                return this.databaseContext.Patients.Include("User").SingleOrDefault(x => x.Id == id);
+                return this.databaseContext.Patients.Include("User").Include("ContactList").SingleOrDefault(x => x.Id == id);
             }
             else
             {
@@ -37,11 +37,11 @@ namespace V.Doc_Data.Abstract_Classes
             
         }
 
-        public IEnumerable<Patient> GetAll(bool includeUser = false)
+        public IEnumerable<Patient> GetAll(bool includeUserAndContactList = false)
         {
-            if (includeUser)
+            if (includeUserAndContactList)
             {
-                return this.databaseContext.Patients.Include("User").ToList();
+                return this.databaseContext.Patients.Include("User").Include("ContactList").ToList();
             }
             else
             {
@@ -73,7 +73,6 @@ namespace V.Doc_Data.Abstract_Classes
             Patient patientToUpdate = this.databaseContext.Patients.SingleOrDefault(x => x.Id == patient.Id);
 
             patientToUpdate.isAvailable = patient.isAvailable;
-            patientToUpdate.Relative = patient.Relative;
             return this.databaseContext.SaveChanges();
         }
     }

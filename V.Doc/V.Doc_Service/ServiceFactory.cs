@@ -16,6 +16,10 @@ namespace V.Doc_Service
         {
             return new ChatService(DataAccessFactory.GetChatDataAccess());
         }
+        public static IContactService GetContactServie()
+        {
+            return new ContactService(DataAccessFactory.GetContactDataAccess());
+        }
         public static IComplainService GetComplainService()
         {
             return new ComplainService(DataAccessFactory.GetComplainDataAccess());

@@ -15,6 +15,10 @@ namespace V.Doc_Data
         {
             return new ChatDataAccess(context);
         }
+        public static IContactDataAccess GetContactDataAccess()
+        {
+            return new ContactDataAccess(context);
+        }
         public static IComplainDataAccess GetComplainDataAccess()
         {
             return new ComplainDataAccess(context);

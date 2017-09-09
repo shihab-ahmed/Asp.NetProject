@@ -22,14 +22,14 @@ namespace V.Doc_Service.Abstract_Classes
             return this.doctorDataAccess.Delete(id);
         }
 
-        public Doctor Get(int id)
+        public Doctor Get(int id, bool isIncludeUser_Specialist_ContactList = false)
         {
-            return this.doctorDataAccess.Get(id);
+            return this.doctorDataAccess.Get(id,isIncludeUser_Specialist_ContactList);
         }
 
-        public IEnumerable<Doctor> GetAll()
+        public IEnumerable<Doctor> GetAll(bool isIncludeUser_Specialist_ContactList = false)
         {
-            return this.doctorDataAccess.GetAll();
+            return this.doctorDataAccess.GetAll(isIncludeUser_Specialist_ContactList);
         }
 
         public int Insert(Doctor doctor)
