@@ -46,5 +46,14 @@ namespace V.Doc_Entity
 
         
         public String ProfilePicture { get; set; }
+
+
+        public DateTime TimeAccountCreated { get; set; }
+
+        public DateTime LastLogin { get; set; }
+
+        public DateTime LastTimeNotificationChecked { get; set; }
+
+        public String AccountAvailableStatus { get; set; }
     }
 }

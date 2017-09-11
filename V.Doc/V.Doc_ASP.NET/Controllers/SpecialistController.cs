@@ -12,7 +12,7 @@ namespace V.Doc_ASP.NET.Controllers
 {
     public class SpecialistController : Controller
     {
-        private bool IsAdminAlive()
+       /* private bool IsAdminAlive()
         {
             User user = (User)Session["User"];
             if (user == null) return false;
@@ -93,6 +93,6 @@ namespace V.Doc_ASP.NET.Controllers
 
             service.Delete(id);
             return RedirectToAction("SpecialistFromAdminSite");
-        }
+        }*/
     }
 }

@@ -10,7 +10,7 @@ namespace V.Doc_Data.Abstract_Classes
 {
     class ChatDataAccess : IChatDataAccess
     {
-        private DatabaseContext databaseContext;
+       /* private DatabaseContext databaseContext;
 
         public ChatDataAccess(DatabaseContext databaseContext)
         {
@@ -48,6 +48,6 @@ namespace V.Doc_Data.Abstract_Classes
             chatToUpdate.isSeenBySender = chat.isSeenBySender;
             chatToUpdate.Message = chat.Message;
             return this.databaseContext.SaveChanges();
-        }
+        }*/
     }
 }

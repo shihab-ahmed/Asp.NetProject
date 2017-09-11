@@ -8,7 +8,7 @@ namespace V.Doc_Service.Abstract_Classes
 {
     class ChatService : IChatService
     {
-        private IChatDataAccess chatDataAccess;
+       /* private IChatDataAccess chatDataAccess;
 
         public ChatService(IChatDataAccess chatDataAccess)
         {
@@ -33,6 +33,6 @@ namespace V.Doc_Service.Abstract_Classes
         public int Update(Chat chat)
         {
             return this.chatDataAccess.Update(chat);
-        }
+        }*/
     }
 }

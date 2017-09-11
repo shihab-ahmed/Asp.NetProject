@@ -11,7 +11,7 @@ namespace V.Doc_Service.Abstract_Classes
 {
     class ComplainService : IComplainService
     {
-        private IComplainDataAccess complainDataAccess;
+       /* private IComplainDataAccess complainDataAccess;
 
         public ComplainService(IComplainDataAccess complainDataAccess)
         {
@@ -40,6 +40,6 @@ namespace V.Doc_Service.Abstract_Classes
         public int Update(Complain complain)
         {
             return this.complainDataAccess.Update(complain);
-        }
+        }*/
     }
 }

@@ -13,6 +13,7 @@ namespace V.Doc_Data
     {
         protected override void Seed(DatabaseContext context)
         {
+            
             User user = new User()
             {
                 FirstName = "System",
@@ -25,7 +26,13 @@ namespace V.Doc_Data
                 Gender = "Male",
                 Type = Enum_UserType.Admin.ToString(),
                 ProfilePicture = "~/UploadedFiles/Images/DefaultAdminPic.jpg"
+                
             };
+            user.TimeAccountCreated = DateTime.Now;
+            user.LastLogin = DateTime.Now;
+            user.LastTimeNotificationChecked = DateTime.Now;
+            user.AccountAvailableStatus = Enum_AccountAvailableStatus.Accessable.ToString();
+
             context.Users.Add(user);
             context.SaveChanges();
 
@@ -33,7 +40,7 @@ namespace V.Doc_Data
 
 
 
-            Specialist Cardiologist = new Specialist();
+          /*  Specialist Cardiologist = new Specialist();
             Specialist Dermatologist = new Specialist();
             Specialist Neurologist = new Specialist();
             Specialist Allergist = new Specialist();
@@ -185,7 +192,7 @@ namespace V.Doc_Data
             context.Medicines.Add(Deslor);
             context.Medicines.Add(XincB);
 
-            context.SaveChanges();
+            context.SaveChanges();*/
             base.Seed(context);
             
         }

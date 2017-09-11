@@ -25,11 +25,9 @@ namespace V.Doc_ASP.NET.Controllers
             }
             
         }
-        
+        [HttpGet]
         public ActionResult CreateAccount()
         {
-            //DatabaseContext context = new DatabaseContext();
-            //context.Users.ToList();
             return View();
         }
         [HttpPost]
@@ -47,14 +45,27 @@ namespace V.Doc_ASP.NET.Controllers
                 }
 
                 LoadToUserAndPatient(patientModel,user,Patient);
+
+                user.TimeAccountCreated = DateTime.Now;
+                user.LastLogin = DateTime.Now;
+                user.LastTimeNotificationChecked = DateTime.Now;
+                user.AccountAvailableStatus = Enum_AccountAvailableStatus.Accessable.ToString();
+
+
+
+
+
                 IPatientService patientService = ServiceFactory.GetPatientService();
                 patientService.Insert(Patient);
                 ModelState.Clear();
-                patientModel.NotifyAccountCreatedStatus = "Account Created";
-                return View(patientModel);
+
+                PatientModel newPM= new PatientModel();
+                newPM.NotifyAccountCreatedStatus = "Account Created";
+                return View(newPM);
             }
             else
             {
+                patientModel.NotifyAccountCreatedStatus = "Fail to create account";
                 return View(patientModel);
             }
         }

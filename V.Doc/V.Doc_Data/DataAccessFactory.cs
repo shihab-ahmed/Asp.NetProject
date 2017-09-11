@@ -11,7 +11,7 @@ namespace V.Doc_Data
     public abstract class DataAccessFactory
     {
         public static DatabaseContext context = new DatabaseContext();
-        public static IChatDataAccess GetChatDataAccess()
+       /* public static IChatDataAccess GetChatDataAccess()
         {
             return new ChatDataAccess(context);
         }
@@ -26,31 +26,31 @@ namespace V.Doc_Data
         public static IDiseaseDataAccess GetDiseaseDataAccess()
         {
             return new DiseaseDataAccess(context);
-        }
+        }*/
         public static IDoctorDataAccess GetDoctorDataAccess()
         {
             return new DoctorDataAccess(context);
         }
-        public static IMedicineDataAccess GetMedicineDataAccess()
+       /* public static IMedicineDataAccess GetMedicineDataAccess()
         {
             return new MedicineDataAccess(context);
-        }
+        }*/
         public static IPatientDataAccess GetPatientDataAccess()
         {
             return new PatientDataAccess(context);
         }
-        public static IPrescriptionDataAccess GetPrescriptionDataAccess()
+        /*public static IPrescriptionDataAccess GetPrescriptionDataAccess()
         {
             return new PrescriptionDataAccess(context);
-        }
-        public static ISpecialistDataAccess GetSpecialistDataAccess()
+        }*/
+       /* public static ISpecialistDataAccess GetSpecialistDataAccess()
         {
             return new SpecialistDataAccess(context);
-        }
-        public static ISymptomDataAccess GetSymtomDataAccess()
+        }*/
+       /* public static ISymptomDataAccess GetSymtomDataAccess()
         {
             return new SymptomDataAccess(context);
-        }
+        }*/
         public static IUserDataAccess GetUserDataAccess()
         {
             return new UserDataAccess(context);

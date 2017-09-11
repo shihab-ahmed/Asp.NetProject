@@ -11,7 +11,7 @@ namespace V.Doc_Service.Abstract_Classes
 {
     class ContactService : IContactService
     {
-        private IContactDataAccess ContactDataAccess;
+       /* private IContactDataAccess ContactDataAccess;
 
         public ContactService(IContactDataAccess ContactDataAccess)
         {
@@ -40,6 +40,6 @@ namespace V.Doc_Service.Abstract_Classes
         public int Update(Contact user)
         {
             return this.ContactDataAccess.Update(user);
-        }
+        }*/
     }
 }

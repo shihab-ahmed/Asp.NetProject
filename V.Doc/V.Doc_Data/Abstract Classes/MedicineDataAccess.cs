@@ -10,7 +10,7 @@ namespace V.Doc_Data.Abstract_Classes
 {
     class MedicineDataAccess : IMedicineDataAccess
     {
-        private DatabaseContext databaseContext;
+        /*private DatabaseContext databaseContext;
 
         public MedicineDataAccess(DatabaseContext databaseContext)
         {
@@ -47,6 +47,6 @@ namespace V.Doc_Data.Abstract_Classes
             MedicineToUpdate.Type = medicine.Type;
 
             return this.databaseContext.SaveChanges();
-        }
+        }*/
     }
 }

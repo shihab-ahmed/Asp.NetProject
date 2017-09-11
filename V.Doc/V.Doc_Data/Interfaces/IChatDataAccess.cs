@@ -9,9 +9,9 @@ namespace V.Doc_Data.Interfaces
 {
     public interface IChatDataAccess
     {
-        IEnumerable<Chat> GetAll(User sender,User reciever);
+       /* IEnumerable<Chat> GetAll(User sender,User reciever);
         int Insert(Chat chat);
         int Update(Chat chat);
-        int Delete(int id);
+        int Delete(int id);*/
     }
 }

@@ -13,7 +13,7 @@ namespace V.Doc_ASP.NET.Controllers
     public class MedicineController : Controller
     {
         // GET: Symptom
-        public ActionResult Create()
+       /* public ActionResult Create()
         {
             MedicineModel medicineModel = new MedicineModel();
 
@@ -159,6 +159,6 @@ namespace V.Doc_ASP.NET.Controllers
             }
 
             return View(modelList);
-        }
+        }*/
     }
 }

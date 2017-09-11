@@ -9,10 +9,10 @@ namespace V.Doc_Service.Interfaces
 {
     public interface IContactService
     {
-        IEnumerable<Contact> GetAll(bool isIncludePatientAndDoctor = false);
+       /* IEnumerable<Contact> GetAll(bool isIncludePatientAndDoctor = false);
         Contact Get(int id, bool isIncludePatientAndDoctor = false);
         int Insert(Contact user);
         int Update(Contact user);
-        int Delete(int id);
+        int Delete(int id);*/
     }
 }

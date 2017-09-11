@@ -12,7 +12,7 @@ namespace V.Doc_ASP.NET.Controllers
 {
     public class DiseaseController : Controller
     {
-        public ActionResult Create()
+       /* public ActionResult Create()
         {
             DiseaseModel diseaseModel = new DiseaseModel();
 
@@ -200,6 +200,6 @@ namespace V.Doc_ASP.NET.Controllers
             }
 
             return View(modelList);
-        }
+        }*/
     }
 }

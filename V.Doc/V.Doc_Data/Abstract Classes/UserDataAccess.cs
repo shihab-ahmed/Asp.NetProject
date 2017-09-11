@@ -57,7 +57,10 @@ namespace V.Doc_Data.Abstract_Classes
             userToUpdate.Age = user.Age;
             userToUpdate.Password = user.Password;
             userToUpdate.Gender = user.Gender;
-
+            userToUpdate.ProfilePicture = user.ProfilePicture;
+            userToUpdate.LastLogin = user.LastLogin;
+            userToUpdate.LastTimeNotificationChecked = user.LastTimeNotificationChecked;
+            userToUpdate.AccountAvailableStatus = user.AccountAvailableStatus;
 
             return this.databaseContext.SaveChanges();
         }

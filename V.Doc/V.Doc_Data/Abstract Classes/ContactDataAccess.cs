@@ -10,7 +10,7 @@ namespace V.Doc_Data.Abstract_Classes
 {
     class ContactDataAccess : IContactDataAccess
     {
-        private DatabaseContext databaseContext;
+       /* private DatabaseContext databaseContext;
 
         public ContactDataAccess(DatabaseContext databaseContext)
         {
@@ -60,6 +60,6 @@ namespace V.Doc_Data.Abstract_Classes
             Contact contactToUpdate = this.databaseContext.Contacts.SingleOrDefault(x => x.Id == contact.Id);
 
             return this.databaseContext.SaveChanges();
-        }
+        }*/
     }
 }

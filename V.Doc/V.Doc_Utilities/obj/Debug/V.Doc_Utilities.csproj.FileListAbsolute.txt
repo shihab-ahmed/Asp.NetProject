@@ -2,4 +2,3 @@ C:\Users\Shihab\Source\Repos\Virtual-Doctor\V.Doc\V.Doc_Utilities\bin\Debug\V.Do
 C:\Users\Shihab\Source\Repos\Virtual-Doctor\V.Doc\V.Doc_Utilities\bin\Debug\V.Doc_Utilities.pdb
 C:\Users\Shihab\Source\Repos\Virtual-Doctor\V.Doc\V.Doc_Utilities\obj\Debug\V.Doc_Utilities.dll
 C:\Users\Shihab\Source\Repos\Virtual-Doctor\V.Doc\V.Doc_Utilities\obj\Debug\V.Doc_Utilities.pdb
-C:\Users\Shihab\Source\Repos\Virtual-Doctor\V.Doc\V.Doc_Utilities\obj\Debug\V.Doc_Utilities.csprojResolveAssemblyReference.cache

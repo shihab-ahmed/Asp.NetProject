@@ -11,7 +11,7 @@ namespace V.Doc_Service.Abstract_Classes
 {
     class MedicineService : IMedicineService
     {
-        private IMedicineDataAccess medicineDataAccess;
+        /*private IMedicineDataAccess medicineDataAccess;
 
         public MedicineService(IMedicineDataAccess medicineDataAccess)
         {
@@ -40,6 +40,6 @@ namespace V.Doc_Service.Abstract_Classes
         public int Update(Medicine medicine)
         {
             return this.medicineDataAccess.Update(medicine);
-        }
+        }*/
     }
 }

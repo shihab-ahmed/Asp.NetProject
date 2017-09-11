@@ -10,7 +10,7 @@ namespace V.Doc_Data.Abstract_Classes
 {
     class PrescriptionDataAccess : IPrescriptionDataAccess
     {
-        private DatabaseContext databaseContext;
+       /* private DatabaseContext databaseContext;
 
         public PrescriptionDataAccess(DatabaseContext databaseContext)
         {
@@ -49,6 +49,6 @@ namespace V.Doc_Data.Abstract_Classes
             prescriptionToUpdate.Details = prescription.Details;
 
             return this.databaseContext.SaveChanges();
-        }
+        }*/
     }
 }

@@ -17,7 +17,7 @@ namespace V.Doc_ASP.NET.Controllers
         //
         // 1. Action method for displaying 'Sign Up' page
         //
-        public ActionResult CreateAccount()
+       /* public ActionResult CreateAccount()
         {
             // Let's get all states that we need for a DropDownList
             var states = GetAllSpecialist();
@@ -28,7 +28,7 @@ namespace V.Doc_ASP.NET.Controllers
             model.Specialist_List = GetSelectListItems(states);
 
             return View(model);
-        }
+        }*/
 
         //
         // 2. Action method for handling user-entered data when 'Sign Up' button is pressed.
@@ -36,38 +36,39 @@ namespace V.Doc_ASP.NET.Controllers
         [HttpPost]
         public ActionResult CreateAccount(DoctorModel doctorModel)
         {
-            var states = GetAllSpecialist();
-            if (ModelState.IsValid)
-            {
-                User user = new User();
-                Doctor doctor = new Doctor();
-                
-
-                if (DoesUserExistInDatabase(doctorModel.UserName))
-                {
-                    
-                    doctorModel.Specialist_List = GetSelectListItems(states);
-                    doctorModel.UserExistMessage = "Sorry user already exist";
-                    return View(doctorModel);
-                }
-
-                LoadToUserAndDoctor(doctorModel, user, doctor);
+            /* var states = GetAllSpecialist();
+             if (ModelState.IsValid)
+             {
+                 User user = new User();
+                 Doctor doctor = new Doctor();
 
 
-                IDoctorService doctorService = ServiceFactory.GetDoctorService();
-                doctorService.Insert(doctor);
-                ModelState.Clear();
+                 if (DoesUserExistInDatabase(doctorModel.UserName))
+                 {
 
-               
-                doctorModel.NotifyAccountCreatedStatus = "Account Created";
-                doctorModel.Specialist_List = GetSelectListItems(states);
-                return View(doctorModel);
-            }
-            else
-            {
-                doctorModel.Specialist_List = GetSelectListItems(states);
-                return View(doctorModel);
-            }
+                     doctorModel.Specialist_List = GetSelectListItems(states);
+                     doctorModel.UserExistMessage = "Sorry user already exist";
+                     return View(doctorModel);
+                 }
+
+                 LoadToUserAndDoctor(doctorModel, user, doctor);
+
+
+                 IDoctorService doctorService = ServiceFactory.GetDoctorService();
+                 doctorService.Insert(doctor);
+                 ModelState.Clear();
+
+
+                 doctorModel.NotifyAccountCreatedStatus = "Account Created";
+                 doctorModel.Specialist_List = GetSelectListItems(states);
+                 return View(doctorModel);
+             }
+             else
+             {
+                 doctorModel.Specialist_List = GetSelectListItems(states);
+                 return View(doctorModel);
+             }*/
+            return View();
         }
 
         private void LoadToUserAndDoctor(DoctorModel doctorModel, User user, Doctor doctor)
@@ -100,10 +101,10 @@ namespace V.Doc_ASP.NET.Controllers
             doctor.Experience = doctorModel.Experience;
             doctor.About = doctorModel.About;
 
-            ISpecialistService Service = ServiceFactory.GetSpecialistService();
-            Specialist specialist = Service.Get(doctorModel.Specialist);
+            /*ISpecialistService Service = ServiceFactory.GetSpecialistService();
+            Specialist specialist = Service.Get(doctorModel.Specialist);*/
 
-            doctor.Specialist = specialist;
+           // doctor.Specialist = specialist;
         }
 
         //
@@ -120,7 +121,7 @@ namespace V.Doc_ASP.NET.Controllers
 
         // Just return a list of states - in a real-world application this would call
         // into data access layer to retrieve states from a database.
-        private IEnumerable<string> GetAllSpecialist()
+       /* private IEnumerable<string> GetAllSpecialist()
         {
             ISpecialistService Service = ServiceFactory.GetSpecialistService();
             IEnumerable<Specialist> list =Service.GetAll();
@@ -130,7 +131,7 @@ namespace V.Doc_ASP.NET.Controllers
                 SpecialistCollection.Add(item.Type);
             }
             return SpecialistCollection;
-        }
+        }*/
 
         // This is one of the most important parts in the whole example.
         // This function takes a list of strings and returns a list of SelectListItem objects.

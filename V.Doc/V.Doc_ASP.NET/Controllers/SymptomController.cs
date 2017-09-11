@@ -13,7 +13,7 @@ namespace V.Doc_ASP.NET.Controllers
     public class SymptomController : Controller
     {
         // GET: Symptom
-        public ActionResult Create()
+       /* public ActionResult Create()
         {
             SymptomModel symptomModel = new SymptomModel();
 
@@ -200,6 +200,6 @@ namespace V.Doc_ASP.NET.Controllers
             }
 
             return View(modelList);
-        }
+        }*/
     }
 }

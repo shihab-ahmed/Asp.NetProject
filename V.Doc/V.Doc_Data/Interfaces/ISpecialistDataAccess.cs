@@ -9,11 +9,11 @@ namespace V.Doc_Data.Interfaces
 {
     public interface ISpecialistDataAccess
     {
-        IEnumerable<Specialist> GetAll(bool includeSymptoms = false);
+        /*IEnumerable<Specialist> GetAll(bool includeSymptoms = false);
         Specialist Get(int id, bool includeSymptoms = false);
         Specialist Get(String Type, bool includeSymptoms = false);
         int Insert(Specialist user);
         int Update(Specialist user);
-        int Delete(int id);
+        int Delete(int id);*/
     }
 }

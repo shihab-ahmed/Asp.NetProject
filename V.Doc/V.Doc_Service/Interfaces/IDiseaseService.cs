@@ -9,10 +9,10 @@ namespace V.Doc_Service.Interfaces
 {
     public interface IDiseaseService
     {
-        IEnumerable<Disease> GetAll(bool includeSymptomAndMedicine = false);
+       /* IEnumerable<Disease> GetAll(bool includeSymptomAndMedicine = false);
         Disease Get(int id, bool includeSymptomAndMedicine = false);
         int Insert(Disease user);
         int Update(Disease user);
-        int Delete(int id);
+        int Delete(int id);*/
     }
 }

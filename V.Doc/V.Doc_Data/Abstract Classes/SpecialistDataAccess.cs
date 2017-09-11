@@ -10,7 +10,7 @@ namespace V.Doc_Data.Abstract_Classes
 {
     class SpecialistDataAccess : ISpecialistDataAccess
     {
-        private DatabaseContext databaseContext;
+       /* private DatabaseContext databaseContext;
 
         public SpecialistDataAccess(DatabaseContext databaseContext)
         {
@@ -73,6 +73,6 @@ namespace V.Doc_Data.Abstract_Classes
             specialistToUpdate.Type = specialist.Type;
            // specialistToUpdate.Symptoms = specialist.Symptoms;
             return this.databaseContext.SaveChanges();
-        }
+        }*/
     }
 }

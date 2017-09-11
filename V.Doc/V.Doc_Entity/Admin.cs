@@ -8,17 +8,13 @@ using System.Threading.Tasks;
 
 namespace V.Doc_Entity
 {
-    public class Patient
+    public class Admin
     {
         [Key]
         public int Id { get; set; }
-        public String isAvailable { get; set; }
-
         public int UserId { get; set; }
 
         [ForeignKey("UserId")]
         public User User { get; set; }
-
-        //public virtual ICollection<Contact> ContactList { get; set; }
     }
 }

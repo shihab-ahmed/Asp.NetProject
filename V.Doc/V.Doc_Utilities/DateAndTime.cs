@@ -12,5 +12,9 @@ namespace V.Doc_Utilities
         {
             return DateTime.Now.Year - Birthdate.Year;
         }
+        public DateTime GetTimeDifference(DateTime Birthdate)
+        {
+            return DateTime.Now;
+        }
     }
 }
