@@ -31,10 +31,10 @@ namespace V.Doc_Data
         {
             return new DoctorDataAccess(context);
         }
-       /* public static IMedicineDataAccess GetMedicineDataAccess()
-        {
-            return new MedicineDataAccess(context);
-        }*/
+        /* public static IMedicineDataAccess GetMedicineDataAccess()
+         {
+             return new MedicineDataAccess(context);
+         }*/
         public static IPatientDataAccess GetPatientDataAccess()
         {
             return new PatientDataAccess(context);
@@ -54,6 +54,10 @@ namespace V.Doc_Data
         public static IUserDataAccess GetUserDataAccess()
         {
             return new UserDataAccess(context);
+        }
+        public static IAdminDataAccess GetAdminDataAccess()
+        {
+            return new AdminDataAccess(context);
         }
     }
 }

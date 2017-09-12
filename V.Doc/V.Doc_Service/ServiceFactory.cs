@@ -28,6 +28,10 @@ namespace V.Doc_Service
         {
             return new DiseaseService(DataAccessFactory.GetDiseaseDataAccess());
         }*/
+        public static IAdminService GetAdminService()
+        {
+            return new AdminService(DataAccessFactory.GetAdminDataAccess());
+        }
         public static IDoctorService GetDoctorService()
         {
             return new DoctorService(DataAccessFactory.GetDoctorDataAccess());

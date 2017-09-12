@@ -14,11 +14,12 @@ namespace V.Doc_Entity
         public String Message { get; set; }
 
         public int PatientId { get; set; }
-        [ForeignKey("PatientId")]
-        public Patient Patient{get;set;}
 
         public int DoctorId { get; set; }
-        [ForeignKey("DoctorId")]
-        public Doctor Doctor{ get; set; }
+
+        public String RequestStatus { get; set;}
+
+        public DateTime TimeCreated { get; set; }
+        public DateTime TimeUpdated { get; set; }
     }
 }

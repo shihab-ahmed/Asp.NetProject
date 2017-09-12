@@ -15,10 +15,10 @@ namespace V.Doc_ASP.NET.Controllers
 {
     public class AdminAccountController : Controller
     {
-        private bool IsUserAlive()
+        private bool IsAdminAlive()
         {
-            User user = (User)Session["User"];
-            if (user == null) return false;
+            Admin admin = (Admin)Session["Admin"];
+            if (admin == null) return false;
             else
             {
                 return true;
@@ -27,8 +27,8 @@ namespace V.Doc_ASP.NET.Controllers
         }
         private bool IsDefaultAdmin()
         {
-            User user = (User)Session["User"];
-            if (user.UserName == "Admin") return true;
+            Admin admin = (Admin)Session["Admin"];
+            if (admin.User.UserName == "Admin") return true;
             else
             {
                 return false;
@@ -56,17 +56,18 @@ namespace V.Doc_ASP.NET.Controllers
                 UserListModel.Add(uModel);
             }
             return UserListModel;
+
         }
         [HttpGet]
         public ActionResult ShowUserList()
         {
-            if (!IsUserAlive()) return RedirectToAction("Login", "Login");
-            return View(GetAllUser());
+            if (!IsAdminAlive()) return RedirectToAction("Login", "Login");
+            return View();
         }
-        // GET: Patient
         public ActionResult CreateAccount()
         {
-            return View();
+            AdminModel PM = new AdminModel();
+            return View(PM);
         }
         [HttpPost]
         public ActionResult CreateAccount(AdminModel adminModel)
@@ -74,55 +75,72 @@ namespace V.Doc_ASP.NET.Controllers
             if (ModelState.IsValid)
             {
                 User user = new User();
+                Admin admin = new Admin();
+                admin.User = user;
 
                 if (DoesUserExistInDatabase(adminModel.UserName))
                 {
                     adminModel.UserExistMessage = "Sorry user already exist";
                     return View(adminModel);
                 }
+                if (!isImageValid(adminModel, user, admin))
+                {
+                    adminModel.imgeFileNeedMessage = "Image(jpg,jpeg,png) file required";
+                    return View(adminModel);
+                }
 
-                LoadToUser(adminModel, user);
-                IUserService userService = ServiceFactory.GetUserService();
-                userService.Insert(user);
+
+                LoadToUserAndAdmin(adminModel, user, admin);
+
+                user.TimeAccountCreated = DateTime.Now;
+                user.LastLogin = DateTime.Now;
+                user.LastTimeNotificationChecked = DateTime.Now;
+                user.AccountAvailableStatus = Enum_AccountAvailableStatus.Accessable.ToString();
+
+                IAdminService adminService = ServiceFactory.GetAdminService();
+                adminService.Insert(admin);
                 ModelState.Clear();
-                adminModel.NotifyAccountCreatedStatus = "Account Created";
-                return View(adminModel);
+
+                AdminModel newPM = new AdminModel();
+                newPM.NotifyAccountCreatedStatus = "Account Created";
+                return View(newPM);
             }
             else
             {
+                adminModel.NotifyAccountCreatedStatus = "Fail to create account";
                 return View(adminModel);
             }
         }
         [HttpGet]
         public ActionResult AccountDetails()
         {
-            if (!IsUserAlive()) return RedirectToAction("Login", "Login");
+            if (!IsAdminAlive()) return RedirectToAction("Login", "Login");
 
-            User user = (User)Session["User"];
+            Admin admin = (Admin)Session["Admin"];
             AdminModel adminModel = new AdminModel();
 
-            LoadToAdminModel(adminModel, user);
+            LoadToAdminModel(adminModel, admin);
             return View(adminModel);
         }
         [HttpGet]
         public ActionResult EditProfile()
         {
-            if (!IsUserAlive()) return RedirectToAction("Login", "Login");
+            if (!IsAdminAlive()) return RedirectToAction("Login", "Login");
             if (IsDefaultAdmin()) return RedirectToAction("AccountDetails","AdminAccount");
 
-            User user = (User)Session["User"];
+            Admin admin = (Admin)Session["Admin"];
             AdminProfileModel AdminProfileModel = new AdminProfileModel();
 
-            LoadToProfileModel(AdminProfileModel, user);
+            LoadToProfileModel(AdminProfileModel, admin);
             return View(AdminProfileModel);
         }
         [HttpGet]
         public ActionResult EditPassword()
         {
-            if (!IsUserAlive()) return RedirectToAction("Login", "Login");
+            if (!IsAdminAlive()) return RedirectToAction("Login", "Login");
             if (IsDefaultAdmin()) return RedirectToAction("AccountDetails", "AdminAccount");
 
-            User user = (User)Session["User"];
+            Admin user = (Admin)Session["Admin"];
             AdminPasswordModel AdminPasswordModel = new AdminPasswordModel();
             return View(AdminPasswordModel);
         }
@@ -130,35 +148,45 @@ namespace V.Doc_ASP.NET.Controllers
         [HttpPost]
         public ActionResult EditProfile(AdminProfileModel profileModel)
         {
-            if (!IsUserAlive()) return RedirectToAction("Login", "Login");
+            if (!IsAdminAlive()) return RedirectToAction("Login", "Login");
             if (ModelState.IsValid)
             {
-
-                User User = (User)Session["User"];
-                User.FirstName = profileModel.FirstName;
-                User.LastName = profileModel.LastName;
-                User.Email = profileModel.Email;
-                User.Gender = profileModel.Gender;
-                User.Birthdate = profileModel.Birthdate;
+                
+                Admin admin = (Admin)Session["Admin"];
+                admin.User.FirstName = profileModel.FirstName;
+                admin.User.LastName = profileModel.LastName;
+                admin.User.Email = profileModel.Email;
+                admin.User.Gender = profileModel.Gender;
+                admin.User.Birthdate = profileModel.Birthdate;
 
                 DateAndTime dateAndTime = new DateAndTime();
-                User.Age = dateAndTime.GetAge(profileModel.Birthdate);
+                admin.User.Age = dateAndTime.GetAge(profileModel.Birthdate);
 
                 if (profileModel.File != null && profileModel.File.ContentLength > 0)
                 {
                     string filename = Path.GetFileNameWithoutExtension(profileModel.File.FileName);
                     string extension = Path.GetExtension(profileModel.File.FileName);
-                    filename = filename + User.UserName + extension;
-                    User.ProfilePicture = "~/UploadedFiles/Images/" + filename;
-                    filename = Path.Combine(Server.MapPath("~/UploadedFiles/Images/"), filename);
-                    profileModel.File.SaveAs(filename);
+                    if (extension.ToLower() == ".jpg" || extension.ToLower() == ".jpeg" || extension.ToLower() == ".png")
+                    {
+                        filename = filename + admin.User.UserName + extension;
+                        admin.User.ProfilePicture = "~/UploadedFiles/Images/" + filename;
+                        filename = Path.Combine(Server.MapPath("~/UploadedFiles/Images/"), filename);
+                        profileModel.File.SaveAs(filename);
+                    }
+                    else
+                    {
+                        profileModel.imgeFileNeedMessage = "Image file must be (jpg,jpeg,png)";
+                        return View(profileModel);
+                    }
                 }
-                IUserService UserService = ServiceFactory.GetUserService();
-                UserService.Update(User);
+
+
+                IAdminService adminService = ServiceFactory.GetAdminService();
+                adminService.Update(admin);
 
                 ReloadPatientInfo();
 
-                LoadToProfileModel(profileModel, User);
+                LoadToProfileModel(profileModel, admin);
 
                 profileModel.NotifyProfileChangeStatus = "Profile Updated";
 
@@ -172,7 +200,7 @@ namespace V.Doc_ASP.NET.Controllers
         [HttpPost]
         public ActionResult EditPassword(AdminPasswordModel passwordModel)
         {
-            if (!IsUserAlive()) return RedirectToAction("Login", "Login");
+            if (!IsAdminAlive()) return RedirectToAction("Login", "Login");
             if (ModelState.IsValid)
             {
                 User User = (User)Session["User"];
@@ -210,33 +238,33 @@ namespace V.Doc_ASP.NET.Controllers
         }
         private void ReloadPatientInfo()
         {
-            IUserService userService = ServiceFactory.GetUserService();
-            User User = (User)Session["User"];
-            User = userService.Get(User.Id);
+            IAdminService adminService = ServiceFactory.GetAdminService();
+            Admin admin = (Admin)Session["Admin"];
+            admin = adminService.Get(admin.User.Id);
         }
-        private void LoadToAdminModel(AdminModel AdminModel, User User)
+        private void LoadToAdminModel(AdminModel AdminModel, Admin admin)
         {
-            AdminModel.FirstName = User.FirstName;
-            AdminModel.LastName = User.LastName;
-            AdminModel.Email = User.Email;
-            AdminModel.Type = User.Type;
-            AdminModel.Gender = User.Gender;
-            AdminModel.Birthdate = User.Birthdate;
-            AdminModel.Age = User.Age;
-            AdminModel.ProfilePicture = User.ProfilePicture;
+            AdminModel.FirstName = admin.User.FirstName;
+            AdminModel.LastName = admin.User.LastName;
+            AdminModel.Email = admin.User.Email;
+            AdminModel.Type = admin.User.Type;
+            AdminModel.Gender = admin.User.Gender;
+            AdminModel.Birthdate = admin.User.Birthdate;
+            AdminModel.Age = admin.User.Age;
+            AdminModel.ProfilePicture = admin.User.ProfilePicture;
         }
-        private void LoadToProfileModel(AdminProfileModel AdminProfile, User User)
+        private void LoadToProfileModel(AdminProfileModel AdminProfile, Admin admin)
         {
-            AdminProfile.FirstName = User.FirstName;
-            AdminProfile.LastName =User.LastName;
-            AdminProfile.Email = User.Email;
-            AdminProfile.Gender = User.Gender;
-            AdminProfile.Birthdate = User.Birthdate;
-            AdminProfile.Age = User.Age;
-            AdminProfile.ProfilePicture = User.ProfilePicture;
+            AdminProfile.FirstName = admin.User.FirstName;
+            AdminProfile.LastName =admin.User.LastName;
+            AdminProfile.Email = admin.User.Email;
+            AdminProfile.Gender = admin.User.Gender;
+            AdminProfile.Birthdate = admin.User.Birthdate;
+            AdminProfile.Age = admin.User.Age;
+            AdminProfile.ProfilePicture = admin.User.ProfilePicture;
             
         }
-        private void LoadToUser(AdminModel adminModel, User user)
+        private void LoadToUserAndAdmin(AdminModel adminModel, User user,Admin Admin)
         {
             user.FirstName = adminModel.FirstName;
             user.LastName = adminModel.LastName;
@@ -251,22 +279,44 @@ namespace V.Doc_ASP.NET.Controllers
             user.Password = adminModel.Password;
             user.Gender = adminModel.Gender;
             user.Type = Enum_UserType.Admin.ToString();
-
-            if (adminModel.File != null && adminModel.File.ContentLength > 0)
-            {
-                string filename = Path.GetFileNameWithoutExtension(adminModel.File.FileName);
-                string extension = Path.GetExtension(adminModel.File.FileName);
-                filename = filename + user.UserName + extension;
-                user.ProfilePicture = "~/UploadedFiles/Images/" + filename;
-                filename = Path.Combine(Server.MapPath("~/UploadedFiles/Images/"), filename);
-                adminModel.File.SaveAs(filename);
-            }
         }
         private bool DoesUserExistInDatabase(String userName)
         {
             IUserService user = ServiceFactory.GetUserService();
             if (user.Get(userName) != null) return true;
             else return false;
+        }
+        private bool isImageValid(AdminModel adminModel, User user, Admin admin)
+        {
+            if (adminModel.File != null && adminModel.File.ContentLength > 0)
+            {
+                string filename = Path.GetFileNameWithoutExtension(adminModel.File.FileName);
+                string extension = Path.GetExtension(adminModel.File.FileName);
+
+                if (extension.ToLower() == ".jpg" || extension.ToLower() == ".jpeg" || extension.ToLower() == ".png")
+                {
+                    filename = filename + user.UserName + extension;
+                    user.ProfilePicture = "~/UploadedFiles/Images/" + filename;
+                    filename = Path.Combine(Server.MapPath("~/UploadedFiles/Images/"), filename);
+                    adminModel.File.SaveAs(filename);
+                    admin.User = user;
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+               
+            }
+            else
+            {
+                return false;
+            }
+        }
+        [HttpPost]
+        public JsonResult isUserExist(string order)
+        {
+            return Json(DoesUserExistInDatabase(order));
         }
     }
 }

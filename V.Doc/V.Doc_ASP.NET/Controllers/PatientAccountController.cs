@@ -28,7 +28,8 @@ namespace V.Doc_ASP.NET.Controllers
         [HttpGet]
         public ActionResult CreateAccount()
         {
-            return View();
+            PatientModel PM = new PatientModel();
+            return View(PM);
         }
         [HttpPost]
         public ActionResult CreateAccount(PatientModel patientModel)
@@ -43,6 +44,12 @@ namespace V.Doc_ASP.NET.Controllers
                     patientModel.UserExistMessage = "Sorry user already exist";
                     return View(patientModel);
                 }
+                if(!isImageValid(patientModel,user, Patient))
+                {
+                    patientModel.imgeFileNeedMessage = "Image(jpg,jpeg,png) file required";
+                    return View(patientModel);
+                }
+
 
                 LoadToUserAndPatient(patientModel,user,Patient);
 
@@ -50,10 +57,6 @@ namespace V.Doc_ASP.NET.Controllers
                 user.LastLogin = DateTime.Now;
                 user.LastTimeNotificationChecked = DateTime.Now;
                 user.AccountAvailableStatus = Enum_AccountAvailableStatus.Accessable.ToString();
-
-
-
-
 
                 IPatientService patientService = ServiceFactory.GetPatientService();
                 patientService.Insert(Patient);
@@ -231,25 +234,50 @@ namespace V.Doc_ASP.NET.Controllers
             user.Password = PatientModel.Password;
             user.Gender = PatientModel.Gender;
             user.Type = Enum_UserType.Patient.ToString();
-
-            if (PatientModel.File != null && PatientModel.File.ContentLength > 0)
-            {
-                string filename = Path.GetFileNameWithoutExtension(PatientModel.File.FileName);
-                string extension = Path.GetExtension(PatientModel.File.FileName);
-                filename = filename + user.UserName + extension;
-                user.ProfilePicture = "~/UploadedFiles/Images/" + filename;
-                filename = Path.Combine(Server.MapPath("~/UploadedFiles/Images/"), filename);
-                PatientModel.File.SaveAs(filename);
-            }
+            
             patient.isAvailable = Enum_UserAvailableStatus.NotAvailable.ToString();
             patient.User = user;
            
+        }
+        [HttpPost]
+        public JsonResult MyAjaxCall(string order)
+        {
+            return Json(DoesUserExistInDatabase(order));
         }
         private bool DoesUserExistInDatabase(String userName)
         {
             IUserService user = ServiceFactory.GetUserService();
             if (user.Get(userName) != null) return true;
             else return false;
+        }
+        private bool isImageValid(PatientModel PatientModel, User user, Patient patient)
+        {
+            if (PatientModel.File != null && PatientModel.File.ContentLength > 0)
+            {
+                string filename = Path.GetFileNameWithoutExtension(PatientModel.File.FileName);
+                string extension = Path.GetExtension(PatientModel.File.FileName);
+
+                if (extension.ToLower() != ".jpg" || extension.ToLower() != ".jpeg" || extension.ToLower() != ".png")
+                {
+                    filename = filename + user.UserName + extension;
+                    user.ProfilePicture = "~/UploadedFiles/Images/" + filename;
+                    filename = Path.Combine(Server.MapPath("~/UploadedFiles/Images/"), filename);
+                    PatientModel.File.SaveAs(filename);
+                    patient.User = user;
+
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+            else
+            {
+                return false;
+            }
+
         }
     }
 }

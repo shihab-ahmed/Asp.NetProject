@@ -32,6 +32,11 @@ namespace V.Doc_Service.Abstract_Classes
             return this.doctorDataAccess.GetAll(isIncludeUser_Specialist_ContactList);
         }
 
+        public Doctor GetUsingUser(User user, bool isIncludeExtra = false)
+        {
+            return this.doctorDataAccess.GetUsingUser(user, isIncludeExtra);
+        }
+
         public int Insert(Doctor doctor)
         {
             return this.doctorDataAccess.Insert(doctor);

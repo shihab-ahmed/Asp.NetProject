@@ -36,7 +36,15 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.UserName,"", new { @class = "text-danger" })
-                @Html.DisplayFor(model => model.UserExistMessage)
+                <label id="UnameLabel">
+                        @{
+                            if (@Model.UserExistMessage != null)
+                            {
+                                @Model.UserExistMessage
+                            }
+                        }
+                        
+                </label>
             </div>
         </div>
 
@@ -91,6 +99,7 @@
                 <input type="file" name="File" accept="image/*"/>
                 @Html.ValidationMessageFor(m => m.File)
                 @Html.ValidationMessageFor(model => model.File, "", new { @class = "text-danger" })
+                @Html.DisplayFor(m => m.imgeFileNeedMessage)
             </div>
         </div>
 
@@ -114,3 +123,37 @@
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+
+<script>
+    $(document).ready(function ()
+    {
+        $("#UserName").keyup(function ()
+        {
+
+
+            $.ajax({
+                        type: "POST",
+                        url: '@Url.Action("MyAjaxCall", "PatientAccount")',
+                        data: { order: $(this).val() },
+                        dataType: "json",
+                        success: function (data)
+                        {
+                            if (data)
+                            {
+                                $("#UnameLabel").text("User name not available");
+                            }
+                            else
+                            {
+                                $("#UnameLabel").text("");
+                            }
+                        },
+                        error: function (data)
+                        {
+                            alert("Fail");
+                        }
+                  });
+           
+        });
+    });
+</script>

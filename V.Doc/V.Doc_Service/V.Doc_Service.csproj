@@ -40,28 +40,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstract Classes\ChatService.cs" />
-    <Compile Include="Abstract Classes\ComplainService.cs" />
-    <Compile Include="Abstract Classes\ContactService.cs" />
-    <Compile Include="Abstract Classes\DiseaseService.cs" />
+    <Compile Include="Abstract Classes\AdminService.cs" />
     <Compile Include="Abstract Classes\DoctorService.cs" />
-    <Compile Include="Abstract Classes\MedicineService.cs" />
     <Compile Include="Abstract Classes\PatientService.cs" />
-    <Compile Include="Abstract Classes\PrescriptionService.cs" />
-    <Compile Include="Abstract Classes\SpecialistService.cs" />
-    <Compile Include="Abstract Classes\SymptomService.cs" />
     <Compile Include="Abstract Classes\UserService.cs" />
-    <Compile Include="Interfaces\IContactService.cs" />
+    <Compile Include="Interfaces\IAdminService.cs" />
     <Compile Include="ServiceFactory.cs" />
-    <Compile Include="Interfaces\IChatService.cs" />
-    <Compile Include="Interfaces\IComplainService.cs" />
-    <Compile Include="Interfaces\IDiseaseService.cs" />
     <Compile Include="Interfaces\IDoctorService.cs" />
-    <Compile Include="Interfaces\IMedicineService.cs" />
     <Compile Include="Interfaces\IPatientService.cs" />
-    <Compile Include="Interfaces\IPrescriptionService.cs" />
-    <Compile Include="Interfaces\ISpecialistService.cs" />
-    <Compile Include="Interfaces\ISymptomService.cs" />
     <Compile Include="Interfaces\IUserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

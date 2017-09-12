@@ -19,6 +19,7 @@ namespace V.Doc_ASP.NET.Models.CustomModel
         public HttpPostedFileBase File { get; set; }
         public IEnumerable<User> Relative { get; set; }
         public string UserExistMessage { get; set; }
+        public string imgeFileNeedMessage { get; set; }
 
         public String NotifyProfileUpdatedStatus { get; set; }
         public String NotifyPasswordUpdatedStatus { get; set; }

@@ -27,7 +27,6 @@ namespace V.Doc_Entity
         [ForeignKey("SpecialistId")]
         public Specialist Specialist { get; set; }
 
-       // public virtual ICollection<Contact> ContactList { get; set; }
 
     }
 }

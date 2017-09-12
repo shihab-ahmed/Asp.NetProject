@@ -14,8 +14,8 @@ namespace V.Doc_Entity
         [Required(ErrorMessage ="Type is required")]
         public String Type { get; set; }
 
-
-
+        public DateTime TimeCreated { get; set; }
+        public DateTime TimeUpdated { get; set; }
 
         public virtual ICollection<Symptom> Symptoms { get; set; }
     }

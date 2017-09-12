@@ -1,1 +1,6 @@
 ﻿@using V.Doc_Entity
+@{ 
+    if ((Patient)Session["Patient"] != null) { Layout = "~/Views/Shared/Patient_MainLayout.cshtml"; }
+    else if ((Admin)Session["Admin"] != null) { Layout = "~/Views/Shared/Admin_MainLayout.cshtml"; }
+    else if ((Doctor)Session["Doctor"] != null){Layout = "~/Views/Shared/Doctor_MainLayout.cshtml";}
+}

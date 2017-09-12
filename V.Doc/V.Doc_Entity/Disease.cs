@@ -13,9 +13,11 @@ namespace V.Doc_Entity
         public int Id { get; set; }
         [StringLength(50, MinimumLength = 1, ErrorMessage = "Name Length must be between 1-50")]
         public String Name { get; set; }
- 
+
+        public DateTime TimeCreated { get; set; }
+        public DateTime TimeUpdated { get; set; }
+
         public virtual ICollection<Symptom> Symptoms { get; set; }
-        public virtual ICollection<Medicine> Medicines { get; set; }
 
     }
 }

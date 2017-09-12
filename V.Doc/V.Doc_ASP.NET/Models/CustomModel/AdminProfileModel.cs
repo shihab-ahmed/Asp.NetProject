@@ -34,5 +34,7 @@ namespace V.Doc_ASP.NET.Models.CustomModel
         public string ProfilePicture { get; set; }
 
         public string NotifyProfileChangeStatus { get; set; }
+
+        public string imgeFileNeedMessage { get; set; }
     }
 }

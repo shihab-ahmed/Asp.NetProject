@@ -50,6 +50,18 @@ namespace V.Doc_Data.Abstract_Classes
             
         }
 
+        public Doctor GetUsingUser(User user, bool isExtra = false)
+        {
+            if (isExtra)
+            {
+                return this.databaseContext.Doctors.SingleOrDefault(x => x.User.Id == user.Id);
+            }
+            else
+            {
+                return this.databaseContext.Doctors.SingleOrDefault(x => x.User.Id == user.Id);
+            }
+        }
+
         public int Insert(Doctor doctor)
         {
             this.databaseContext.Doctors.Add(doctor);
@@ -61,7 +73,7 @@ namespace V.Doc_Data.Abstract_Classes
             Doctor doctorToUpdate = this.databaseContext.Doctors.SingleOrDefault(x => x.Id == doctor.Id);
 
             doctorToUpdate.Experience = doctor.Experience;
-            doctorToUpdate.Specialist = doctor.Specialist;
+            //doctorToUpdate.Specialist = doctor.Specialist;
             doctorToUpdate.About = doctor.About;
             doctorToUpdate.isAvailable = doctor.isAvailable;
 

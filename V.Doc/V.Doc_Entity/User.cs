@@ -12,9 +12,9 @@ namespace V.Doc_Entity
         [Key]
         public int Id { get; set; }
 
-        [StringLength(50,MinimumLength =1,ErrorMessage ="First Name Length must be between 1-50")
-            ,Required(ErrorMessage ="First Name Required")
-            ,RegularExpression("^[a-zA-Z]*$", ErrorMessage ="Only String is allowed")]
+        [StringLength(50, MinimumLength = 1, ErrorMessage = "First Name Length must be between 1-50")
+            , Required(ErrorMessage = "First Name Required")
+            , RegularExpression("^[a-zA-Z]*$", ErrorMessage = "Only String is allowed")]
         public String FirstName { get; set; }
 
         [StringLength(50, MinimumLength = 1, ErrorMessage = "Last Name Length must be between 1-50")
@@ -22,11 +22,11 @@ namespace V.Doc_Entity
             , RegularExpression("^[a-zA-Z]*$", ErrorMessage = "Only String is allowed")]
         public String LastName { get; set; }
 
-       [StringLength(50, MinimumLength = 1, ErrorMessage = "User Name Length must be between 1-50")
-            , Required(ErrorMessage = "User Name Required")]
+        [StringLength(50, MinimumLength = 1, ErrorMessage = "User Name Length must be between 1-50")
+             , Required(ErrorMessage = "User Name Required")]
         public String UserName { get; set; }
 
-        [Required(ErrorMessage ="Email is Required"),RegularExpression(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$",ErrorMessage ="Not a valid email")]
+        [Required(ErrorMessage = "Email is Required"), RegularExpression(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$", ErrorMessage = "Not a valid email")]
         public String Email { get; set; }
 
         [Required(ErrorMessage = "Birthdate is Requeired")
@@ -38,13 +38,13 @@ namespace V.Doc_Entity
         [Required(ErrorMessage = "Password is Requeired")]
         public String Password { get; set; }
 
-        [Required(ErrorMessage ="Gender not selected")]
+        [Required(ErrorMessage = "Gender not selected")]
         public String Gender { get; set; }
 
-        
+
         public String Type { get; set; }
 
-        
+
         public String ProfilePicture { get; set; }
 
 
@@ -55,5 +55,6 @@ namespace V.Doc_Entity
         public DateTime LastTimeNotificationChecked { get; set; }
 
         public String AccountAvailableStatus { get; set; }
+
     }
 }

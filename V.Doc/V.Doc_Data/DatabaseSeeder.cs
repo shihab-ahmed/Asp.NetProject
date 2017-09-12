@@ -13,7 +13,7 @@ namespace V.Doc_Data
     {
         protected override void Seed(DatabaseContext context)
         {
-            
+            Admin admin = new Admin();
             User user = new User()
             {
                 FirstName = "System",
@@ -33,14 +33,16 @@ namespace V.Doc_Data
             user.LastTimeNotificationChecked = DateTime.Now;
             user.AccountAvailableStatus = Enum_AccountAvailableStatus.Accessable.ToString();
 
-            context.Users.Add(user);
+
+            admin.User = user;
+            context.Admins.Add(admin);
             context.SaveChanges();
 
 
 
 
 
-          /*  Specialist Cardiologist = new Specialist();
+           /* Specialist Cardiologist = new Specialist();
             Specialist Dermatologist = new Specialist();
             Specialist Neurologist = new Specialist();
             Specialist Allergist = new Specialist();
@@ -130,15 +132,6 @@ namespace V.Doc_Data
             Amyotrophy.Symptoms = new List<Symptom>() { ServerPain };
             Asthma.Symptoms = new List<Symptom>() { Coughfing, ShortnessOfBreath };
             Gastritis.Symptoms = new List<Symptom>() { StomacPain };
-
-            Cardiovascular.Medicines = new List<Medicine>() { XincB, Asparin };
-            Acne.Medicines = new List<Medicine>() { XincB, Ativan };
-            Amyotrophy.Medicines = new List<Medicine>() { XincB, Asparin };
-            Asthma.Medicines = new List<Medicine>() { Napa, Ace };
-            Gastritis.Medicines = new List<Medicine>() { Deslor, Asparin };
-
-
-
 
             //Medicine
             Napa.Name = "Napa";
