@@ -46,6 +46,36 @@ namespace V.Doc_Data.Abstract_Classes
             return user.Id;
         }
 
+        public IEnumerable<User> Search(string SearchBy, string SearchValue)
+        {
+            List<User> userList = new List<User>();
+
+            if(SearchValue!="")
+            {
+                if (SearchBy == "FirstName")
+                {
+                    userList = this.databaseContext.Users.Where(x => x.FirstName.StartsWith(SearchValue)).ToList();
+                }
+                else if (SearchBy == "LastName")
+                {
+                    userList = this.databaseContext.Users.Where(x => x.LastName.StartsWith(SearchValue)).ToList();
+                }
+                else if (SearchBy == "Gender")
+                {
+                    userList = this.databaseContext.Users.Where(x => x.Gender.StartsWith(SearchValue)).ToList();
+                }
+                else if (SearchBy == "Type")
+                {
+                    userList = this.databaseContext.Users.Where(x => x.Type.StartsWith(SearchValue)).ToList();
+                }
+            }
+            else
+            {
+                return this.databaseContext.Users.ToList();
+            }
+            return userList;
+        }
+
         public int Update(User user)
         {
             User userToUpdate = this.databaseContext.Users.SingleOrDefault(x => x.Id == user.Id);

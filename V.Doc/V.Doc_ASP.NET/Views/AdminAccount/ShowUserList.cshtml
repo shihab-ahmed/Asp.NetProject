@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<V.Doc_ASP.NET.Models.CustomModel.ShowUserListModel>
+@using V.Doc_Utilities
 @{
     ViewBag.Title = "ShowUserList";
     Layout = "~/Views/Shared/Admin_MainLayout.cshtml";
@@ -6,69 +7,223 @@
 @using V.Doc_Entity;
 <h2>ShowUserList</h2>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model=>model.ProfilePicture)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Age)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Gender)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Type)
-        </th>
-        <th>
-            @Html.DisplayName("Actions")
-        </th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            <img src="@Url.Content(item.ProfilePicture)"/>
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Age)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Gender)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Type)
-        </td>
-        <td>
-            @Html.ActionLink("Ban", "Ban", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
+<div class="container">
+    <div class="form-group">
+        <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+            <input type="text" id="Search" class="form-control"/>
+            <select id="SearchBy">
+                <option value="FirstName">First Name</option>
+                <option value="LastName">Last Name</option>
+                <option value="Gender">Gender</option>
+                <option value="Type">Type</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div>
+    <table class="table table-striped">
+
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProfilePicture)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LastName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Age)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Gender)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Type)
+                </th>
+                <th>
+                    @Html.DisplayName("Actions")
+                </th>
+            </tr>
+        </thead>
+        <tbody id="DataList">
+            @foreach (var item in Model)
+            {
+                <tr class="Search">
+                    <td>
+                    
+                        <img src="@Url.Content(item.ProfilePicture)" style="width:50px;height:50px; border-radius:50%" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Age)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Gender)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Type)
+                    </td>
+                    <td>
+                        <a href="@Url.Action("ShowUserDetails", "AdminAccount",new { id=item.Id})" class="btn btn-info"><span class="glyphicon glyphicon-dashboard"></span></a>
+                        <a href="@Url.Action("DeleteUser", "AdminAccount",new { id=item.Id})" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
+                    </td>
+                </tr>
+             }
+        </tbody>
+    </table>
+</div>
+
+
+@*Create A PopUp Modal For DeleteConfirmation*@
+
+<div class="modal fade" id="DeleteConfirmation">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                <h4>Delete Student Record</h4>
+            </div>
+            <div class="modal-body">
+                <h4>Are You Sure? You Want To Delete This Record.</h4>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-primary" data-dismiss="modal" id="r">Cancle</a>
+                <a href="#" class="btn btn-danger" onclick="ConfirmDelete()">Confirm</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    
+
+    <script>
+        $(document).ready(function ()
+        {
+
+            function Contains(text1, text2) {
+                if (text1.indexOf(text2) != -1) return true;
+            }
+            $("#Search").keyup(function () {
+                var searchText = $("#Search").val().toLowerCase();
+                var searchBy = $("#SearchBy").val();
+
+                var setData = $("#DataList");
+                setData.html("");
+
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("GetSearchingData", "AdminAccount")',
+                        data: { searchBy: searchBy, searchText: searchText },
+                        dataType: "json",
+                        type: "post",
+                        success: function (result)
+                        {
+
+                            if (result.length == 0)
+                            {
+
+                            }
+                            else
+                            {
+                                $.each(result, function (index, value)
+                                {
+                                    var Data = "<tr>" +
+                                                    "<td>" +
+                                                    "<img src='" + value.ProfilePicture + "' style='width:50px;height:50px; border-radius:50%'/>" +
+                                                    "</td>" +
+                                                    "<td>" +
+                                                    value.FirstName +
+                                                    "</td>" +
+                                                    "<td>" +
+                                                    value.LastName +
+                                                    "</td>" +
+                                                    "<td>" +
+                                                    value.Email +
+                                                    "</td>" +
+                                                    "<td>" +
+                                                    value.Age +
+                                                    "</td>" +
+                                                    "<td>" +
+                                                    value.Gender +
+                                                    "</td>" +
+                                                    "<td>" +
+                                                    value.Type +
+                                                    "</td>" +
+                                                    "<td>" +
+                                                    "<a href='#' class='btn btn-warning' onclick='DeleteUserRecord(" + value.id + ")' ><span class='glyphicon glyphicon-edit'></span></a>"
+                                                    "</td>" +
+                                                    "</tr>";
+                                    setData.append(Data);
+
+                                });
+                            }
+
+                        }
+
+
+
+                    });
+
+
+
+
+
+
+
+
+                    /*$(".Search").each(function () {
+
+                        if (!Contains($(this).text().toLowerCase(), searchText))
+                        {
+
+
+                            $(this).hide();
+                        }
+                        else {
+                            $(this).show();
+                        }
+
+                    });*/
+
+
+
+                });
+
+
+
+            //Show The Popup Modal For DeleteComfirmation
+            var DeleteUserRecord = function (StudentId) {
+                $("#StuId").val(StudentId);
+                $("#DeleteConfirmation").modal("show");
+            }
+
+
+            });
+    </script>
+    
+    
 }
 
-</table>
 
 
-@section UserPic{
-    <img src="~/Content/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
-} 
+

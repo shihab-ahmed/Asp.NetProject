@@ -28,7 +28,7 @@ namespace V.Doc_Data.Abstract_Classes
         {
             if (includeUserAndContactList)
             {
-                return this.databaseContext.Patients.Include("User").Include("ContactList").SingleOrDefault(x => x.Id == id);
+                return this.databaseContext.Patients.Include("User").SingleOrDefault(x => x.Id == id);
             }
             else
             {

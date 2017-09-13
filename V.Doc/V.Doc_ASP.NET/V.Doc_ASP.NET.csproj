@@ -7441,6 +7441,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CustomModel\AdminAdminDetails.cs" />
+    <Compile Include="Models\CustomModel\AdminDoctorDetails.cs" />
+    <Compile Include="Models\CustomModel\AdminPatientDetails.cs" />
     <Compile Include="Models\CustomModel\LoginModel.cs" />
     <Compile Include="Models\CustomModel\AdminModel.cs" />
     <Compile Include="Models\CustomModel\DoctorModel.cs" />
@@ -7483,6 +7486,9 @@
     <Content Include="Views\Medicine\Create.cshtml" />
     <Content Include="Views\Medicine\List.cshtml" />
     <Content Include="Views\Medicine\Edit.cshtml" />
+    <Content Include="Views\AdminAccount\AdminDetails.cshtml" />
+    <Content Include="Views\AdminAccount\ShowDoctorDetails.cshtml" />
+    <Content Include="Views\AdminAccount\ShowPatientDetails.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -12,6 +12,7 @@ namespace V.Doc_Data.Interfaces
         IEnumerable<User> GetAll();
         User Get(int id);
         User Get(String UserName);
+        IEnumerable<User> Search(String SearchBy,String SearchValue);
         int Insert(User user);
         int Update(User user);
         int Delete(int id);

@@ -52,17 +52,57 @@ namespace V.Doc_ASP.NET.Controllers
                 uModel.Age = item.Age;
                 uModel.Gender = item.Gender;
                 uModel.Id = item.Id;
-
+                uModel.AccountAvailableStatus = item.AccountAvailableStatus;
                 UserListModel.Add(uModel);
             }
             return UserListModel;
 
         }
+        public ActionResult ShowUserDetails(int id)
+        {
+            IUserService uS = ServiceFactory.GetUserService();
+            User User=uS.Get(id);
+
+            if(User.Type==Enum_UserType.Admin.ToString())
+            {
+                IAdminService aS = ServiceFactory.GetAdminService();
+                Admin admin = aS.Get(id, true);
+
+                AdminAdminDetails aaD = new AdminAdminDetails();
+                
+
+                return View("AdminDetails",aaD);
+
+            }
+            if (User.Type == Enum_UserType.Doctor.ToString())
+            {
+                IDoctorService dS = ServiceFactory.GetDoctorService();
+                Doctor doctor = dS.Get(id, true);
+                AdminDoctorDetails aDD = new AdminDoctorDetails();
+
+                return View("ShowDoctorDetails",aDD);
+            }
+            else
+            {
+                IPatientService pS = ServiceFactory.GetPatientService();
+                Patient patient = pS.Get(id, true);
+                AdminPatientDetails aPD = new AdminPatientDetails();
+
+                return View("ShowPatientDetails",aPD);
+            }
+
+
+            
+        }
+        public ActionResult DeleteUser(int id)
+        {
+            return View();
+        }
         [HttpGet]
         public ActionResult ShowUserList()
         {
             if (!IsAdminAlive()) return RedirectToAction("Login", "Login");
-            return View();
+            return View(GetAllUser());
         }
         public ActionResult CreateAccount()
         {
@@ -139,8 +179,6 @@ namespace V.Doc_ASP.NET.Controllers
         {
             if (!IsAdminAlive()) return RedirectToAction("Login", "Login");
             if (IsDefaultAdmin()) return RedirectToAction("AccountDetails", "AdminAccount");
-
-            Admin user = (Admin)Session["Admin"];
             AdminPasswordModel AdminPasswordModel = new AdminPasswordModel();
             return View(AdminPasswordModel);
         }
@@ -184,7 +222,7 @@ namespace V.Doc_ASP.NET.Controllers
                 IAdminService adminService = ServiceFactory.GetAdminService();
                 adminService.Update(admin);
 
-                ReloadPatientInfo();
+                ReloadAdminInfo();
 
                 LoadToProfileModel(profileModel, admin);
 
@@ -203,17 +241,18 @@ namespace V.Doc_ASP.NET.Controllers
             if (!IsAdminAlive()) return RedirectToAction("Login", "Login");
             if (ModelState.IsValid)
             {
-                User User = (User)Session["User"];
+                Admin admin = (Admin)Session["Admin"];
 
-                if (User.Password == passwordModel.CurrentPassword)
+                if (admin.User.Password == passwordModel.CurrentPassword)
                 {
-                    User.Password = passwordModel.NewPassword;
+                    admin.User.Password = passwordModel.NewPassword;
 
-                    IUserService UserService = ServiceFactory.GetUserService();
-                    UserService.Update(User);
+                    IAdminService UserService = ServiceFactory.GetAdminService();
+                    UserService.Update(admin);
 
                     passwordModel.NotifyUpdateStatus = "Password changed successfully";
                     ModelState.Clear();
+                    ReloadAdminInfo();
                     return View(passwordModel);
                 }
                 else
@@ -236,7 +275,7 @@ namespace V.Doc_ASP.NET.Controllers
             AdminProfileModel.Age = User.Age;
             AdminProfileModel.ProfilePicture = User.ProfilePicture;
         }
-        private void ReloadPatientInfo()
+        private void ReloadAdminInfo()
         {
             IAdminService adminService = ServiceFactory.GetAdminService();
             Admin admin = (Admin)Session["Admin"];
@@ -317,6 +356,30 @@ namespace V.Doc_ASP.NET.Controllers
         public JsonResult isUserExist(string order)
         {
             return Json(DoesUserExistInDatabase(order));
+        }
+        [HttpPost]
+        public JsonResult GetSearchingData(String searchBy, String searchText)
+        {
+            IUserService service = ServiceFactory.GetUserService();
+
+            IEnumerable<User> UserList = service.Search(searchBy,searchText);
+            List<ShowUserListModel> UserListModel = new List<ShowUserListModel>();
+            foreach (var item in UserList)
+            {
+                ShowUserListModel uModel = new ShowUserListModel();
+
+                uModel.FirstName = item.FirstName;
+                uModel.LastName = item.LastName;
+                uModel.Email = item.Email;
+                uModel.ProfilePicture = item.ProfilePicture;
+                uModel.Type = item.Type;
+                uModel.Age = item.Age;
+                uModel.Gender = item.Gender;
+                uModel.Id = item.Id;
+                uModel.AccountAvailableStatus = item.AccountAvailableStatus;
+                UserListModel.Add(uModel);
+            }
+            return Json(UserListModel, JsonRequestBehavior.AllowGet);
         }
     }
 }

@@ -43,6 +43,11 @@ namespace V.Doc_Service.Abstract_Classes
             return this.userDataAccess.Insert(user);
         }
 
+        public IEnumerable<User> Search(string SearchBy, string SearchValue)
+        {
+            return this.userDataAccess.Search(SearchBy,SearchValue);
+        }
+
         public int Update(User user)
         {
             return this.userDataAccess.Update(user);
