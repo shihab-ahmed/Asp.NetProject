@@ -12,7 +12,7 @@ namespace V.Doc_ASP.NET.Controllers
 {
     public class SpecialistController : Controller
     {
-       /* private bool IsAdminAlive()
+        private bool IsAdminAlive()
         {
             User user = (User)Session["User"];
             if (user == null) return false;
@@ -32,6 +32,17 @@ namespace V.Doc_ASP.NET.Controllers
             }
 
         }
+        [HttpPost]
+        public JsonResult DoesNameExist(string order)
+        {
+            return Json(DoesUserExistInDatabase(order));
+        }
+        private bool DoesUserExistInDatabase(String userName)
+        {
+            ISpecialistService spec = ServiceFactory.GetSpecialistService();
+            if (spec.Get(userName) != null) return true;
+            else return false;
+        }
         private bool IsDoctorAlive()
         {
             Doctor doctor = (Doctor)Session["Doctor"];
@@ -45,7 +56,7 @@ namespace V.Doc_ASP.NET.Controllers
         // GET: Specialist
         public ActionResult CreateSpecialist()
         {
-            return View();
+            return View(new SpecialistModel());
         }
         // GET: Specialist
         public ActionResult SpecialistFromAdminSite()
@@ -73,26 +84,99 @@ namespace V.Doc_ASP.NET.Controllers
         {
             if(ModelState.IsValid)
             {
+                if(DoesUserExistInDatabase(model.Type))
+                {
+                    model.NotifyStatus = "type already exist";
+                    return View(model);
+                }
                 Specialist specialist = new Specialist();
                 specialist.Type = model.Type;
                 specialist.Symptoms = new List<Symptom>();
+                specialist.TimeCreated = DateTime.Now;
+                specialist.TimeUpdated = DateTime.Now;
 
                 ISpecialistService service = ServiceFactory.GetSpecialistService();
                 service.Insert(specialist);
 
-                model.NotifyStatus = "Information added";
+                SpecialistModel sM = new SpecialistModel();
+                sM.NotifyStatus = "Information added";
                 ModelState.Clear();
 
-                return View();
+                return View(sM);
             }
             return View(model);
         }
         public ActionResult DeleteSpecialist(int id)
         {
             ISpecialistService service = ServiceFactory.GetSpecialistService();
+            IDoctorService docService = ServiceFactory.GetDoctorService();
+            ISymptomService symtomService = ServiceFactory.GetSymtomService();
 
-            service.Delete(id);
+            bool shouldDelete = true;
+
+            foreach (var item in docService.GetAll())
+            {
+                if (item.SpecialistId == id && !shouldDelete)
+                {
+                    shouldDelete = false;
+                    break;
+                }
+            }
+            if(shouldDelete)
+            {
+                foreach (var item in symtomService.GetAll(true))
+                {
+                    foreach (var item2 in item.Specialists)
+                    {
+                        if (item2.Id == id && shouldDelete)
+                        {
+                            shouldDelete = false;
+                            break;
+                        }
+                    }
+
+                }
+            }
+            if (shouldDelete)service.Delete(id);
             return RedirectToAction("SpecialistFromAdminSite");
-        }*/
+        }
+        public ActionResult Edit(int id)
+        {
+            ISpecialistService service = ServiceFactory.GetSpecialistService();
+            Specialist s=service.Get(id);
+
+            SpecialistModel sm = new SpecialistModel();
+            sm.Id = id;
+            sm.Type = s.Type;
+            return View(sm);
+        }
+        [HttpPost]
+        public ActionResult Edit(SpecialistModel model)
+        {
+            ISpecialistService service = ServiceFactory.GetSpecialistService();
+            Specialist specialist = service.Get(model.Id);
+
+
+
+            if (ModelState.IsValid)
+            {
+                if (DoesUserExistInDatabase(model.Type))
+                {
+                    model.NotifyStatus = "type already exist";
+                    return View(model);
+                }
+                specialist.Type = model.Type;
+                specialist.TimeUpdated = DateTime.Now;
+
+                service.Update(specialist);
+
+                model.NotifyStatus = "Information added";
+                ModelState.Clear();
+
+                return View(model);
+            }
+            return View(model);
+        }
+
     }
 }

@@ -10,7 +10,7 @@ namespace V.Doc_Data.Abstract_Classes
 {
     class ChatDataAccess : IChatDataAccess
     {
-       /* private DatabaseContext databaseContext;
+        private DatabaseContext databaseContext;
 
         public ChatDataAccess(DatabaseContext databaseContext)
         {
@@ -31,7 +31,7 @@ namespace V.Doc_Data.Abstract_Classes
 
         public IEnumerable<Chat> GetAll(User sender,User reciever)
         {
-            return this.databaseContext.Chats.OrderByDescending(x => x.Sender == sender||x.Reciever==sender||x.Sender==reciever ||x.Reciever==reciever).ToList();
+            return this.databaseContext.Chats.OrderByDescending(x => x.PatientId == sender.Id||x.PatientId==sender.Id||x.DoctorId==reciever.Id ||x.DoctorId==reciever.Id).ToList();
         }
 
         public int Insert(Chat chat)
@@ -43,11 +43,8 @@ namespace V.Doc_Data.Abstract_Classes
         public int Update(Chat chat)
         {
             Chat chatToUpdate = this.databaseContext.Chats.SingleOrDefault(x => x.Id == chat.Id);
-
-            chatToUpdate.isSeenByReciever = chat.isSeenByReciever;
-            chatToUpdate.isSeenBySender = chat.isSeenBySender;
             chatToUpdate.Message = chat.Message;
             return this.databaseContext.SaveChanges();
-        }*/
+        }
     }
 }

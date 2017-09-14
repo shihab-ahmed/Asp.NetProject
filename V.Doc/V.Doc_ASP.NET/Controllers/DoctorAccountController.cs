@@ -14,29 +14,61 @@ namespace V.Doc_ASP.NET.Controllers
 {
     public class DoctorAccountController : Controller
     {
-        //
-        // 1. Action method for displaying 'Sign Up' page
-        //
-       /* public ActionResult CreateAccount()
+        [HttpPost]
+        public JsonResult MyAjaxCall(string order)
+        {
+            return Json(DoesUserExistInDatabase(order));
+        }
+        public ActionResult CreateAccount()
         {
             // Let's get all states that we need for a DropDownList
             var states = GetAllSpecialist();
 
             var model = new DoctorModel();
 
+            model.Birthdate = DateTime.Now;
             // Create a list of SelectListItems so these can be rendered on the page
             model.Specialist_List = GetSelectListItems(states);
 
             return View(model);
-        }*/
+        }
 
         //
         // 2. Action method for handling user-entered data when 'Sign Up' button is pressed.
         //
+        private bool isImageValid(DoctorModel doctorModel, User user, Doctor doctor)
+        {
+            if (doctorModel.File != null && doctorModel.File.ContentLength > 0)
+            {
+                string filename = Path.GetFileNameWithoutExtension(doctorModel.File.FileName);
+                string extension = Path.GetExtension(doctorModel.File.FileName);
+
+                if (extension.ToLower() == ".jpg" || extension.ToLower() == ".jpeg" || extension.ToLower() == ".png")
+                {
+                    filename = filename + user.UserName + extension;
+                    user.ProfilePicture = "~/UploadedFiles/Images/" + filename;
+                    filename = Path.Combine(Server.MapPath("~/UploadedFiles/Images/"), filename);
+                    doctorModel.File.SaveAs(filename);
+                    doctor.User = user;
+
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+
+            }
+            else
+            {
+                return false;
+            }
+
+        }
         [HttpPost]
         public ActionResult CreateAccount(DoctorModel doctorModel)
         {
-            /* var states = GetAllSpecialist();
+             var states = GetAllSpecialist();
              if (ModelState.IsValid)
              {
                  User user = new User();
@@ -50,11 +82,19 @@ namespace V.Doc_ASP.NET.Controllers
                      doctorModel.UserExistMessage = "Sorry user already exist";
                      return View(doctorModel);
                  }
+                if (!isImageValid(doctorModel, user, doctor))
+                {
+                    doctorModel.Specialist_List = GetSelectListItems(states);
+                    doctorModel.imgeFileNeedMessage = "Image(jpg,jpeg,png) file required";
+                    return View(doctorModel);
+                }
 
-                 LoadToUserAndDoctor(doctorModel, user, doctor);
+                LoadToUserAndDoctor(doctorModel, user, doctor);
 
-
-                 IDoctorService doctorService = ServiceFactory.GetDoctorService();
+                user.TimeAccountCreated = DateTime.Now;
+                user.LastLogin = DateTime.Now;
+                user.LastTimeNotificationChecked = DateTime.Now;
+                IDoctorService doctorService = ServiceFactory.GetDoctorService();
                  doctorService.Insert(doctor);
                  ModelState.Clear();
 
@@ -67,8 +107,7 @@ namespace V.Doc_ASP.NET.Controllers
              {
                  doctorModel.Specialist_List = GetSelectListItems(states);
                  return View(doctorModel);
-             }*/
-            return View();
+             }
         }
 
         private void LoadToUserAndDoctor(DoctorModel doctorModel, User user, Doctor doctor)
@@ -85,26 +124,17 @@ namespace V.Doc_ASP.NET.Controllers
 
             user.Password = doctorModel.Password;
             user.Gender = doctorModel.Gender;
-            user.Type = Enum_UserType.Patient.ToString();
+            user.Type = Enum_UserType.Doctor.ToString();
 
-            if (doctorModel.File != null && doctorModel.File.ContentLength > 0)
-            {
-                string filename = Path.GetFileNameWithoutExtension(doctorModel.File.FileName);
-                string extension = Path.GetExtension(doctorModel.File.FileName);
-                filename = filename + user.UserName + extension;
-                user.ProfilePicture = "~/UploadedFiles/Images/" + filename;
-                filename = Path.Combine(Server.MapPath("~/UploadedFiles/Images/"), filename);
-                doctorModel.File.SaveAs(filename);
-            }
             doctor.isAvailable = Enum_UserAvailableStatus.NotAvailable.ToString();
             doctor.User = user;
             doctor.Experience = doctorModel.Experience;
             doctor.About = doctorModel.About;
 
-            /*ISpecialistService Service = ServiceFactory.GetSpecialistService();
-            Specialist specialist = Service.Get(doctorModel.Specialist);*/
+            ISpecialistService Service = ServiceFactory.GetSpecialistService();
+            Specialist specialist = Service.Get(doctorModel.Specialist);
 
-           // doctor.Specialist = specialist;
+            doctor.Specialist = specialist;
         }
 
         //
@@ -121,7 +151,7 @@ namespace V.Doc_ASP.NET.Controllers
 
         // Just return a list of states - in a real-world application this would call
         // into data access layer to retrieve states from a database.
-       /* private IEnumerable<string> GetAllSpecialist()
+        private IEnumerable<string> GetAllSpecialist()
         {
             ISpecialistService Service = ServiceFactory.GetSpecialistService();
             IEnumerable<Specialist> list =Service.GetAll();
@@ -131,7 +161,7 @@ namespace V.Doc_ASP.NET.Controllers
                 SpecialistCollection.Add(item.Type);
             }
             return SpecialistCollection;
-        }*/
+        }
 
         // This is one of the most important parts in the whole example.
         // This function takes a list of strings and returns a list of SelectListItem objects.

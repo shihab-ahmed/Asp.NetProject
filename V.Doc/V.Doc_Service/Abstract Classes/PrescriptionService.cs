@@ -11,7 +11,7 @@ namespace V.Doc_Service.Abstract_Classes
 {
     class PrescriptionService : IPrescriptionService
     {
-       /* private IPrescriptionDataAccess prescriptionDataAccess;
+        private IPrescriptionDataAccess prescriptionDataAccess;
 
         public PrescriptionService(IPrescriptionDataAccess prescriptionDataAccess)
         {
@@ -40,6 +40,6 @@ namespace V.Doc_Service.Abstract_Classes
         public int Update(Prescription prescription)
         {
             return this.prescriptionDataAccess.Update(prescription);
-        }*/
+        }
     }
 }

@@ -14,7 +14,6 @@ namespace V.Doc_Data
         public DbSet<Complain> Complains { get; set; }
         public DbSet<Disease> Diseases { get; set; }
         public DbSet<Doctor> Doctors { get; set; }
-        public DbSet<Medicine> Medicines { get; set; }
         public DbSet<Patient> Patients { get; set; }
         public DbSet<Admin> Admins { get; set; }
         public DbSet<Prescription> Prescriptions { get; set; }

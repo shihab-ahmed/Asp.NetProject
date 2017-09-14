@@ -11,7 +11,7 @@ namespace V.Doc_Service.Abstract_Classes
 {
     class SymptomService : ISymptomService
     {
-       /* private ISymptomDataAccess symptomDataAccess;
+        private ISymptomDataAccess symptomDataAccess;
 
         public SymptomService(ISymptomDataAccess symptomDataAccess)
         {
@@ -40,6 +40,6 @@ namespace V.Doc_Service.Abstract_Classes
         public int Update(Symptom symptom)
         {
             return this.symptomDataAccess.Update(symptom);
-        }*/
+        }
     }
 }

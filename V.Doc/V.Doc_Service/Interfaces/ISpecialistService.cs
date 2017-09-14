@@ -9,11 +9,11 @@ namespace V.Doc_Service.Interfaces
 {
     public interface ISpecialistService
     {
-       /* IEnumerable<Specialist> GetAll(bool isIncludeSymptom = false);
+        IEnumerable<Specialist> GetAll(bool isIncludeSymptom = false);
         Specialist Get(int id,bool isIncludeSymptom=false);
         Specialist Get(String type, bool isIncludeSymptom = false);
         int Insert(Specialist user);
         int Update(Specialist user);
-        int Delete(int id);*/
+        int Delete(int id);
     }
 }

@@ -12,7 +12,8 @@ namespace V.Doc_Entity
     {
         [Key]
         public int Id { get; set; }
-        [Required(ErrorMessage ="Experience Required")]
+        [Required(ErrorMessage ="Experience Required"),
+         Range(1,30, ErrorMessage ="Range must be between 1 to 30")]
         public int Experience { get; set; }
         //[StringLength(500, MinimumLength = 1, ErrorMessage = "About Length must be between 1-500")]
         public String About { get; set; }

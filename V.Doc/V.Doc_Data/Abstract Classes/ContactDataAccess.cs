@@ -10,7 +10,7 @@ namespace V.Doc_Data.Abstract_Classes
 {
     class ContactDataAccess : IContactDataAccess
     {
-       /* private DatabaseContext databaseContext;
+        private DatabaseContext databaseContext;
 
         public ContactDataAccess(DatabaseContext databaseContext)
         {
@@ -24,29 +24,25 @@ namespace V.Doc_Data.Abstract_Classes
             return this.databaseContext.SaveChanges();
         }
 
-        public Contact Get(int id, bool isIncludePatientAndDoctor = false)
+        public Contact Get(int id)
         {
-            if (isIncludePatientAndDoctor)
-            {
-                return this.databaseContext.Contacts.Include("Patient").Include("Doctor").SingleOrDefault(x => x.Id == id);
-            }
-            else
-            {
-                return this.databaseContext.Contacts.SingleOrDefault(x => x.Id == id);
-            }
-            
+            return this.databaseContext.Contacts.SingleOrDefault(x => x.Id == id);
+
         }
 
-        public IEnumerable<Contact> GetAll(bool isIncludePatientAndDoctor = false)
+        public IEnumerable<Contact> GetAll()
         {
-            if (isIncludePatientAndDoctor)
-            {
-                return this.databaseContext.Contacts.Include("Patient").Include("Doctor").ToList();
-            }
-            else
-            {
-                return this.databaseContext.Contacts.ToList();
-            }
+            return this.databaseContext.Contacts.ToList();
+        }
+
+        public List<Contact> GetUsingDoctor(int id)
+        {
+            return this.databaseContext.Contacts.Where(x=>x.DoctorId==id).ToList();
+        }
+
+        public List<Contact> GetUsingPatient(int id)
+        {
+            return this.databaseContext.Contacts.Where(x => x.PatientId == id).ToList();
         }
 
         public int Insert(Contact contact)
@@ -60,6 +56,6 @@ namespace V.Doc_Data.Abstract_Classes
             Contact contactToUpdate = this.databaseContext.Contacts.SingleOrDefault(x => x.Id == contact.Id);
 
             return this.databaseContext.SaveChanges();
-        }*/
+        }
     }
 }

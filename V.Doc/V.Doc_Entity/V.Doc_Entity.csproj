@@ -47,7 +47,6 @@
     <Compile Include="Contact.cs" />
     <Compile Include="Disease.cs" />
     <Compile Include="Doctor.cs" />
-    <Compile Include="Medicine.cs" />
     <Compile Include="Patient.cs" />
     <Compile Include="Prescription.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

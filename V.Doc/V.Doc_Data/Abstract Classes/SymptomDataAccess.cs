@@ -10,7 +10,7 @@ namespace V.Doc_Data.Abstract_Classes
 {
     class SymptomDataAccess : ISymptomDataAccess
     {
-       /* private DatabaseContext databaseContext;
+        private DatabaseContext databaseContext;
 
         public SymptomDataAccess(DatabaseContext databaseContext)
         {
@@ -61,6 +61,6 @@ namespace V.Doc_Data.Abstract_Classes
 
             symptomToUpdate.Name = symptom.Name;
             return this.databaseContext.SaveChanges();
-        }*/
+        }
     }
 }

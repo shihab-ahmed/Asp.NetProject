@@ -10,7 +10,7 @@ namespace V.Doc_Data.Abstract_Classes
 {
     class DiseaseDataAccess : IDiseaseDataAccess
     {
-       /* private DatabaseContext databaseContext;
+        private DatabaseContext databaseContext;
 
         public DiseaseDataAccess(DatabaseContext databaseContext)
         {
@@ -60,6 +60,6 @@ namespace V.Doc_Data.Abstract_Classes
             diseaseToUpdate.Symptoms = disease.Symptoms;
 
             return this.databaseContext.SaveChanges();
-        }*/
+        }
     }
 }

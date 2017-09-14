@@ -11,7 +11,7 @@ namespace V.Doc_Service.Abstract_Classes
 {
     class SpecialistService : ISpecialistService
     {
-       /* private ISpecialistDataAccess specialistDataAccess;
+       private ISpecialistDataAccess specialistDataAccess;
 
         public SpecialistService(ISpecialistDataAccess specialistDataAccess)
         {
@@ -44,6 +44,6 @@ namespace V.Doc_Service.Abstract_Classes
         public int Update(Specialist specialist)
         {
             return this.specialistDataAccess.Update(specialist);
-        }*/
+        }
     }
 }

@@ -29,6 +29,7 @@ namespace V.Doc_ASP.NET.Controllers
         public ActionResult CreateAccount()
         {
             PatientModel PM = new PatientModel();
+            PM.Birthdate = DateTime.Now;
             return View(PM);
         }
         [HttpPost]
@@ -127,10 +128,17 @@ namespace V.Doc_ASP.NET.Controllers
                 {
                     string filename = Path.GetFileNameWithoutExtension(profileModel.File.FileName);
                     string extension = Path.GetExtension(profileModel.File.FileName);
-                    filename = filename + patient.User.UserName + extension;
-                    patient.User.ProfilePicture = "~/UploadedFiles/Images/" + filename;
-                    filename = Path.Combine(Server.MapPath("~/UploadedFiles/Images/"), filename);
-                    profileModel.File.SaveAs(filename);
+                    if (extension.ToLower() == ".jpg" || extension.ToLower() == ".jpeg" || extension.ToLower() == ".png")
+                    {
+                        filename = filename + patient.User.UserName + extension;
+                        patient.User.ProfilePicture = "~/UploadedFiles/Images/" + filename;
+                        filename = Path.Combine(Server.MapPath("~/UploadedFiles/Images/"), filename);
+                        profileModel.File.SaveAs(filename);
+
+                        profileModel.imgeFileNeedMessage = "Image formate(jpg,png,jpeg)";
+
+                        return View(profileModel);
+                    }
                 }
                 patient.isAvailable = profileModel.isAvailable;
 
@@ -257,7 +265,7 @@ namespace V.Doc_ASP.NET.Controllers
                 string filename = Path.GetFileNameWithoutExtension(PatientModel.File.FileName);
                 string extension = Path.GetExtension(PatientModel.File.FileName);
 
-                if (extension.ToLower() != ".jpg" || extension.ToLower() != ".jpeg" || extension.ToLower() != ".png")
+                if (extension.ToLower() == ".jpg" || extension.ToLower() == ".jpeg" || extension.ToLower() == ".png")
                 {
                     filename = filename + user.UserName + extension;
                     user.ProfilePicture = "~/UploadedFiles/Images/" + filename;

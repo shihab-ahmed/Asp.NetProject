@@ -9,10 +9,10 @@ namespace V.Doc_Data.Interfaces
 {
     public interface ISymptomDataAccess
     {
-       /* IEnumerable<Symptom> GetAll(bool includeSpecialistAndMedicine = false);
+        IEnumerable<Symptom> GetAll(bool includeSpecialistAndMedicine = false);
         Symptom Get(int id, bool includeSpecialistAndMedicine = false);
         int Insert(Symptom user);
         int Update(Symptom user);
-        int Delete(int id);*/
+        int Delete(int id);
     }
 }

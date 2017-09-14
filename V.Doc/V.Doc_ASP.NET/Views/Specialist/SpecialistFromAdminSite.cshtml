@@ -7,7 +7,7 @@
 <h2>SpecialistFromAdminSite</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "CreateSpecialist")
 </p>
 <table class="table">
     <tr>
@@ -29,7 +29,7 @@
             @Html.DisplayFor(modelItem => item.Symptom)
         </td>
         <td>
-            @Html.ActionLink("Edit", "DeleteSpecialist",new { id=item.Id }) |
+            @Html.ActionLink("Edit", "Edit",new { id=item.Id }) |
             @Html.ActionLink("Delete", "DeleteSpecialist", new { id=item.Id })
         </td>
     </tr>

@@ -10,7 +10,7 @@ namespace V.Doc_Data.Abstract_Classes
 {
     class PrescriptionDataAccess : IPrescriptionDataAccess
     {
-       /* private DatabaseContext databaseContext;
+        private DatabaseContext databaseContext;
 
         public PrescriptionDataAccess(DatabaseContext databaseContext)
         {
@@ -44,11 +44,9 @@ namespace V.Doc_Data.Abstract_Classes
         {
             Prescription prescriptionToUpdate = this.databaseContext.Prescriptions.SingleOrDefault(x => x.Id == prescription.Id);
 
-            prescriptionToUpdate.isSeenByReciever = prescription.isSeenByReciever;
-            prescriptionToUpdate.isSeenBySender = prescription.isSeenBySender;
             prescriptionToUpdate.Details = prescription.Details;
 
             return this.databaseContext.SaveChanges();
-        }*/
+        }
     }
 }

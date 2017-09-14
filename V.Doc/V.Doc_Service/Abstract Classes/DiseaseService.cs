@@ -11,7 +11,7 @@ namespace V.Doc_Service.Abstract_Classes
 {
     class DiseaseService : IDiseaseService
     {
-       /* private IDiseaseDataAccess diseaseDataAccess;
+       private IDiseaseDataAccess diseaseDataAccess;
 
         public DiseaseService(IDiseaseDataAccess diseaseDataAccess)
         {
@@ -41,6 +41,6 @@ namespace V.Doc_Service.Abstract_Classes
         public int Update(Disease disease)
         {
             return this.diseaseDataAccess.Update(disease);
-        }*/
+        }
     }
 }

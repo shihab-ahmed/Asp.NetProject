@@ -7435,18 +7435,26 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminAccountController.cs" />
+    <Compile Include="Controllers\DiseaseController.cs" />
     <Compile Include="Controllers\DoctorAccountController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PatientAccountController.cs" />
+    <Compile Include="Controllers\PatientSearchDoctorController.cs" />
+    <Compile Include="Controllers\SpecialistController.cs" />
+    <Compile Include="Controllers\SymptomController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\CustomModel\AdminAdminDetails.cs" />
-    <Compile Include="Models\CustomModel\AdminDoctorDetails.cs" />
+    <Compile Include="Models\CustomModel\AdminAdminDetailsModel.cs" />
+    <Compile Include="Models\CustomModel\AdminDoctorDetailsModel.cs" />
     <Compile Include="Models\CustomModel\AdminPatientDetails.cs" />
+    <Compile Include="Models\CustomModel\DiseaseMiniModel.cs" />
+    <Compile Include="Models\CustomModel\DiseaseModel.cs" />
+    <Compile Include="Models\CustomModel\DoctorListModel.cs" />
     <Compile Include="Models\CustomModel\LoginModel.cs" />
     <Compile Include="Models\CustomModel\AdminModel.cs" />
     <Compile Include="Models\CustomModel\DoctorModel.cs" />
+    <Compile Include="Models\CustomModel\MedicineMiniModel.cs" />
     <Compile Include="Models\CustomModel\PatientModel.cs" />
     <Compile Include="Models\CustomModel\AdminPasswordModel.cs" />
     <Compile Include="Models\CustomModel\DoctorPasswordModel.cs" />
@@ -7455,6 +7463,10 @@
     <Compile Include="Models\CustomModel\DocotrProfileModel.cs" />
     <Compile Include="Models\CustomModel\PatientProfileModel.cs" />
     <Compile Include="Models\CustomModel\ShowUserListModel.cs" />
+    <Compile Include="Models\CustomModel\SpecialistMiniModel.cs" />
+    <Compile Include="Models\CustomModel\SpecialistModel.cs" />
+    <Compile Include="Models\CustomModel\SymptomMiniModel.cs" />
+    <Compile Include="Models\CustomModel\SymptomModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -7483,12 +7495,11 @@
     <Content Include="Views\Disease\Create.cshtml" />
     <Content Include="Views\Disease\List.cshtml" />
     <Content Include="Views\Disease\Edit.cshtml" />
-    <Content Include="Views\Medicine\Create.cshtml" />
-    <Content Include="Views\Medicine\List.cshtml" />
-    <Content Include="Views\Medicine\Edit.cshtml" />
     <Content Include="Views\AdminAccount\AdminDetails.cshtml" />
     <Content Include="Views\AdminAccount\ShowDoctorDetails.cshtml" />
     <Content Include="Views\AdminAccount\ShowPatientDetails.cshtml" />
+    <Content Include="Views\Specialist\Edit.cshtml" />
+    <Content Include="Views\PatientSearchDoctor\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

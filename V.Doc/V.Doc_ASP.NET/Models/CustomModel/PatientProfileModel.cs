@@ -35,5 +35,7 @@ namespace V.Doc_ASP.NET.Models.CustomModel
 
         public String isAvailable { get; set; }
         public string NotifyProfileChangeStatus { get; set; }
+
+        public string imgeFileNeedMessage { get; set; }
     }
 }

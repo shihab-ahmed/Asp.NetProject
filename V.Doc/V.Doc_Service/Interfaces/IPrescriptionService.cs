@@ -9,10 +9,10 @@ namespace V.Doc_Service.Interfaces
 {
     public interface IPrescriptionService
     {
-       /* IEnumerable<Prescription> GetAll();
+        IEnumerable<Prescription> GetAll();
         Prescription Get(int id);
         int Insert(Prescription user);
         int Update(Prescription user);
-        int Delete(int id);*/
+        int Delete(int id);
     }
 }

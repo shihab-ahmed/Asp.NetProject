@@ -68,6 +68,36 @@ namespace V.Doc_Data.Abstract_Classes
             return this.databaseContext.SaveChanges();
         }
 
+        public IEnumerable<Doctor> Search(string SearchBy, string SearchValue)
+        {
+            List<Doctor> doctorList = new List<Doctor>();
+
+            if (SearchValue != "")
+            {
+                if (SearchBy == "FirstName")
+                {
+                    doctorList = this.databaseContext.Doctors.Include("User").Where(x => x.User.FirstName.StartsWith(SearchValue)).ToList();
+                }
+                else if (SearchBy == "LastName")
+                {
+                    doctorList = this.databaseContext.Doctors.Include("User").Where(x => x.User.LastName.StartsWith(SearchValue)).ToList();
+                }
+                else if (SearchBy == "Gender")
+                {
+                    doctorList = this.databaseContext.Doctors.Include("User").Where(x => x.User.Gender.StartsWith(SearchValue)).ToList();
+                }
+                else if (SearchBy == "Specialist")
+                {
+                    doctorList = this.databaseContext.Doctors.Include("User").Include("Specialist").Where(x => x.Specialist.Type.StartsWith(SearchValue)).ToList();
+                }
+            }
+            else
+            {
+                return this.databaseContext.Doctors.Include("User").Include("Specialist").ToList();
+            }
+            return doctorList;
+        }
+
         public int Update(Doctor doctor)
         {
             Doctor doctorToUpdate = this.databaseContext.Doctors.SingleOrDefault(x => x.Id == doctor.Id);

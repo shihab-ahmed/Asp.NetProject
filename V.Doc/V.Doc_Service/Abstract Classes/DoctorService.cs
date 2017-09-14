@@ -46,5 +46,9 @@ namespace V.Doc_Service.Abstract_Classes
         {
             return this.doctorDataAccess.Update(doctor);
         }
+        public IEnumerable<Doctor> Search(String SearchBy, String SearchValue)
+        {
+            return this.doctorDataAccess.Search(SearchBy,SearchValue);
+        }
     }
 }

@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="DateAndTime.cs" />
     <Compile Include="Enum_AccountAvailableStatus.cs" />
+    <Compile Include="Enum_RequestStatus.cs" />
     <Compile Include="Enum_UserType.cs" />
     <Compile Include="ListOFComplainStatus.cs" />
     <Compile Include="Enum_UserAvailableStatus.cs" />

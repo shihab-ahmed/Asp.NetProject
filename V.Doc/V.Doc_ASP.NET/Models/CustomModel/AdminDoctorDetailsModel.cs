@@ -6,7 +6,7 @@ using V.Doc_Entity;
 
 namespace V.Doc_ASP.NET.Models.CustomModel
 {
-    public class AdminAdminDetails:Admin
+    public class AdminDoctorDetailsModel:Doctor
     {
     }
 }

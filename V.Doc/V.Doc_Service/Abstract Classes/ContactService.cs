@@ -11,7 +11,7 @@ namespace V.Doc_Service.Abstract_Classes
 {
     class ContactService : IContactService
     {
-       /* private IContactDataAccess ContactDataAccess;
+        private IContactDataAccess ContactDataAccess;
 
         public ContactService(IContactDataAccess ContactDataAccess)
         {
@@ -22,14 +22,24 @@ namespace V.Doc_Service.Abstract_Classes
             return this.ContactDataAccess.Delete(id);
         }
 
-        public Contact Get(int id, bool isIncludePatientAndDoctor = false)
+        public Contact Get(int id)
         {
-            return this.ContactDataAccess.Get(id, isIncludePatientAndDoctor);
+            return this.ContactDataAccess.Get(id);
         }
 
-        public IEnumerable<Contact> GetAll(bool isIncludePatientAndDoctor = false)
+        public IEnumerable<Contact> GetAll()
         {
-            return this.ContactDataAccess.GetAll(isIncludePatientAndDoctor);
+            return this.ContactDataAccess.GetAll();
+        }
+
+        public List<Contact> GetUsingDoctor(int id)
+        {
+            return this.ContactDataAccess.GetUsingDoctor(id);
+        }
+
+        public List<Contact> GetUsingPatient(int id)
+        {
+            return this.ContactDataAccess.GetUsingPatient(id);
         }
 
         public int Insert(Contact user)
@@ -40,6 +50,6 @@ namespace V.Doc_Service.Abstract_Classes
         public int Update(Contact user)
         {
             return this.ContactDataAccess.Update(user);
-        }*/
+        }
     }
 }

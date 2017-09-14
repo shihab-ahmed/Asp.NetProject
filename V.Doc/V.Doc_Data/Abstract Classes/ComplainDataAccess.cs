@@ -10,7 +10,7 @@ namespace V.Doc_Data.Abstract_Classes
 {
     class ComplainDataAccess: IComplainDataAccess
     {
-        /*private DatabaseContext databaseContext;
+        private DatabaseContext databaseContext;
 
         public ComplainDataAccess(DatabaseContext databaseContext)
         {
@@ -44,8 +44,7 @@ namespace V.Doc_Data.Abstract_Classes
             Complain ComplainToUpdate = this.databaseContext.Complains.SingleOrDefault(x => x.Id == complain.Id);
 
             ComplainToUpdate.Details = complain.Details;
-            ComplainToUpdate.isSeenByAdmin = complain.isSeenByAdmin;
             return this.databaseContext.SaveChanges();
-        }*/
+        }
     }
 }

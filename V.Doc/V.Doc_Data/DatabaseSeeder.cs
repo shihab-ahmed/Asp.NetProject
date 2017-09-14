@@ -42,7 +42,7 @@ namespace V.Doc_Data
 
 
 
-           /* Specialist Cardiologist = new Specialist();
+            Specialist Cardiologist = new Specialist();
             Specialist Dermatologist = new Specialist();
             Specialist Neurologist = new Specialist();
             Specialist Allergist = new Specialist();
@@ -64,14 +64,6 @@ namespace V.Doc_Data
             Disease Amyotrophy = new Disease();
             Disease Asthma = new Disease();
             Disease Gastritis = new Disease();
-
-
-            Medicine Napa = new Medicine();
-            Medicine Asparin = new Medicine();
-            Medicine Ativan = new Medicine();
-            Medicine Ace = new Medicine();
-            Medicine Deslor = new Medicine();
-            Medicine XincB = new Medicine();
 
 
             //Specialist
@@ -133,27 +125,60 @@ namespace V.Doc_Data
             Asthma.Symptoms = new List<Symptom>() { Coughfing, ShortnessOfBreath };
             Gastritis.Symptoms = new List<Symptom>() { StomacPain };
 
-            //Medicine
-            Napa.Name = "Napa";
-            Asparin.Name = "Asparin";
-            Ace.Name = "Ace";
-            Deslor.Name = "Deslor";
-            Ativan.Name = "Ativan";
-            XincB.Name = "XincB";
 
-            Napa.Type = "Tablet";
-            Asparin.Type = "Tablet";
-            Ace.Type = "Tablet";
-            Deslor.Type = "Tablet";
-            Ativan.Type = "Tablet";
-            XincB.Type = "Tablet";
 
-            Napa.Diseases = new List<Disease>() { Cardiovascular };
-            Asparin.Diseases = new List<Disease>() { Acne };
-            Ace.Diseases = new List<Disease>() { Acne, Amyotrophy };
-            Deslor.Diseases = new List<Disease>() { Asthma };
-            Ativan.Diseases = new List<Disease>() { Asthma, Gastritis };
-            XincB.Diseases = new List<Disease>() { Amyotrophy, Gastritis, Cardiovascular };
+
+
+
+
+
+
+            Cardiologist.TimeCreated = DateTime.Now;
+            Cardiologist.TimeUpdated = DateTime.Now;
+            Dermatologist.TimeCreated = DateTime.Now;
+            Dermatologist.TimeUpdated = DateTime.Now;
+            Neurologist.TimeCreated = DateTime.Now;
+            Neurologist.TimeUpdated = DateTime.Now;
+            Allergist.TimeCreated = DateTime.Now;
+            Allergist.TimeUpdated = DateTime.Now;
+            Gastroenterologist.TimeCreated = DateTime.Now;
+            Gastroenterologist.TimeUpdated = DateTime.Now;
+
+            ChestPain.TimeCreated = DateTime.Now;
+            ChestPain.TimeUpdated = DateTime.Now;
+            Numb.TimeCreated = DateTime.Now;
+            Numb.TimeUpdated = DateTime.Now;
+            WhiteHead.TimeCreated = DateTime.Now;
+            WhiteHead.TimeUpdated = DateTime.Now;
+            BlackHead.TimeCreated = DateTime.Now;
+            BlackHead.TimeUpdated = DateTime.Now;
+            ServerPain.TimeCreated = DateTime.Now;
+            ServerPain.TimeUpdated = DateTime.Now;
+            ShortnessOfBreath.TimeCreated = DateTime.Now;
+            ShortnessOfBreath.TimeUpdated = DateTime.Now;
+            Coughfing.TimeCreated = DateTime.Now;
+            Coughfing.TimeUpdated = DateTime.Now;
+            StomacPain.TimeCreated = DateTime.Now;
+            StomacPain.TimeUpdated = DateTime.Now;
+
+
+
+
+
+            Cardiovascular.TimeCreated = DateTime.Now;
+            Cardiovascular.TimeUpdated = DateTime.Now;
+            Acne.TimeCreated = DateTime.Now;
+            Acne.TimeUpdated = DateTime.Now;
+            Amyotrophy.TimeCreated = DateTime.Now;
+            Amyotrophy.TimeUpdated = DateTime.Now;
+            Asthma.TimeCreated = DateTime.Now;
+            Asthma.TimeUpdated = DateTime.Now;
+            Gastritis.TimeCreated = DateTime.Now;
+            Gastritis.TimeUpdated = DateTime.Now;
+
+
+
+            
 
 
             context.Specialists.Add(Cardiologist);
@@ -177,15 +202,7 @@ namespace V.Doc_Data
             context.Diseases.Add(Asthma);
             context.Diseases.Add(Gastritis);
 
-
-            context.Medicines.Add(Napa);
-            context.Medicines.Add(Asparin);
-            context.Medicines.Add(Ativan);
-            context.Medicines.Add(Ace);
-            context.Medicines.Add(Deslor);
-            context.Medicines.Add(XincB);
-
-            context.SaveChanges();*/
+            context.SaveChanges();
             base.Seed(context);
             
         }

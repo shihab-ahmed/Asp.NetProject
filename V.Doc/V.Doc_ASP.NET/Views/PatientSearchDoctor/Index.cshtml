@@ -1,0 +1,170 @@
+﻿@model V.Doc_ASP.NET.Models.CustomModel.DoctorListModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Patient_MainLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+
+<div class="container" style="margin-top:3%">
+    <div class="form-group">
+        <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+            <input type="text" id="Search" class="form-control" />
+        </div>
+        <div class="form-group">
+            <select id="SearchBy">
+                <option value="FirstName">First Name</option>
+                <option value="LastName">Last Name</option>
+                <option value="Gender">Gender</option>
+                <option value="Specialist">Type</option>
+            </select>
+        </div>
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>First Name</th>
+                <th>Last Name</th>                
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Specialist</th>
+                <th>Add To Contact</th>
+            </tr>
+        </thead>
+        <tbody id="list">
+            <tr id="LoadingStatus" style="color:red"></tr>
+        </tbody>
+    </table>
+
+    
+    @*Create A PopUp Modal For DeleteConfirmation*@
+
+    <div class="modal fade" id="DeleteConfirmation">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <a href="#" class="close" data-dismiss="modal">&times;</a>
+                    <h4>Delete Student Record</h4>
+                </div>
+                <div class="modal-body">
+                    @Html.HiddenFor(m => m.Id)
+                    <h4>Are You Sure? You Want To Delete This Record.</h4>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" class="btn btn-primary" data-dismiss="modal" id="r">Cancle</a>
+                    <a href="#" class="btn btn-danger" onclick="ConfirmDelete()">Confirm</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script>
+
+
+    var SendRequest = function (id)
+    {
+
+        alert(id);
+        alert(id);
+        $.ajax({
+            type: "POST",
+            url: "/PatientSearchDoctor/AddContact?id=" + id,
+            success: function (result)
+            {
+                
+                LoadList();
+            }
+        })
+    }
+
+    var LoadList = function ()
+    {
+
+            var searchText = $("#Search").val().toLowerCase();
+            var searchBy = $("#SearchBy").val();
+
+            var setData = $("#list");
+            setData.html("");
+
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("GetDoctorList", "PatientSearchDoctor")',
+                data: { searchBy: searchBy, searchText: searchText },
+                dataType: "json",
+                type: "post",
+                success: function (result) {
+                    
+                    if (result.length == 0) {
+
+                    }
+                    else {
+                            $.each(result, function (index, value)
+                            {
+                                if (!value.isContact)
+                                {
+                                    var Data = "<tr>" +
+                                        "<td>" + "</td>" +
+                                        "<td>" + value.User.FirstName + "</td>" +
+                                        "<td>" + value.User.LastName + "</td>" +
+                                        "<td>" +
+                                        value.User.Age +
+                                        "</td>" +
+                                        "<td>" +
+                                        value.User.Gender +
+                                        "</td>" +
+                                        "<td>" +
+                                        value.Specialist.Type +
+                                        "</td>" +
+                                        "<td>" + "<a href='#' class='btn btn-info' onclick='SendRequest(" + value.Id + ")' >Add</a>" + "</td>" +
+                                        "</tr>";
+                                    setData.append(Data);
+                                }
+                                else
+                                {
+                                    var Data = "<tr>" +
+                                        "<td>" + "</td>" +
+                                        "<td>" + value.User.FirstName + "</td>" +
+                                        "<td>" + value.User.LastName + "</td>" +
+                                        "<td>" +
+                                        value.User.Age +
+                                        "</td>" +
+                                        "<td>" +
+                                        value.User.Gender +
+                                        "</td>" +
+                                        "<td>" +
+                                        value.Specialist.Type +
+                                        "</td>" +
+                                        "<td>" + "<a href='#' class='btn btn-warning'>Pending</a>" + "</td>" +
+                                        "</tr>";
+                                    setData.append(Data);
+                                }
+                            });
+                        }
+                }
+            });
+    }
+
+    $(document).ready(function ()
+    {
+        LoadList();
+        function Contains(text1, text2) {
+            if (text1.indexOf(text2) != -1) return true;
+        }
+        $("#Search").keyup(LoadList);
+    });
+    </script>
+
+
+}

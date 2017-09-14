@@ -4,11 +4,11 @@ C:\Users\Shihab\Source\Repos\Virtual-Doctor\V.Doc\V.Doc_Data\bin\Debug\V.Doc_Dat
 C:\Users\Shihab\Source\Repos\Virtual-Doctor\V.Doc\V.Doc_Data\bin\Debug\EntityFramework.dll
 C:\Users\Shihab\Source\Repos\Virtual-Doctor\V.Doc\V.Doc_Data\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\Shihab\Source\Repos\Virtual-Doctor\V.Doc\V.Doc_Data\bin\Debug\V.Doc_Entity.dll
+C:\Users\Shihab\Source\Repos\Virtual-Doctor\V.Doc\V.Doc_Data\bin\Debug\V.Doc_Utilities.dll
 C:\Users\Shihab\Source\Repos\Virtual-Doctor\V.Doc\V.Doc_Data\bin\Debug\V.Doc_Entity.pdb
+C:\Users\Shihab\Source\Repos\Virtual-Doctor\V.Doc\V.Doc_Data\bin\Debug\V.Doc_Utilities.pdb
 C:\Users\Shihab\Source\Repos\Virtual-Doctor\V.Doc\V.Doc_Data\bin\Debug\EntityFramework.xml
 C:\Users\Shihab\Source\Repos\Virtual-Doctor\V.Doc\V.Doc_Data\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Shihab\Source\Repos\Virtual-Doctor\V.Doc\V.Doc_Data\obj\Debug\V.Doc_Data.csprojResolveAssemblyReference.cache
 C:\Users\Shihab\Source\Repos\Virtual-Doctor\V.Doc\V.Doc_Data\obj\Debug\V.Doc_Data.dll
 C:\Users\Shihab\Source\Repos\Virtual-Doctor\V.Doc\V.Doc_Data\obj\Debug\V.Doc_Data.pdb
-C:\Users\Shihab\Source\Repos\Virtual-Doctor\V.Doc\V.Doc_Data\bin\Debug\V.Doc_Utilities.dll
-C:\Users\Shihab\Source\Repos\Virtual-Doctor\V.Doc\V.Doc_Data\bin\Debug\V.Doc_Utilities.pdb

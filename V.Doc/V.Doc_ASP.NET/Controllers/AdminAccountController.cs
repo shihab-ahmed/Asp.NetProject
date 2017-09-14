@@ -66,10 +66,10 @@ namespace V.Doc_ASP.NET.Controllers
             if(User.Type==Enum_UserType.Admin.ToString())
             {
                 IAdminService aS = ServiceFactory.GetAdminService();
-                Admin admin = aS.Get(id, true);
+                Admin admin = aS.GetUsingUser(User, true);
 
-                AdminAdminDetails aaD = new AdminAdminDetails();
-                
+                AdminAdminDetailsModel aaD = new AdminAdminDetailsModel();
+                aaD.User = admin.User;
 
                 return View("AdminDetails",aaD);
 
@@ -77,16 +77,20 @@ namespace V.Doc_ASP.NET.Controllers
             if (User.Type == Enum_UserType.Doctor.ToString())
             {
                 IDoctorService dS = ServiceFactory.GetDoctorService();
-                Doctor doctor = dS.Get(id, true);
-                AdminDoctorDetails aDD = new AdminDoctorDetails();
+                Doctor doctor = dS.GetUsingUser(User, true);
+                AdminDoctorDetailsModel aDD = new AdminDoctorDetailsModel();
 
+
+                aDD.User = doctor.User;
                 return View("ShowDoctorDetails",aDD);
             }
             else
             {
                 IPatientService pS = ServiceFactory.GetPatientService();
-                Patient patient = pS.Get(id, true);
+                Patient patient = pS.GetUsingUser(User, true);
                 AdminPatientDetails aPD = new AdminPatientDetails();
+
+                aPD.User = patient.User;
 
                 return View("ShowPatientDetails",aPD);
             }
@@ -96,13 +100,44 @@ namespace V.Doc_ASP.NET.Controllers
         }
         public ActionResult DeleteUser(int id)
         {
-            return View();
+            bool result = false;
+
+
+            IUserService uS = ServiceFactory.GetUserService();
+            User user = uS.Get(id);
+
+            if(user.UserName.Equals("Admin"))
+            {
+                return Json(result, JsonRequestBehavior.AllowGet);
+            }
+
+            if (user.Type == Enum_UserType.Admin.ToString())
+            {
+                IAdminService aS = ServiceFactory.GetAdminService();
+                Admin admin = aS.GetUsingUser(user, true);
+                uS.Delete(id);
+               
+            }
+            if (user.Type == Enum_UserType.Doctor.ToString())
+            {
+                IDoctorService dS = ServiceFactory.GetDoctorService();
+                Doctor doctor = dS.GetUsingUser(user, true);
+                uS.Delete(id);
+            }
+            else
+            {
+                IPatientService pS = ServiceFactory.GetPatientService();
+                Patient patient = pS.GetUsingUser(user, true);
+                uS.Delete(id);
+            }
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
         [HttpGet]
         public ActionResult ShowUserList()
         {
             if (!IsAdminAlive()) return RedirectToAction("Login", "Login");
-            return View(GetAllUser());
+            ShowUserListModel slm = new ShowUserListModel();
+            return View(slm);
         }
         public ActionResult CreateAccount()
         {

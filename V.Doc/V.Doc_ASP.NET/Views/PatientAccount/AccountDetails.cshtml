@@ -81,3 +81,17 @@
         </dd>
      </dl>
 </div>
+
+@section UserImage{
+
+    <img src="@Url.Content(Model.ProfilePicture)" class="img-circle" alt="User Image" style="width:100px">
+
+}
+@section UserName{
+
+    if(@Model.FirstName!=null)
+    {
+    @Model.FirstName @Model.LastName
+    }
+
+}

@@ -28,9 +28,10 @@ namespace V.Doc_ASP.NET.Models.CustomModel
         [Required(ErrorMessage = "Image File required")]
         public HttpPostedFileBase File { get; set; }
         public string UserExistMessage { get; set; }
+        public string imgeFileNeedMessage { get; set; }
 
-
-        [Required(ErrorMessage = "Experience Required")]
+        [Required(ErrorMessage = "Experience Required")
+            ,Range(1,30, ErrorMessage ="Range between 1-30")]
         public int Experience { get; set; }
 
         [Required(ErrorMessage = "About is required")]

@@ -1,0 +1,102 @@
+<div class="container">
+    <div class="form-group">
+        <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+            <input type="text" id="Search" class="form-control"/>
+            <select id="SearchBy">
+                <option value="FirstName">First Name</option>
+                <option value="LastName">Last Name</option>
+                <option value="Gender">Gender</option>
+                <option value="Type">Type</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div>
+    <table class="table table-striped">
+
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProfilePicture)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.FirstName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LastName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Age)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Gender)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Type)
+                </th>
+                <th>
+                    @Html.DisplayName("Actions")
+                </th>
+            </tr>
+        </thead>
+        <tbody id="DataList">
+            @foreach (var item in Model)
+            {
+                <tr class="Search">
+                    <td>
+                    
+                        <img src="@Url.Content(item.ProfilePicture)" style="width:50px;height:50px; border-radius:50%" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Age)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Gender)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Type)
+                    </td>
+                    <td>
+                        <a href="@Url.Action("ShowUserDetails", "AdminAccount",new { id=item.Id})" class="btn btn-info"><span class="glyphicon glyphicon-dashboard"></span></a>
+                        <a href="@Url.Action("DeleteUser", "AdminAccount",new { id=item.Id})" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a>
+                    </td>
+                </tr>
+             }
+        </tbody>
+    </table>
+</div>
+
+
+@*Create A PopUp Modal For DeleteConfirmation*@
+
+<div class="modal fade" id="DeleteConfirmation">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                <h4>Delete Student Record</h4>
+            </div>
+            <div class="modal-body">
+                <h4>Are You Sure? You Want To Delete This Record.</h4>
+            </div>
+            <div class="modal-footer">
+                <a href="#" class="btn btn-primary" data-dismiss="modal" id="r">Cancle</a>
+                <a href="#" class="btn btn-danger" onclick="ConfirmDelete()">Confirm</a>
+            </div>
+        </div>
+    </div>
+</div>

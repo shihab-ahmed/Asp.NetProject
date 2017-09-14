@@ -12,7 +12,7 @@ namespace V.Doc_Service
 {
     public abstract class ServiceFactory
     {
-        /*public static IChatService GetChatService()
+        public static IChatService GetChatService()
         {
             return new ChatService(DataAccessFactory.GetChatDataAccess());
         }
@@ -27,7 +27,7 @@ namespace V.Doc_Service
         public static IDiseaseService GetDiseaseService()
         {
             return new DiseaseService(DataAccessFactory.GetDiseaseDataAccess());
-        }*/
+        }
         public static IAdminService GetAdminService()
         {
             return new AdminService(DataAccessFactory.GetAdminDataAccess());
@@ -36,15 +36,11 @@ namespace V.Doc_Service
         {
             return new DoctorService(DataAccessFactory.GetDoctorDataAccess());
         }
-        /*public static IMedicineService GetMedicineService()
-        {
-            return new MedicineService(DataAccessFactory.GetMedicineDataAccess());
-        }*/
         public static IPatientService GetPatientService()
         {
             return new PatientService(DataAccessFactory.GetPatientDataAccess());
         }
-        /*public static IPrescriptionService GetPrescriptionService()
+        public static IPrescriptionService GetPrescriptionService()
         {
             return new PrescriptionService(DataAccessFactory.GetPrescriptionDataAccess());
         }
@@ -55,7 +51,7 @@ namespace V.Doc_Service
         public static ISymptomService GetSymtomService()
         {
             return new SymptomService(DataAccessFactory.GetSymtomDataAccess());
-        }*/
+        }
         public static IUserService GetUserService()
         {
             return new UserService(DataAccessFactory.GetUserDataAccess());

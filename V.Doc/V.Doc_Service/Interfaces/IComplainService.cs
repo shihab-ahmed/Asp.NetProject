@@ -9,10 +9,10 @@ namespace V.Doc_Service.Interfaces
 {
     public interface IComplainService
     {
-        /*IEnumerable<Complain> GetAll();
+        IEnumerable<Complain> GetAll();
         Complain Get(int id);
         int Insert(Complain employee);
         int Update(Complain employee);
-        int Delete(int id);*/
+        int Delete(int id);
     }
 }

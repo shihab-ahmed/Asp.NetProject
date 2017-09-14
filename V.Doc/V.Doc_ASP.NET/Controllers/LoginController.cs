@@ -16,6 +16,7 @@ namespace V.Doc_ASP.NET.Controllers
         // GET: Login
         public ActionResult Login()
         {
+            Session.RemoveAll();
             return View();
         }
         [HttpPost]
