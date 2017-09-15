@@ -1,0 +1,26 @@
+﻿@model IEnumerable<V.Doc_ASP.NET.Models.CustomModel.ContactListModel>
+@using V.Doc_Entity;
+@{
+    if ((Patient)Session["Patient"] != null)
+    {
+        Patient p = (Patient)Session["Patient"];
+        foreach (var item in Model)
+        {
+            <div onclick="location.href='@Url.Action("ChatBox", "Chat", new { id=item.DoctorId})'">
+                <img src="@Url.Content(item.DoctorPic)" class="img-circle" alt="User Image" style="width:100px">
+            </div>
+        }
+
+    }
+    else
+    {
+        Doctor d = (Doctor)Session["Doctor"];
+        foreach (var item in Model)
+        {
+            <div onclick="location.href='@Url.Action("Chatbox", "Chat", new { id=item.PatientId})'">
+                <img src="@Url.Content(item.PatientPic)" class="img-circle" alt="User Image" style="width:100px">
+            </div>
+        }
+    }
+
+}

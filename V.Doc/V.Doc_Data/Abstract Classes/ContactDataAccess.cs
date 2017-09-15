@@ -55,6 +55,12 @@ namespace V.Doc_Data.Abstract_Classes
         {
             Contact contactToUpdate = this.databaseContext.Contacts.SingleOrDefault(x => x.Id == contact.Id);
 
+            contactToUpdate.Message = contact.Message;
+            contactToUpdate.TimeUpdated = contact.TimeUpdated;
+            contactToUpdate.RequestStatus = contact.RequestStatus;
+
+
+
             return this.databaseContext.SaveChanges();
         }
     }

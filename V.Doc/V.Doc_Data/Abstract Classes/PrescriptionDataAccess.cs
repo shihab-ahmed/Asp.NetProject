@@ -34,6 +34,16 @@ namespace V.Doc_Data.Abstract_Classes
             return this.databaseContext.Prescriptions.ToList();
         }
 
+        public IEnumerable<Prescription> GetUsingDoctorId(int id)
+        {
+            return this.databaseContext.Prescriptions.Where(x => x.DoctorId == id);
+        }
+
+        public IEnumerable<Prescription> GetUsingPatientId(int id)
+        {
+            return this.databaseContext.Prescriptions.Where(x => x.PatientId == id);
+        }
+
         public int Insert(Prescription prescription)
         {
             this.databaseContext.Prescriptions.Add(prescription);

@@ -37,6 +37,7 @@ namespace V.Doc_ASP.NET.Controllers
                         IAdminService adminService = ServiceFactory.GetAdminService();
                         Admin admin = adminService.GetUsingUser(user, true);
                         Session["Admin"] = admin;
+
                         return RedirectToAction("AccountDetails", "AdminAccount");
                     }
                     else if(Enum_UserType.Patient.ToString() == type)
@@ -51,6 +52,8 @@ namespace V.Doc_ASP.NET.Controllers
                         IDoctorService doctorServie = ServiceFactory.GetDoctorService();
                         Doctor doctor = doctorServie.GetUsingUser(user, true);
                         Session["Doctor"] = doctor;
+                        //ContactController cc = new ContactController();
+                        //Session["ContactList"]=cc.getAcceptedContactListModel(Enum_UserType.Doctor, user.Id);
                         return RedirectToAction("AccountDetails", "DoctorAccount");
                     }
                     

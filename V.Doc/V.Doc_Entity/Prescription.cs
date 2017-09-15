@@ -12,9 +12,11 @@ namespace V.Doc_Entity
     {
         [Key]
         public int Id { get; set; }
+        [DataType(DataType.MultilineText)]
         [StringLength(1000,MinimumLength =1,ErrorMessage = "Prescription detail must be between 1-1000")]
         public String Details { get; set; }
-
+        [Required(ErrorMessage ="Title Required")]
+        public String Title { get; set; }
 
 
         public int DoctorId { get; set; }

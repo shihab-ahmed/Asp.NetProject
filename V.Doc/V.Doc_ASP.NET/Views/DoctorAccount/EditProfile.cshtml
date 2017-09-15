@@ -1,0 +1,135 @@
+﻿@model V.Doc_ASP.NET.Models.CustomModel.DoctorProfileModel
+@using V.Doc_Entity;
+
+@{
+    ViewBag.Title = "EditProfile";
+    Layout = "~/Views/Shared/Doctor_MainLayout.cshtml";
+}
+
+<h2>EditProfile</h2>
+
+@using (Html.BeginForm("EditProfile", "DoctorAccount", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>DoctorProfileModel</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Birthdate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Birthdate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Birthdate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.Label("Male", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.RadioButtonFor(model => model.Gender, "Male", new { htmlAttributes = new { @class = "form-control" } })
+                @Html.Label("Female", htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.RadioButtonFor(model => model.Gender, "Female", new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.File, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" name="File" />
+                @Html.ValidationMessageFor(m => m.File)
+                @Html.ValidationMessageFor(model => model.File, "", new { @class = "text-danger" })
+                @Html.DisplayFor(m => m.imgeFileNeedMessage)
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Experience, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Experience, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Experience, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.About, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.About, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.About, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @* State selection dropdown *@
+        <div class="form-group">
+            @Html.LabelFor(m => m.Specialist)
+            @Html.DropDownListFor(m => m.Specialist, // 1. Store selected value in Model.State;
+                                                                 // when page is rendered after postback,
+                                                                 // take selected value from Model.State.
+
+                                              // 2. Take list of values from Model.States
+                                              Model.Specialist_List,
+
+                                              // 3. Text for the first 'default' option
+
+
+                                              //4. A class name to assign to <select> tag
+                                              new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+
+            @Html.DisplayFor(model => model.NotifyProfileChangeStatus)
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+@{
+    Doctor d = (Doctor)Session["Doctor"];
+
+
+}
+@section UserImage{
+
+    @Session["Doctor"]
+
+    <img src="@Url.Content(d.User.ProfilePicture)" class="img-circle" alt="User Image" style="width:100px">
+
+}
+@section UserName{
+
+    Dr Doctor
+
+}
+

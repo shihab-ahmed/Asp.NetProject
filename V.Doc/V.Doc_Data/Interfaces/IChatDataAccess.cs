@@ -10,6 +10,7 @@ namespace V.Doc_Data.Interfaces
     public interface IChatDataAccess
     {
         IEnumerable<Chat> GetAll(User sender,User reciever);
+        IEnumerable<Chat> GetNewChat(int senderId,int recieverId, int lastChatId);
         int Insert(Chat chat);
         int Update(Chat chat);
         int Delete(int id);

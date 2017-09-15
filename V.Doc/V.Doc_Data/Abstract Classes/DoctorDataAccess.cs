@@ -28,7 +28,7 @@ namespace V.Doc_Data.Abstract_Classes
         {
             if(isIncludeUser_Specialist_ContactList)
             {
-                return this.databaseContext.Doctors.Include("User").Include("Specialist").Include("ContactLists").SingleOrDefault(x => x.Id == id);
+                return this.databaseContext.Doctors.Include("User").Include("Specialist").SingleOrDefault(x => x.Id == id);
             }
             else
             {
@@ -41,7 +41,7 @@ namespace V.Doc_Data.Abstract_Classes
         {
             if(isIncludeUser_Specialist_ContactList)
             {
-                return this.databaseContext.Doctors.Include("User").Include("Specialist").Include("ContactLists").ToList();
+                return this.databaseContext.Doctors.Include("User").Include("Specialist").ToList();
             }
             else
             {
@@ -54,7 +54,7 @@ namespace V.Doc_Data.Abstract_Classes
         {
             if (isExtra)
             {
-                return this.databaseContext.Doctors.SingleOrDefault(x => x.User.Id == user.Id);
+                return this.databaseContext.Doctors.Include("User").Include("Specialist").SingleOrDefault(x => x.User.Id == user.Id);
             }
             else
             {

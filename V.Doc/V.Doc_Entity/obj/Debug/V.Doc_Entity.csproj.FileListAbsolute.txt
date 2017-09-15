@@ -1,5 +1,5 @@
 C:\Users\Shihab\Source\Repos\Virtual-Doctor\V.Doc\V.Doc_Entity\bin\Debug\V.Doc_Entity.dll
 C:\Users\Shihab\Source\Repos\Virtual-Doctor\V.Doc\V.Doc_Entity\bin\Debug\V.Doc_Entity.pdb
+C:\Users\Shihab\Source\Repos\Virtual-Doctor\V.Doc\V.Doc_Entity\obj\Debug\V.Doc_Entity.csprojResolveAssemblyReference.cache
 C:\Users\Shihab\Source\Repos\Virtual-Doctor\V.Doc\V.Doc_Entity\obj\Debug\V.Doc_Entity.dll
 C:\Users\Shihab\Source\Repos\Virtual-Doctor\V.Doc\V.Doc_Entity\obj\Debug\V.Doc_Entity.pdb
-C:\Users\Shihab\Source\Repos\Virtual-Doctor\V.Doc\V.Doc_Entity\obj\Debug\V.Doc_Entity.csprojResolveAssemblyReference.cache

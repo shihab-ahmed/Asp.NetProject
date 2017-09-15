@@ -7435,11 +7435,14 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminAccountController.cs" />
+    <Compile Include="Controllers\ChatController.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\DiseaseController.cs" />
     <Compile Include="Controllers\DoctorAccountController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PatientAccountController.cs" />
     <Compile Include="Controllers\PatientSearchDoctorController.cs" />
+    <Compile Include="Controllers\PrescriptionController.cs" />
     <Compile Include="Controllers\SpecialistController.cs" />
     <Compile Include="Controllers\SymptomController.cs" />
     <Compile Include="Global.asax.cs">
@@ -7448,8 +7451,11 @@
     <Compile Include="Models\CustomModel\AdminAdminDetailsModel.cs" />
     <Compile Include="Models\CustomModel\AdminDoctorDetailsModel.cs" />
     <Compile Include="Models\CustomModel\AdminPatientDetails.cs" />
+    <Compile Include="Models\CustomModel\ChatMessageModel.cs" />
+    <Compile Include="Models\CustomModel\ChatModel.cs" />
     <Compile Include="Models\CustomModel\DiseaseMiniModel.cs" />
     <Compile Include="Models\CustomModel\DiseaseModel.cs" />
+    <Compile Include="Models\CustomModel\ContactListModel.cs" />
     <Compile Include="Models\CustomModel\DoctorListModel.cs" />
     <Compile Include="Models\CustomModel\LoginModel.cs" />
     <Compile Include="Models\CustomModel\AdminModel.cs" />
@@ -7462,6 +7468,7 @@
     <Compile Include="Models\CustomModel\AdminProfileModel.cs" />
     <Compile Include="Models\CustomModel\DocotrProfileModel.cs" />
     <Compile Include="Models\CustomModel\PatientProfileModel.cs" />
+    <Compile Include="Models\CustomModel\PrescriptionModel.cs" />
     <Compile Include="Models\CustomModel\ShowUserListModel.cs" />
     <Compile Include="Models\CustomModel\SpecialistMiniModel.cs" />
     <Compile Include="Models\CustomModel\SpecialistModel.cs" />
@@ -7500,6 +7507,17 @@
     <Content Include="Views\AdminAccount\ShowPatientDetails.cshtml" />
     <Content Include="Views\Specialist\Edit.cshtml" />
     <Content Include="Views\PatientSearchDoctor\Index.cshtml" />
+    <Content Include="Views\DoctorAccount\AccountDetails.cshtml" />
+    <Content Include="Views\DoctorAccount\EditProfile.cshtml" />
+    <Content Include="Views\DoctorAccount\EditPassword.cshtml" />
+    <Content Include="Views\Contact\PendingIndex.cshtml" />
+    <Content Include="Views\Shared\ContactList.cshtml" />
+    <Content Include="Views\Chat\DoctorChatBox.cshtml" />
+    <Content Include="Views\Chat\PatientChatBox.cshtml" />
+    <Content Include="Views\Shared\ChatPartial.cshtml" />
+    <Content Include="Views\Prescription\Create.cshtml" />
+    <Content Include="Views\Prescription\DoctorViewList.cshtml" />
+    <Content Include="Views\Prescription\PatientViewList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

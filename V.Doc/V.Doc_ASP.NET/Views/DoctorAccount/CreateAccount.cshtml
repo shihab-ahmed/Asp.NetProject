@@ -1,5 +1,5 @@
 ﻿<h2>CreateAccount</h2>
-
+@using V.Doc_Entity;
 @model V.Doc_ASP.NET.Models.CustomModel.DoctorModel
 
 @{
@@ -193,3 +193,20 @@
         });
     });
 </script>  
+
+
+@{
+    Admin d = (Admin)Session["Admin"];
+
+
+}
+@section UserImage{
+
+    <img src="@Url.Content(d.User.ProfilePicture)" class="img-circle" alt="User Image" style="width:100px">
+
+}
+@section UserName{
+
+    Mr Admin
+
+}

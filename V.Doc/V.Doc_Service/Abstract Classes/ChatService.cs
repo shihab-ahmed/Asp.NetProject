@@ -25,6 +25,11 @@ namespace V.Doc_Service.Abstract_Classes
             return this.chatDataAccess.GetAll(sender, reciever);
         }
 
+        public IEnumerable<Chat> GetNewChat(int senderId, int recieverId, int lastChatId)
+        {
+            return this.chatDataAccess.GetNewChat(senderId, recieverId, lastChatId);
+        }
+
         public int Insert(Chat chat)
         {
             return this.chatDataAccess.Insert(chat);

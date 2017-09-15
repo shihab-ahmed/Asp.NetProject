@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace V.Doc_ASP.NET.Models.CustomModel
 {
@@ -35,5 +36,16 @@ namespace V.Doc_ASP.NET.Models.CustomModel
 
         public String isAvailable { get; set; }
         public string NotifyProfileChangeStatus { get; set; }
+        public IEnumerable<SelectListItem> Specialist_List { get; internal set; }
+
+        [Required(ErrorMessage = "Experience Required")
+           , Range(1, 30, ErrorMessage = "Range between 1-30")]
+        public int Experience { get; set; }
+
+        [Required(ErrorMessage = "About is required")]
+        public String About { get; set; }
+
+        public string Specialist { get; set; }
+        public string imgeFileNeedMessage { get; set; }
     }
 }

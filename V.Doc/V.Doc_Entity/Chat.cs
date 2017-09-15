@@ -18,9 +18,11 @@ namespace V.Doc_Entity
 
 
        
-        public int PatientId { get; set; }
+        public int SenderId { get; set; }
+        public String SenderUserName { get; set; }
 
-        public int DoctorId { get; set; }
+        public int RecieverId { get; set; }
+        public String RecieverUserName { get; set; }
 
 
         public DateTime TimeCreated { get; set; }

@@ -31,7 +31,12 @@ namespace V.Doc_Data.Abstract_Classes
 
         public IEnumerable<Chat> GetAll(User sender,User reciever)
         {
-            return this.databaseContext.Chats.OrderByDescending(x => x.PatientId == sender.Id||x.PatientId==sender.Id||x.DoctorId==reciever.Id ||x.DoctorId==reciever.Id).ToList();
+            return this.databaseContext.Chats.OrderByDescending(x => x.SenderId == sender.Id||x.RecieverId==sender.Id||x.SenderId==reciever.Id ||x.RecieverId==reciever.Id).ToList();
+        }
+
+        public IEnumerable<Chat> GetNewChat(int senderId, int recieverId, int lastChatId)
+        {
+            return this.databaseContext.Chats.OrderByDescending(x => x.SenderId == senderId || x.RecieverId == senderId || x.SenderId == recieverId || x.RecieverId == recieverId).Where(x=>x.Id>lastChatId).ToList();
         }
 
         public int Insert(Chat chat)

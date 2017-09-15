@@ -11,6 +11,8 @@ namespace V.Doc_Data.Interfaces
     {
         IEnumerable<Prescription> GetAll();
         Prescription Get(int id);
+        IEnumerable<Prescription> GetUsingDoctorId(int id);
+        IEnumerable<Prescription> GetUsingPatientId(int id);
         int Insert(Prescription user);
         int Update(Prescription user);
         int Delete(int id);

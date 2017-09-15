@@ -1,0 +1,46 @@
+﻿@model IEnumerable<V.Doc_ASP.NET.Models.CustomModel.ContactListModel>
+
+@{
+    ViewBag.Title = "PendingIndex";
+    Layout = "~/Views/Shared/Doctor_MainLayout.cshtml";
+}
+
+<h2>PendingIndex</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PatientPic)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.message)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Time)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RequestStatus)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            <img src="@Url.Content(item.PatientPic)" class="img-circle" alt="User Image" style="width:100px">
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.message)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Time)
+        </td>
+        <td>
+            <a href='@Url.Action("AddToContact", "Contact",new { id=item.ContactID})' class='btn btn-info'>Pending</a>
+        </td>
+    </tr>
+}
+
+</table>

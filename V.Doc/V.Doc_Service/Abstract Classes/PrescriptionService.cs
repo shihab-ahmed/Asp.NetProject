@@ -32,6 +32,16 @@ namespace V.Doc_Service.Abstract_Classes
             return this.prescriptionDataAccess.GetAll();
         }
 
+        public IEnumerable<Prescription> GetUsingDoctorId(int id)
+        {
+            return this.prescriptionDataAccess.GetUsingDoctorId(id);
+        }
+
+        public IEnumerable<Prescription> GetUsingPatientId(int id)
+        {
+            return this.prescriptionDataAccess.GetUsingPatientId(id);
+        }
+
         public int Insert(Prescription prescription)
         {
             return this.prescriptionDataAccess.Insert(prescription);

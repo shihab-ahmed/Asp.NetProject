@@ -1,0 +1,135 @@
+﻿@model V.Doc_ASP.NET.Models.CustomModel.DoctorModel
+@using V.Doc_Entity;
+@using V.Doc_ASP.NET.Models.CustomModel;
+
+@{
+    ViewBag.Title = "AccountDetails";
+    Layout = "~/Views/Shared/Doctor_MainLayout.cshtml";
+}
+
+<h2>AccountDetails</h2>
+
+<div>
+    <h4>DoctorModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Birthdate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Birthdate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Age)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Age)
+        </dd>
+
+        
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Gender)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Gender)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProfilePicture)
+        </dt>
+
+        <dd>
+            <img src="@Url.Content(Model.ProfilePicture)" width="100" height="100" />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Specialist)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Specialist)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Experience)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Experience)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.About)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.About)
+        </dd>
+        <dd>
+            <input type="button" value="Edit Profile" onclick="location.href='@Url.Action("EditProfile", "DoctorAccount")'">
+        </dd>
+        <dd>
+            <input type="button" value="Change Password" onclick="location.href='@Url.Action("EditPassword", "DoctorAccount")'">
+        </dd>
+    </dl>
+</div>
+
+@{ 
+    Doctor d=(Doctor)Session["Doctor"];
+    string image = d.User.ProfilePicture;
+
+}
+@section UserImage{
+
+    @Session["Doctor"]
+
+    <img src="@Url.Content(image)" class="img-circle" alt="User Image" style="width:100px">
+
+}
+@section UserName{
+
+    Dr Doctor
+
+}
+
+@section ContactList{
+    
+   @Html.Action("GetContactListPartialView", "Contact")
+}
