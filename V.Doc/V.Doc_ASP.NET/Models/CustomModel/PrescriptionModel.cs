@@ -13,5 +13,6 @@ namespace V.Doc_ASP.NET.Models.CustomModel
         public string Image { get;  set; }
         public string PatientName { get; set; }
         public string DoctorName { get; set; }
+        public List<String> ListOfDetails { get; set; }
     }
 }

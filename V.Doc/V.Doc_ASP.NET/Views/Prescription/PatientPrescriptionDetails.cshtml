@@ -1,0 +1,116 @@
+﻿@model V.Doc_ASP.NET.Models.CustomModel.PrescriptionModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>PatientPrescriptionDetails</title>
+</head>
+<body>
+    <div>
+        <h4>PrescriptionModel</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Details)
+            </dt>
+            
+            @foreach (var item in Model.ListOfDetails)
+            {
+                <dd>
+                    @Html.DisplayFor(model => item)
+                </dd>
+            }   
+            <dt>
+                @Html.DisplayNameFor(model => model.Title)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Title)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.DoctorId)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.DoctorId)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.PatientId)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.PatientId)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.TimeCreated)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.TimeCreated)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.TimeUpdated)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.TimeUpdated)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.SelectedName)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.SelectedName)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.NotifyUpdate)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.NotifyUpdate)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.Image)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.Image)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.PatientName)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.PatientName)
+            </dd>
+    
+            <dt>
+                @Html.DisplayNameFor(model => model.DoctorName)
+            </dt>
+    
+            <dd>
+                @Html.DisplayFor(model => model.DoctorName)
+            </dd>
+    
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</body>
+</html>

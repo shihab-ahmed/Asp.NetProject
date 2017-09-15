@@ -25,10 +25,7 @@
     <div>
         <div>
             <input type="button" value="Contact" onclick="location.href='@Url.Action("PendingIndex", "Contact")'"><br>
-            <input type="button" value="Specialist" onclick="location.href='@Url.Action("CreateAccount", "DoctorAccount")'"><br>
-            <input type="button" value="Symptom" onclick="location.href='@Url.Action("ShowUserList", "AdminAccount")'"><br>
-            <input type="button" value="Specialist" val onclick="location.href='@Url.Action("CreateSpecialist", "Specialist")'"><br>
-            <input type="button" value="Disease" onclick="location.href='@Url.Action("MyAction", "AdminAccount")'">
+            <input type="button" value="Prescription" onclick="location.href='@Url.Action("DoctorViewList", "Prescription")'">
         </div>
         <div>
             @RenderSection("ContactList", false)

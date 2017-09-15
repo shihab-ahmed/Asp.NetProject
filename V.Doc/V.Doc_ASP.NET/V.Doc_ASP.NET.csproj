@@ -7518,6 +7518,8 @@
     <Content Include="Views\Prescription\Create.cshtml" />
     <Content Include="Views\Prescription\DoctorViewList.cshtml" />
     <Content Include="Views\Prescription\PatientViewList.cshtml" />
+    <Content Include="Views\Prescription\PatientPrescriptionDetails.cshtml" />
+    <Content Include="Views\Prescription\DoctorPrescriptionDetails.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
